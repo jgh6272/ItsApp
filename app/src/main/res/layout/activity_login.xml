@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".JoinActivity">
+    tools:context=".LoginActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar"
@@ -35,35 +35,22 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
+
         <EditText
-            android:id="@+id/id_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="아이디(이메일)"/>
+            android:hint="아이디(이메일) 입력"/>
+
         <EditText
-            android:id="@+id/pwd_edt"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="비밀번호"/>
-        <EditText
-            android:id="@+id/pwd_check_edt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="비밀번호 확인"/>
-        <EditText
-            android:id="@+id/name_edt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="이름"/>
-        <EditText
-            android:id="@+id/nick_name_edt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="닉네임"/>
+            android:hint="비밀번호 입력"/>
+
         <Button
-            android:id="@+id/join_btn"
+            android:id="@+id/login_btn"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="회원가입"/>
+            android:layout_height="wrap_content"
+            android:text="로그인"/>
     </LinearLayout>
+
 </LinearLayout>
