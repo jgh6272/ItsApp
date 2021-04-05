@@ -13,6 +13,7 @@ class JoinActivity : AppCompatActivity() {
         back_btn.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
+            finish()
         }
     }
 }
