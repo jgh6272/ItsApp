@@ -7,6 +7,6 @@ class GlobalApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        KakaoSdk.init(this, "여기에 NATIVE APP KEY 복붙")
+        KakaoSdk.init(this, "68ccf8b46449fdfa895ba6067c419944")
     }
 }

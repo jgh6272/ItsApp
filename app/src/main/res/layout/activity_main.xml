@@ -22,6 +22,7 @@
         android:orientation="vertical">
 
         <Button
+            android:id="@+id/kakao_signin_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_signin_kakao"
