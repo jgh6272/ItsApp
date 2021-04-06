@@ -28,7 +28,6 @@ class MainActivity : AppCompatActivity() {
         val keyHash = Utility.getKeyHash(this)
         Log.d("HashKey",keyHash)
 
-//        image_slide.inAnimation = AnimationUtils.loadAnimation(this,R.anim.sl)
         for (image in images){
             val imageView = ImageView(this)
             val layoutParams = FrameLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,ViewGroup.LayoutParams.WRAP_CONTENT)
@@ -74,7 +73,7 @@ class MainActivity : AppCompatActivity() {
             }
             else if (token != null) {
                 Toast.makeText(this, "로그인에 성공하였습니다.", Toast.LENGTH_SHORT).show()
-                val intent = Intent(this,LoginActivity::class.java)
+                val intent = Intent(this,HomeActivity::class.java)
                 startActivity(intent)
             }
         }

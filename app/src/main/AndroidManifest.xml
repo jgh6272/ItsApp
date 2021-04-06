@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".HomeActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".JoinActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
@@ -24,9 +25,12 @@
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-                <data android:host="oauth"
+
+                <data
+                    android:host="oauth"
                     android:scheme="68ccf8b46449fdfa895ba6067c419944" />
             </intent-filter>
         </activity>
