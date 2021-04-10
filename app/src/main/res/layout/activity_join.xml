@@ -26,7 +26,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="회원가입"
-                android:textSize="20dp"/>
+                android:textSize="20dp"
+                android:textColor="@color/purple"/>
         </FrameLayout>
     </androidx.appcompat.widget.Toolbar>
 
@@ -49,7 +50,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <EditText
-                        android:id="@+id/id_edt"
+                        android:id="@+id/join_id_edt"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:background="@drawable/edit_text_round"
@@ -68,7 +69,7 @@
                 </FrameLayout>
             </LinearLayout>
             <EditText
-                android:id="@+id/pwd_edt"
+                android:id="@+id/join_password_edt"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/edit_text_round"
@@ -84,7 +85,7 @@
                 android:textSize="13dp"
                 android:text="비밀번호는 영문/숫자/특수문자(~!@#$) 를 혼합하여 8~20자로 입력하세요." />
             <EditText
-                android:id="@+id/pwd_check_edt"
+                android:id="@+id/join_password_check_edt"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/edit_text_round"
@@ -93,7 +94,7 @@
                 android:inputType="textPassword"
                 android:textSize="13dp"/>
             <EditText
-                android:id="@+id/name_edt"
+                android:id="@+id/join_name_edt"
                 android:layout_width="match_parent"
                 android:layout_height="40dp"
                 android:background="@drawable/edit_text_round"
@@ -108,7 +109,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                     <EditText
-                        android:id="@+id/nick_name_edt"
+                        android:id="@+id/join_nick_name_edt"
                         android:layout_width="match_parent"
                         android:layout_height="40dp"
                         android:background="@drawable/edit_text_round"
