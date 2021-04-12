@@ -6,16 +6,16 @@ import androidx.lifecycle.ViewModel
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import retrofit2.create
 
 class JoinViewModel : ViewModel() {
 
-    val service : ServiceApi
-        get() {
-            TODO()
-        }
+    var service : ServiceApi
 
-    private var joinRsLD : MutableLiveData<String> = MutableLiveData()
+    init{
+        service = RetrofitClient.getClient().create(ServiceApi::class.java)
+    }
+
+    var joinRsLD : MutableLiveData<String> = MutableLiveData()
 
     fun join(userId : String, password : String, userName : String, userNickName : String){
         service.join(userId, password, userName, userNickName)
@@ -26,7 +26,7 @@ class JoinViewModel : ViewModel() {
                 }
 
                 override fun onFailure(call: Call<String>, t: Throwable) {
-                    Log.d("Join Errer","회원가입 에러")
+                    Log.d("Join Errer","통신 오류")
                 }
             })
     }

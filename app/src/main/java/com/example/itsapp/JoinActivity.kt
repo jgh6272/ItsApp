@@ -14,6 +14,7 @@ import retrofit2.Response
 class JoinActivity : AppCompatActivity() {
 
     private lateinit var viewModel : JoinViewModel
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join)
@@ -33,6 +34,7 @@ class JoinActivity : AppCompatActivity() {
             val userNickName = join_nick_name_edt.text.toString().trim()
 
             Toast.makeText(this,"회원가입 버튼 클릭",Toast.LENGTH_SHORT).show()
+            viewModel.join(userId, password, userName, userNickName)
         }
     }
 }
