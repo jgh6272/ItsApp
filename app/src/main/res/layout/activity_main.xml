@@ -84,5 +84,33 @@
                 android:textColor="@color/black"
                 android:text="회원가입"/>
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            
+            <Button
+                android:id="@+id/get_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="GET"/>
+            <Button
+                android:id="@+id/post_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="POST"/>
+            <Button
+                android:id="@+id/update_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="UPDATE"/>
+            <Button
+                android:id="@+id/delete_btn"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DELETE"/>
+
+        </LinearLayout>
     </LinearLayout>
 </FrameLayout>
