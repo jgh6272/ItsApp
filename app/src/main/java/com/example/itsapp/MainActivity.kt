@@ -92,7 +92,7 @@ class MainActivity : AppCompatActivity() {
         }
         /*일반 로그인 버튼*/
         login_btn.setOnClickListener {
-            val intent = Intent(this,LoginActivity::class.java)
+//            val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
         }
     }
