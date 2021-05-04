@@ -36,6 +36,7 @@
             android:layout_height="wrap_content"
             android:text="이메일로 로그인"
             android:fontFamily="@font/nanum_barun_gothic"
+            android:background="@drawable/edit_text_round"
             />
 
         <TextView
@@ -47,7 +48,5 @@
             android:text="이메일 가입하기"
             android:fontFamily="@font/nanum_barun_gothic"
             />
-
     </LinearLayout>
-
 </FrameLayout>

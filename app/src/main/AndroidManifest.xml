@@ -14,25 +14,23 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".HomeActivity"></activity>
-        <activity android:name=".LoginActivity" />
         <activity android:name=".JoinActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--카카오톡 로그인-->
+        <meta-data android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
-
-                <data
-                    android:host="oauth"
-                    android:scheme="68ccf8b46449fdfa895ba6067c419944" />
+                <data android:host="oauth"
+                    android:scheme="kakao59946e5a631d4d639ac76aa1c03c6e7a" />
             </intent-filter>
         </activity>
     </application>
