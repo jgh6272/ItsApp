@@ -1,4 +1,6 @@
 <resources>
     <string name="app_name">잇츠</string>
     <string name="kakao_app_key">cdc72611d8426465074f8f4a37d48a59</string>
+    <!--TextView 언더바-->
+    <string name="your_string_here">This is an <u>underline</u>.</string>
 </resources>
