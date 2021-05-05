@@ -1,5 +1,6 @@
 package com.example.itsapp
 
+import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -29,7 +30,7 @@ class MainActivity : AppCompatActivity() {
         viewSlide();
         /*카카오톡 로그인 버튼*/
         kakao_signin_btn.setOnClickListener {
-            kakaoLogin();
+            kakaoLogin()
         }
         /*회원가입 버튼*/
         join_btn.setOnClickListener{
@@ -43,16 +44,14 @@ class MainActivity : AppCompatActivity() {
                 Log.e("MainActivity 카카오 로그인 : ", "로그인 실패", error)
             } else if (token != null) {
                 Log.i("MainActivity 카카오 로그인 : ", "로그인 성공 ${token.accessToken}")
-                val intent = Intent(this, MainActivity::class.java)
-                startActivity(intent)
+                val intent = Intent(this, HomeActivity::class.java)
+                startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
             }
         }
-        LoginClient.instance.run {
-            if (isKakaoTalkLoginAvailable(this@MainActivity)) {
-                loginWithKakaoTalk(this@MainActivity, callback = callback)
-            } else {
-                loginWithKakaoAccount(this@MainActivity, callback = callback)
-            }
+        if(LoginClient.instance.isKakaoTalkLoginAvailable(this)){
+            LoginClient.instance.loginWithKakaoAccount(this, callback = callback)
+        } else {
+            LoginClient.instance.loginWithKakaoAccount(this, callback = callback)
         }
     }
     fun viewSlide(){
