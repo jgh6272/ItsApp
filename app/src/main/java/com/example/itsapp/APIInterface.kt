@@ -9,19 +9,12 @@ interface APIInterface {
         val BASE_URL: String = "http://ec2-54-180-29-97.ap-northeast-2.compute.amazonaws.com"
     }
 
-    @GET("/")
-    fun getRequest(@Query("name") name : String) : Call<ResponseDC>
-
+    /*회원가입*/
     @FormUrlEncoded
-    @POST("/")
-    fun postRequest(@Field("id") id : String,
-                    @Field("password") password: String) : Call<ResponseDC>
+    @POST("/android/join")
+    suspend fun join(
+        @Field("userId") userId: String,
+        @Field("userPw") userPw: String
+    )
 
-    @FormUrlEncoded
-    @PUT("/{id}")
-    fun putRequest(@Path("id")id: String,
-                   @Field("content")content: String): Call<ResponseDC>
-
-    @DELETE("/{id}")
-    fun deleteRequest(@Path("id")id: String): Call<ResponseDC>
 }
