@@ -4,7 +4,6 @@ import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Toast
 import com.example.itsapp.R
 import com.example.itsapp.viewmodel.JoinViewModel
 import androidx.activity.viewModels
@@ -13,6 +12,7 @@ import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_join.*
 
+@AndroidEntryPoint
 class JoinActivity : AppCompatActivity() {
 
     private val viewModel by viewModels<JoinViewModel>()
