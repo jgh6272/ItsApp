@@ -14,7 +14,10 @@ interface APIInterface {
     @POST("/android/join")
     suspend fun join(
         @Field("userId") userId: String,
-        @Field("userPw") userPw: String
-    )
+        @Field("userPw") userPw: String,
+        @Field("userName") userName: String,
+        @Field("userNickname") userNickname : String,
+        @Field("loginMethod") loginMethod: String
+    ):String
 
 }

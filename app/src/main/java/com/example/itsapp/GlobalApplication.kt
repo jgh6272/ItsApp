@@ -2,6 +2,7 @@ package com.example.itsapp
 
 import android.app.Application
 import com.kakao.sdk.common.KakaoSdk
+import dagger.hilt.android.AndroidEntryPoint
 
 class GlobalApplication : Application() {
     override fun onCreate() {
