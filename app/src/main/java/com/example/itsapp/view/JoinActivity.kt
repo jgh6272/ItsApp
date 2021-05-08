@@ -9,14 +9,11 @@ import com.example.itsapp.viewmodel.JoinViewModel
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_join.*
 
-@AndroidEntryPoint
 class JoinActivity : AppCompatActivity() {
 
-    private val viewModel by viewModels<JoinViewModel>()
-
+    private val viewModel: JoinViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join)
@@ -33,15 +30,11 @@ class JoinActivity : AppCompatActivity() {
             val userName = join_name_edt.text.toString().trim()
             val userNickName = join_nick_name_edt.text.toString().trim()
             val joinMethod = "일반"
-            if (userId != "" && password != ""&& userName != "" && userNickName!="") {
-                viewModel.join(userName,userId,password,userNickName,joinMethod)
-            } else {
-                Snackbar.make(join_activity,"올바른 정보를 입력해주세요.",Snackbar.LENGTH_LONG).show()
-            }
+            viewModel.join(userName,userId,password,userNickName,joinMethod)
 //            Toast.makeText(this,"회원가입 버튼 클릭",Toast.LENGTH_SHORT).show()
         }
         viewModel.joinLiveData.observe(this, Observer {code ->
-            if(code=="200"){
+            if(code.equals("200")){
                 Snackbar.make(join_activity,"회원가입 성공",Snackbar.LENGTH_LONG).show()
                 val intent = Intent(this,HomeActivity::class.java)
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
