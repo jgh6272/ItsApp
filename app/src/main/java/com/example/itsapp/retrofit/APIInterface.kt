@@ -1,4 +1,4 @@
-package com.example.itsapp
+package com.example.itsapp.retrofit
 
 import retrofit2.http.*
 
@@ -15,4 +15,7 @@ interface APIInterface {
         @Field("loginMethod") loginMethod: String
     ):String
 
+    /*아이디 중복 검사*/
+    @GET("/android/checkId")
+    suspend fun checkId(@Query("userId") userId:String):String
 }

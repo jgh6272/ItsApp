@@ -1,4 +1,4 @@
-package com.example.itsapp
+package com.example.itsapp.retrofit
 
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -10,7 +10,7 @@ object RetrofitClient {
     private var instance: Retrofit? = null
 
     fun getInstance():Retrofit{
-        if(instance==null){
+        if(instance ==null){
             val okHttpClient = OkHttpClient.Builder()
                 .connectTimeout(1, TimeUnit.MINUTES)
                 .readTimeout(30, TimeUnit.SECONDS)

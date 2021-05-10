@@ -58,9 +58,8 @@
                         android:layout_marginTop="30dp"
                         android:hint="   아이디(이메일)"
                         android:textSize="13dp"/>
-
                     <Button
-                        android:id="@+id/test"
+                        android:id="@+id/check_id"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="중복확인"
@@ -70,31 +69,64 @@
                         android:layout_gravity="end"/>
                 </FrameLayout>
             </LinearLayout>
-            <EditText
-                android:id="@+id/join_password_edt"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/edit_text_round"
-                android:layout_marginTop="20dp"
-                android:hint="   비밀번호"
-                android:inputType="textPassword"
-                android:textSize="13dp"/>
-
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/join_password_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/edit_text_round"
+                        android:layout_marginTop="20dp"
+                        android:hint="   비밀번호"
+                        android:inputType="textPassword"
+                        android:textSize="13dp"/>
+                    <ImageView
+                        android:id="@+id/password_check_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:scaleType="fitEnd"
+                        android:layout_gravity="end|bottom"
+                        />
+                </FrameLayout>
+            </LinearLayout>
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="3dp"
                 android:textSize="13dp"
                 android:text="비밀번호는 영문/숫자/특수문자(~!@#$) 를 혼합하여 8~20자로 입력하세요." />
-            <EditText
-                android:id="@+id/join_password_check_edt"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/edit_text_round"
-                android:layout_marginTop="20dp"
-                android:hint="   비밀번호 확인"
-                android:inputType="textPassword"
-                android:textSize="13dp"/>
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <EditText
+                        android:id="@+id/join_password_check_edt"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@drawable/edit_text_round"
+                        android:layout_marginTop="20dp"
+                        android:hint="   비밀번호 확인"
+                        android:inputType="textPassword"
+                        android:textSize="13dp"/>
+                    <ImageView
+                        android:id="@+id/password_valid_check_iv"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:scaleType="fitEnd"
+                        android:layout_gravity="end|bottom"
+                        />
+                </FrameLayout>
+            </LinearLayout>
             <EditText
                 android:id="@+id/join_name_edt"
                 android:layout_width="match_parent"
