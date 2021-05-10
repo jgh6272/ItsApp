@@ -10,12 +10,12 @@ import kotlinx.coroutines.launch
 
 class JoinViewModel:ViewModel() {
     val joinLiveData = MutableLiveData<String>()
-//    val service:APIInterface = RetrofitClient.getInstance().create(APIInterface::class.java)
+    val service:APIInterface = RetrofitClient.getInstance().create(APIInterface::class.java)
 
-//    fun join(userId : String, userPw : String , userName : String, userNickname: String, loginMethod:String){
-//        viewModelScope.launch {
-//            val data = service.join(userId,userPw,userName,userNickname,loginMethod)
-//            joinLiveData.value = data
-//        }
-//    }
+    fun join(userId : String, userPw : String , userName : String, userNickname: String, loginMethod:String){
+        viewModelScope.launch {
+            val data = service.join(userId,userPw,userName,userNickname,loginMethod)
+            joinLiveData.value = data
+        }
+    }
 }
