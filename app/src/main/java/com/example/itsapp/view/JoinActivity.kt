@@ -18,21 +18,15 @@ import kotlinx.android.synthetic.main.activity_join.*
 import java.util.regex.Pattern
 
 class JoinActivity : AppCompatActivity() {
-    var userId:String = ""
-    var password:String = ""
-    val checkPassword:String =""
-    val userName:String =""
-    val userNickName:String = ""
-    val joinMethod:String = ""
-    var checkId = false
-    var checkPw = false
-    var checkValidPw = false
+
+    private var checkId = false
+    private var checkPw = false
+    private var checkValidPw = false
     private val viewModel: JoinViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join)
 
-        setId()
         checkId()
         backBtn()
         joinBtn()
@@ -57,6 +51,7 @@ class JoinActivity : AppCompatActivity() {
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
                 /*비밀번호 유효성 검사 (영문,숫자,특수문자)*/
                 val rule = "^(?=.*[A-Za-z])(?=.*[0-9])(?=.*[\$@\$!%*#?&]).{8,20}.\$"
+                val password = join_password_edt.text.toString().trim()
                 checkPw = if(Pattern.matches(rule,password)) {
                     password_check_iv.setImageResource(R.drawable.join_password_right)
                     true
@@ -74,6 +69,8 @@ class JoinActivity : AppCompatActivity() {
 
             }
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val password = join_password_edt.text.toString().trim()
+                val checkPassword = join_password_check_edt.text.toString().trim()
                 checkValidPw = if(checkPassword.equals(password)) {
                     password_valid_check_iv.setImageResource(R.drawable.join_password_right)
                     true
@@ -89,6 +86,7 @@ class JoinActivity : AppCompatActivity() {
         check_id.setOnClickListener {
             /*간단한 이메일 유효성 검사*/
             val pattern = Patterns.EMAIL_ADDRESS
+            val userId = join_id_edt.text.toString().trim()
             if(!userId.equals("")&&pattern.matcher(userId).matches()){
                 viewModel.checkId(userId)
             }else {
@@ -98,6 +96,12 @@ class JoinActivity : AppCompatActivity() {
     }
     /*JoinBtn*/
     private fun joinBtn(){
+        val userId = join_id_edt.text.toString().trim()
+        val password = join_password_edt.text.toString().trim()
+        val checkPassword = join_password_check_edt.text.toString().trim()
+        val userName = join_name_edt.text.toString().trim()
+        val userNickName = join_nick_name_edt.text.toString().trim()
+        val joinMethod = "일반"
         join_btn.setOnClickListener {
             if (userId == "" && password == "" && userName == "" && userNickName == "")
             viewModel.join(userId,password,userName,userNickName,joinMethod)
@@ -108,12 +112,12 @@ class JoinActivity : AppCompatActivity() {
     private fun liveData(){
         /*아이디 중복 검사 LIVEDATA*/
         viewModel.checkIdLiveData.observe(this, Observer { code->
-            checkId = if(code == "200"){
+            if(code == "200"){
                 Snackbar.make(join_activity,"아이디(이메일) 사용 가능",Snackbar.LENGTH_LONG).show()
-                true
+                checkId=true
             }else {
                 Snackbar.make(join_activity,"이미 사용중인 아이디(이메일)입니다.",Snackbar.LENGTH_LONG).show()
-                false
+                checkId=false
             }
         })
         /*회원가입 LIVEDATA*/
@@ -133,16 +137,5 @@ class JoinActivity : AppCompatActivity() {
                 join_nick_name_edt.text.clear()
             }
         })
-    }
-    private fun setId(){
-        val userId = join_id_edt.text.toString().trim()
-        val password = join_password_edt.text.toString().trim()
-        val checkPassword = join_password_check_edt.text.toString().trim()
-        val userName = join_name_edt.text.toString().trim()
-        val userNickName = join_nick_name_edt.text.toString().trim()
-        val joinMethod = "일반"
-        var checkId = false
-        var checkPw = false
-        var checkValidPw = false
     }
 }
