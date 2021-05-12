@@ -41,19 +41,18 @@ class JoinActivity : AppCompatActivity() {
             val encryptionPw = BCrypt.hashpw(password, BCrypt.gensalt())
             val userName = join_name_edt.text.toString().trim()
             val userNickName = join_nick_name_edt.text.toString().trim()
-            Log.d("test", "btnEvent: "+userNickName)
             val joinMethod = "일반"
             if (userId.equals("")&& password.equals("")&& userName.equals("")&& userNickName.equals("")){
-                Snackbar.make(join_activity,"회원정보를 입력해 주세요.",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(join_activity,"회원정보를 입력해 주세요.",Snackbar.LENGTH_SHORT).show()
             }else if(!checkNick && !checkId) {
-                Snackbar.make(join_activity,"중복 검사 실시해주세요.",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(join_activity,"중복 검사 실시해주세요.",Snackbar.LENGTH_SHORT).show()
             }else if(!checkPw){
-                Snackbar.make(join_activity,"비밀번호 조건에 맞게 작성해 주세요.",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(join_activity,"비밀번호 조건에 맞게 작성해 주세요.",Snackbar.LENGTH_SHORT).show()
             }else if(!checkValidPw){
-                Snackbar.make(join_activity,"비밀번호가 일치 하지 않습니다.",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(join_activity,"비밀번호가 일치 하지 않습니다.",Snackbar.LENGTH_SHORT).show()
             } else{
                 viewModel.join(userId,encryptionPw,userName,userNickName,joinMethod)
-                Snackbar.make(join_activity,"회원가입 성공.",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(join_activity,"회원가입 성공.",Snackbar.LENGTH_SHORT).show()
             }
         }
         /*뒤로가기 버튼*/
@@ -69,7 +68,7 @@ class JoinActivity : AppCompatActivity() {
                 viewModel.checkId(userId)
                 true
             }else {
-                Snackbar.make(join_activity,"적합한 아이디(이메일)을 입력해 주세요.",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(join_activity,"적합한 아이디(이메일)을 입력해 주세요.",Snackbar.LENGTH_SHORT).show()
                 false
             }
         }
@@ -79,7 +78,7 @@ class JoinActivity : AppCompatActivity() {
             if(!userNickName.equals("")){
                 viewModel.checkNick(userNickName)
             }else{
-                Snackbar.make(join_activity,"닉네임을 입력해 주세요.",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(join_activity,"닉네임을 입력해 주세요.",Snackbar.LENGTH_SHORT).show()
             }
         }
     }
@@ -129,38 +128,38 @@ class JoinActivity : AppCompatActivity() {
         /*아이디 중복 검사 LIVEDATA*/
         viewModel.checkIdLiveData.observe(this, Observer { code->
             checkId = if(code.equals("200")){
-                Snackbar.make(join_activity,"아이디(이메일) 사용 가능",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(join_activity,"아이디(이메일) 사용 가능",Snackbar.LENGTH_SHORT).show()
                 true
             }else if(code.equals("204")){
-                Snackbar.make(join_activity,"이미 사용중인 아이디(이메일)입니다.",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(join_activity,"이미 사용중인 아이디(이메일)입니다.",Snackbar.LENGTH_SHORT).show()
                 false
             }else{
-                Snackbar.make(join_activity,"에러",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(join_activity,"에러",Snackbar.LENGTH_SHORT).show()
                 false
             }
         })
         /*닉네임 중복 검사 LIVEDATA*/
         viewModel.checkNicknameLiveData.observe(this, Observer { code->
             checkNick = if(code.equals("200")){
-                Snackbar.make(join_activity,"닉네임 사용 가능",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(join_activity,"닉네임 사용 가능",Snackbar.LENGTH_SHORT).show()
                 true
             }else if(code.equals("204")){
-                Snackbar.make(join_activity,"이미 사용중인 닉네임입니다.",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(join_activity,"이미 사용중인 닉네임입니다.",Snackbar.LENGTH_SHORT).show()
                 false
             }else{
-                Snackbar.make(join_activity,"에러",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(join_activity,"에러",Snackbar.LENGTH_SHORT).show()
                 false
             }
         })
         /*회원가입 LIVEDATA*/
         viewModel.joinLiveData.observe(this, Observer {code ->
             if(code.equals("200")){
-                Snackbar.make(join_activity,"회원가입 성공",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(join_activity,"회원가입 성공",Snackbar.LENGTH_SHORT).show()
                 val intent = Intent(this,HomeActivity::class.java)
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 finish()
             }else{
-                Snackbar.make(join_activity,"회원가입 실패",Snackbar.LENGTH_LONG).show()
+                Snackbar.make(join_activity,"회원가입 실패",Snackbar.LENGTH_SHORT).show()
                 join_id_edt.text.clear()
                 join_id_edt.requestFocus()
                 join_password_edt.text.clear()

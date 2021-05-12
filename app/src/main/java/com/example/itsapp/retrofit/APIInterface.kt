@@ -1,5 +1,7 @@
 package com.example.itsapp.retrofit
 
+import com.example.itsapp.model.vo.User
+import com.example.itsapp.model.vo.UserInfo
 import retrofit2.http.*
 
 interface APIInterface {
@@ -22,4 +24,8 @@ interface APIInterface {
     /*닉네임 중복 검사*/
     @GET("/android/checkNick")
     suspend fun checkNick(@Query("userNickName") userNickName: String):String
+
+    /*로그인*/
+    @GET("/android/login")
+    suspend fun login(@Query("userId") userId: String):UserInfo
 }
