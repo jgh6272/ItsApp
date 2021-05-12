@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
 import android.util.Patterns
 import android.widget.Toast
 import com.example.itsapp.R
@@ -15,29 +16,71 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_join.*
+import org.mindrot.jbcrypt.BCrypt
 import java.util.regex.Pattern
 
 class JoinActivity : AppCompatActivity() {
 
     private var checkId = false
+    private var checkNick = false
     private var checkPw = false
     private var checkValidPw = false
     private val viewModel: JoinViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join)
-
-        checkId()
-        backBtn()
-        joinBtn()
-        checkPw()
         liveData()
-
+        btnEvent()
+        checkPw()
     }
-    /*뒤로가기 버튼*/
-    private fun backBtn(){
+    private fun btnEvent(){
+        /*회원가입 버튼*/
+        join_btn.setOnClickListener {
+            val userId = join_id_edt.text.toString().trim()
+            val password = join_password_edt.text.toString().trim()
+            val encryptionPw = BCrypt.hashpw(password, BCrypt.gensalt())
+            val userName = join_name_edt.text.toString().trim()
+            val userNickName = join_nick_name_edt.text.toString().trim()
+            Log.d("test", "btnEvent: "+userNickName)
+            val joinMethod = "일반"
+            if (userId.equals("")&& password.equals("")&& userName.equals("")&& userNickName.equals("")){
+                Snackbar.make(join_activity,"회원정보를 입력해 주세요.",Snackbar.LENGTH_LONG).show()
+            }else if(!checkNick && !checkId) {
+                Snackbar.make(join_activity,"중복 검사 실시해주세요.",Snackbar.LENGTH_LONG).show()
+            }else if(!checkPw){
+                Snackbar.make(join_activity,"비밀번호 조건에 맞게 작성해 주세요.",Snackbar.LENGTH_LONG).show()
+            }else if(!checkValidPw){
+                Snackbar.make(join_activity,"비밀번호가 일치 하지 않습니다.",Snackbar.LENGTH_LONG).show()
+            } else{
+                viewModel.join(userId,encryptionPw,userName,userNickName,joinMethod)
+                Snackbar.make(join_activity,"회원가입 성공.",Snackbar.LENGTH_LONG).show()
+            }
+        }
+        /*뒤로가기 버튼*/
         back_btn.setOnClickListener {
             finish()
+        }
+        /*아이디 중복 검사*/
+        check_id.setOnClickListener {
+            val userId = join_id_edt.text.toString().trim()
+            /*간단한 이메일 유효성 검사*/
+            val pattern = Patterns.EMAIL_ADDRESS
+            checkId = if(!userId.equals("")&&pattern.matcher(userId).matches()){
+                viewModel.checkId(userId)
+                true
+            }else {
+                Snackbar.make(join_activity,"적합한 아이디(이메일)을 입력해 주세요.",Snackbar.LENGTH_LONG).show()
+                false
+            }
+        }
+        /*닉네임 중복 검사*/
+        check_nick.setOnClickListener {
+            val userNickName = join_nick_name_edt.text.toString().trim()
+            if(!userNickName.equals("")){
+                viewModel.checkNick(userNickName)
+            }else{
+                Snackbar.make(join_activity,"닉네임을 입력해 주세요.",Snackbar.LENGTH_LONG).show()
+            }
         }
     }
     private fun checkPw(){
@@ -81,48 +124,37 @@ class JoinActivity : AppCompatActivity() {
             }
         })
     }
-    /*아이디 중복 검사*/
-    private fun checkId(){
-        check_id.setOnClickListener {
-            /*간단한 이메일 유효성 검사*/
-            val pattern = Patterns.EMAIL_ADDRESS
-            val userId = join_id_edt.text.toString().trim()
-            if(!userId.equals("")&&pattern.matcher(userId).matches()){
-                viewModel.checkId(userId)
-            }else {
-                Snackbar.make(join_activity,"적합한 아이디(이메일)을 입력해 주세요.",Snackbar.LENGTH_LONG).show()
-            }
-        }
-    }
-    /*JoinBtn*/
-    private fun joinBtn(){
-        val userId = join_id_edt.text.toString().trim()
-        val password = join_password_edt.text.toString().trim()
-        val checkPassword = join_password_check_edt.text.toString().trim()
-        val userName = join_name_edt.text.toString().trim()
-        val userNickName = join_nick_name_edt.text.toString().trim()
-        val joinMethod = "일반"
-        join_btn.setOnClickListener {
-            if (userId == "" && password == "" && userName == "" && userNickName == "")
-            viewModel.join(userId,password,userName,userNickName,joinMethod)
-            Toast.makeText(this,"회원가입 버튼 클릭", Toast.LENGTH_SHORT).show()
-        }
-    }
     /*LiveData*/
     private fun liveData(){
         /*아이디 중복 검사 LIVEDATA*/
         viewModel.checkIdLiveData.observe(this, Observer { code->
-            if(code == "200"){
+            checkId = if(code.equals("200")){
                 Snackbar.make(join_activity,"아이디(이메일) 사용 가능",Snackbar.LENGTH_LONG).show()
-                checkId=true
-            }else {
+                true
+            }else if(code.equals("204")){
                 Snackbar.make(join_activity,"이미 사용중인 아이디(이메일)입니다.",Snackbar.LENGTH_LONG).show()
-                checkId=false
+                false
+            }else{
+                Snackbar.make(join_activity,"에러",Snackbar.LENGTH_LONG).show()
+                false
+            }
+        })
+        /*닉네임 중복 검사 LIVEDATA*/
+        viewModel.checkNicknameLiveData.observe(this, Observer { code->
+            checkNick = if(code.equals("200")){
+                Snackbar.make(join_activity,"닉네임 사용 가능",Snackbar.LENGTH_LONG).show()
+                true
+            }else if(code.equals("204")){
+                Snackbar.make(join_activity,"이미 사용중인 닉네임입니다.",Snackbar.LENGTH_LONG).show()
+                false
+            }else{
+                Snackbar.make(join_activity,"에러",Snackbar.LENGTH_LONG).show()
+                false
             }
         })
         /*회원가입 LIVEDATA*/
         viewModel.joinLiveData.observe(this, Observer {code ->
-            if(code == "200"){
+            if(code.equals("200")){
                 Snackbar.make(join_activity,"회원가입 성공",Snackbar.LENGTH_LONG).show()
                 val intent = Intent(this,HomeActivity::class.java)
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())

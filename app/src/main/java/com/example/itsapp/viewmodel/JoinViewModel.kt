@@ -12,6 +12,7 @@ class JoinViewModel:ViewModel() {
         APIInterface::class.java)
     val joinLiveData = MutableLiveData<String>()
     val checkIdLiveData = MutableLiveData<String>()
+    val checkNicknameLiveData = MutableLiveData<String>()
 
     fun join(userId : String, userPw : String , userName : String, userNickname: String, loginMethod:String){
         viewModelScope.launch {
@@ -23,6 +24,12 @@ class JoinViewModel:ViewModel() {
         viewModelScope.launch {
             val data = service.checkId(userId)
             checkIdLiveData.value = data
+        }
+    }
+    fun checkNick(userNickname: String){
+        viewModelScope.launch {
+            val data = service.checkNick(userNickname)
+            checkNicknameLiveData.value = data
         }
     }
 }
