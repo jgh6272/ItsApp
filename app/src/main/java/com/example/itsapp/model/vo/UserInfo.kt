@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class UserInfo (
     @SerializedName("code") var code : String,
-    @SerializedName("password") var jsonArray:List<User>
+    @SerializedName("password") var jsonArray:String
 )

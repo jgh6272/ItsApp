@@ -16,8 +16,7 @@ import org.mindrot.jbcrypt.BCrypt
 
 class LoginActivity : AppCompatActivity() {
 
-    private var password:String = ""
-    private var isValidPassword = false
+
     private val viewModel:LoginViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +48,9 @@ class LoginActivity : AppCompatActivity() {
             val userPw = login_pw_et.text.toString().trim()
             if(user.code.equals("200")){
                 Log.d("test", "liveData: "+user.jsonArray)
-                password = user.jsonArray.toString()
-                isValidPassword = BCrypt.checkpw(userPw,password)
+                Log.d("test", "liveData: $userPw")
+                val isValidPassword = BCrypt.checkpw(userPw,user.jsonArray)
+                Log.d("test", "liveData: $isValidPassword")
                 if(isValidPassword){
                     Snackbar.make(login_layout,"로그인 성공",Snackbar.LENGTH_SHORT).show()
                     val intent = Intent(this,HomeActivity::class.java)
