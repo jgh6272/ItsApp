@@ -48,7 +48,8 @@ class LoginActivity : AppCompatActivity() {
         viewModel.loginLiveData.observe(this, Observer {user->
             val userPw = login_pw_et.text.toString().trim()
             if(user.code.equals("200")){
-                password = user.jsonArray[0].password
+                Log.d("test", "liveData: "+user.jsonArray)
+                password = user.jsonArray.toString()
                 isValidPassword = BCrypt.checkpw(userPw,password)
                 if(isValidPassword){
                     Snackbar.make(login_layout,"로그인 성공",Snackbar.LENGTH_SHORT).show()
