@@ -155,7 +155,7 @@ class JoinActivity : AppCompatActivity() {
         viewModel.joinLiveData.observe(this, Observer {code ->
             if(code.equals("200")){
                 Snackbar.make(join_activity,"회원가입 성공",Snackbar.LENGTH_SHORT).show()
-                val intent = Intent(this,HomeActivity::class.java)
+                val intent = Intent(this,MainActivity::class.java)
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 finish()
             }else{

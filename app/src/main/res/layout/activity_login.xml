@@ -58,6 +58,7 @@
                     android:layout_height="wrap_content"
                     android:hint="비밀번호(6자리 이상)"
                     android:fontFamily="@font/nanum_barun_gothic"
+                    android:inputType="textPassword"
                     />
             </com.google.android.material.textfield.TextInputLayout>
             <RelativeLayout
