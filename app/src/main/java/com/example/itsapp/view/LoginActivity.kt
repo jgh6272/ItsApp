@@ -11,7 +11,9 @@ import androidx.lifecycle.Observer
 import com.example.itsapp.R
 import com.example.itsapp.viewmodel.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
+import kotlinx.android.synthetic.main.activity_join.*
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_login.back_btn
 import org.mindrot.jbcrypt.BCrypt
 
 class LoginActivity : AppCompatActivity() {
@@ -23,7 +25,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
 
         uiFunc()
-        login()
+        buttonEvent()
         liveData()
     }
     /*비밀번호 찾기 밑줄 ui 코드*/
@@ -31,7 +33,12 @@ class LoginActivity : AppCompatActivity() {
         forgot_password_tv.paintFlags = forgot_password_tv.paintFlags or Paint.UNDERLINE_TEXT_FLAG
     }
     /*로그인 코드*/
-    private fun login(){
+    private fun buttonEvent(){
+        /*뒤로가기 버튼*/
+        back_btn.setOnClickListener {
+            finish()
+        }
+        /*로그인 버튼 */
         login_btn.setOnClickListener {
             val userId = login_id_et.text.toString().trim()
             val userPw = login_pw_et.text.toString().trim()
@@ -42,15 +49,15 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.login(userId)
             }
         }
+        forgot_password_tv.setOnClickListener{
+
+        }
     }
     private fun liveData(){
         viewModel.loginLiveData.observe(this, Observer {user->
             val userPw = login_pw_et.text.toString().trim()
             if(user.code.equals("200")){
-                Log.d("test", "liveData: "+user.jsonArray)
-                Log.d("test", "liveData: $userPw")
                 val isValidPassword = BCrypt.checkpw(userPw,user.jsonArray)
-                Log.d("test", "liveData: $isValidPassword")
                 if(isValidPassword){
                     Snackbar.make(login_layout,"로그인 성공",Snackbar.LENGTH_SHORT).show()
                     val intent = Intent(this,HomeActivity::class.java)
