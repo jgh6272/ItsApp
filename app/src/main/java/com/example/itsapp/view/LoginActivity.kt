@@ -1,11 +1,13 @@
 package com.example.itsapp.view
 
 import android.app.ActivityOptions
+import android.app.AlertDialog
 import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.itsapp.R
@@ -50,7 +52,18 @@ class LoginActivity : AppCompatActivity() {
             }
         }
         forgot_password_tv.setOnClickListener{
+            val builder =AlertDialog.Builder(this)
+            val dialogView = layoutInflater.inflate(R.layout.dialog_find_password,null)
+            val dialogText = dialogView.findViewById<EditText>(R.id.dialog_id)
+            builder.setView(dialogView)
+                .setTitle("비밀번호 찾기")
+                .setPositiveButton("확인"){ dialogInterface, i ->
 
+                }
+                .setNegativeButton("취소"){dialogInterface, i ->
+
+                }
+                .show()
         }
     }
     private fun liveData(){

@@ -25,6 +25,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         /*이미지 자동 슬라이드*/
         viewSlide();
+        eventBtn()
+    }
+    private fun eventBtn(){
         /*카카오톡 로그인 버튼*/
         kakao_signin_btn.setOnClickListener {
             kakaoLogin()
