@@ -28,4 +28,13 @@ interface APIInterface {
     /*로그인*/
     @GET("/android/login")
     suspend fun login(@Query("userId") userId: String):UserInfo
+
+    /*Kakao 로그인*/
+    @FormUrlEncoded
+    @POST("/android/kakaoLogin")
+    suspend fun kakaoLogin(
+        @Field("userId") userId:String,
+        @Field("userName") userName:String,
+        @Field("userNickname") userNickName: String
+    ):String
 }

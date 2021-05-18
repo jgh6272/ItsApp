@@ -13,6 +13,7 @@ class JoinViewModel:ViewModel() {
     val joinLiveData = MutableLiveData<String>()
     val checkIdLiveData = MutableLiveData<String>()
     val checkNicknameLiveData = MutableLiveData<String>()
+    val kakaoLoginLiveData = MutableLiveData<String>()
 
     fun join(userId : String, userPw : String , userName : String, userNickname: String, loginMethod:String){
         viewModelScope.launch {
@@ -30,6 +31,12 @@ class JoinViewModel:ViewModel() {
         viewModelScope.launch {
             val data = service.checkNick(userNickname)
             checkNicknameLiveData.value = data
+        }
+    }
+    fun kakaoJoin(userId: String,userName:String,userNickname:String){
+        viewModelScope.launch {
+            val data = service.kakaoLogin(userId,userName,userNickname)
+            kakaoLoginLiveData.value = data
         }
     }
 }

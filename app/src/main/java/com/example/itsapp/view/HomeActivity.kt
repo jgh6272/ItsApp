@@ -16,11 +16,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
-    companion object{
-        const val HOME_FRAGMENT = 0
-        const val NEWS_FRAGMENT = 1
-        const val MY_PAGE_FRAGMENT = 2
-    }
+
     private lateinit var fragmentManager: FragmentManager
     private lateinit var  fragmentTransaction: FragmentTransaction
     private lateinit var homeFragment : HomeFragment

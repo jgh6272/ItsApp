@@ -27,62 +27,71 @@
             android:textColor="@color/purple"
             android:textSize="20dp"/>
     </androidx.appcompat.widget.Toolbar>
+
     <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        >
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
             android:layout_margin="20dp"
-            >
+            android:orientation="vertical">
+
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
+                android:layout_height="wrap_content"
+                android:hint="이메일">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_id_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="이메일"
+                    android:backgroundTint="@color/transparent"
                     android:fontFamily="@font/nanum_barun_gothic"
-                    />
+                    android:maxLines="1"
+                    android:textSize="15dp" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <com.google.android.material.textfield.TextInputLayout
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <EditText
+                android:layout_height="wrap_content"
+                android:hint="비밀번호(6자리 이상)">
+
+                <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_pw_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:hint="비밀번호(6자리 이상)"
                     android:fontFamily="@font/nanum_barun_gothic"
                     android:inputType="textPassword"
-                    />
+                    android:maxLines="1"
+                    android:textSize="15dp" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center"
                 android:layout_margin="16dp"
-                >
+                android:gravity="center">
+
                 <TextView
                     android:id="@+id/info_password_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="비밀번호를 잊으셨나요?  "
                     android:fontFamily="@font/nanum_barun_gothic"
                     android:gravity="center"
-                    />
+                    android:text="비밀번호를 잊으셨나요?  " />
+
                 <TextView
                     android:id="@+id/forgot_password_tv"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/info_password_tv"
-                    android:text="비밀번호 재설정"
                     android:fontFamily="@font/nanum_barun_gothic"
-                    />
+                    android:text="비밀번호 재설정" />
             </RelativeLayout>
         </LinearLayout>
     </FrameLayout>

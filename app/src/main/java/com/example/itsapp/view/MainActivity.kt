@@ -9,9 +9,11 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
+import com.example.itsapp.AddUserInfoActivity
 import com.example.itsapp.R
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
+import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -47,9 +49,21 @@ class MainActivity : AppCompatActivity() {
             if (error != null) {
                 Log.e("MainActivity 카카오 로그인 : ", "로그인 실패", error)
             } else if (token != null) {
-                Log.i("MainActivity 카카오 로그인 : ", "로그인 성공 ${token.accessToken}")
-                val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                UserApiClient.instance.me { user, error ->
+                    if (error != null) {
+                        Log.e("TAG", "사용자 정보 요청 실패", error)
+                    }
+                    else if (user != null) {
+                        Log.i("TAG", "사용자 정보 요청 성공" +
+                                "\n이메일: ${user.kakaoAccount?.email}" +
+                                "\n닉네임: ${user.kakaoAccount?.profile?.nickname}")
+                        Log.i("MainActivity 카카오 로그인 : ", "로그인 성공 ${token.accessToken}")
+                        val intent = Intent(this, AddUserInfoActivity::class.java)
+                        intent.putExtra("email",user.kakaoAccount?.email)
+                        intent.putExtra("name",user.kakaoAccount?.profile?.nickname)
+                        startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                    }
+                }
             }
         }
         if(LoginClient.instance.isKakaoTalkLoginAvailable(this)){
