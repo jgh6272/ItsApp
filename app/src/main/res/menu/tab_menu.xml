@@ -6,12 +6,10 @@
         android:title="HOME"
         />
     <item
-        android:id="@+id/board"
         android:icon="@drawable/tip_icon_foreground"
         android:title="TIP"
         />
     <item
-        android:id="@+id/mypage"
         android:icon="@drawable/person_icon_foreground"
         android:title="MY"
         style="@style/TextAppearance.AppCompat.Widget.ActionBar.Title"

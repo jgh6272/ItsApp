@@ -9,7 +9,6 @@
     tools:context=".view.JoinActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="50dp">
 
@@ -49,19 +48,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
-                <FrameLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
-                    <EditText
-                        android:id="@+id/join_id_edt"
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/id_input_layout"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@drawable/edit_text_round"
-                        android:layout_marginTop="30dp"
-                        android:hint="   아이디(이메일)"
-                        android:maxLines="1"
-                        android:fontFamily="@font/nanum_barun_gothic"
-                        android:textSize="13dp"/>
+                        android:layout_height="wrap_content"
+                        android:hint="아이디(이메일)"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        app:errorEnabled="true"
+                        >
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/join_id_edt"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:maxLines="1"
+                            android:maxLength="45"
+                            android:fontFamily="@font/nanum_barun_gothic"
+                            android:textSize="13dp"/>
+                    </com.google.android.material.textfield.TextInputLayout>
                     <Button
                         android:id="@+id/check_id"
                         android:layout_width="wrap_content"
@@ -70,115 +76,112 @@
                         android:textColor="@color/purple"
                         android:background="@color/transparent"
                         android:fontFamily="@font/nanum_barun_gothic"
-                        android:layout_marginTop="25dp"
-                        android:layout_gravity="end"/>
-                </FrameLayout>
+                        android:layout_alignParentRight="true"
+                        />
+                </RelativeLayout>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
-                <FrameLayout
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/pw_input_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <EditText
+                    android:layout_height="wrap_content"
+                    android:hint="비밀번호"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:passwordToggleEnabled="true"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="20"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/join_password_edt"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@drawable/edit_text_round"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:hint="   비밀번호"
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:fontFamily="@font/nanum_barun_gothic"
                         android:textSize="13dp"/>
-                    <ImageView
-                        android:id="@+id/password_check_iv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:scaleType="fitEnd"
-                        android:layout_gravity="end|bottom"
-                        />
-                </FrameLayout>
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="3dp"
-                android:textSize="13dp"
-                android:text="비밀번호는 영문/숫자/특수문자(~!@#$) 를 혼합하여 8~20자로 입력하세요."
-                android:fontFamily="@font/nanum_barun_gothic"
-                />
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 >
-                <FrameLayout
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/valid_id_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <EditText
+                    android:layout_height="wrap_content"
+                    android:hint="비밀번호 확인"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    app:passwordToggleEnabled="true"
+                    app:counterEnabled="true"
+                    app:counterMaxLength="20"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/join_password_check_edt"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:background="@drawable/edit_text_round"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
-                        android:hint="   비밀번호 확인"
                         android:inputType="textPassword"
                         android:maxLines="1"
                         android:fontFamily="@font/nanum_barun_gothic"
                         android:textSize="13dp"/>
-                    <ImageView
-                        android:id="@+id/password_valid_check_iv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="40dp"
-                        android:scaleType="fitEnd"
-                        android:layout_gravity="end|bottom"
-                        />
-                </FrameLayout>
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
-            <EditText
-                android:id="@+id/join_name_edt"
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/name_input_layout"
                 android:layout_width="match_parent"
-                android:layout_height="40dp"
-                android:background="@drawable/edit_text_round"
-                android:layout_marginTop="20dp"
-                android:hint="   이름"
-                android:maxLines="1"
-                android:fontFamily="@font/nanum_barun_gothic"
-                android:textSize="13dp"/>
-            <LinearLayout
+                android:layout_height="wrap_content"
+                android:hint="이름"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                >
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/join_name_edt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:maxLines="1"
+                    android:fontFamily="@font/nanum_barun_gothic"
+                    android:maxLength="10"
+                    android:textSize="13dp"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
-                <FrameLayout
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/nickname_input_layout"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <EditText
+                    android:layout_height="wrap_content"
+                    android:hint="닉네임"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                    >
+                    <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/join_nick_name_edt"
                         android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/edit_text_round"
-                        android:hint="   닉네임"
-                        android:maxLines="1"
-                        android:fontFamily="@font/nanum_barun_gothic"
-                        android:textSize="13dp" />
-
-                    <Button
-                        android:id="@+id/check_nick"
-                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="중복확인"
-                        android:textColor="@color/purple"
-                        android:background="@color/transparent"
+                        android:layout_marginTop="20dp"
                         android:fontFamily="@font/nanum_barun_gothic"
-                        android:layout_marginTop="15dp"
-                        android:layout_gravity="end"/>
-                </FrameLayout>
-            </LinearLayout>
+                        android:maxLines="1"
+                        android:maxLength="20"
+                        android:textSize="13dp" />
+                </com.google.android.material.textfield.TextInputLayout>
+                <Button
+                    android:id="@+id/check_nick"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="중복확인"
+                    android:textColor="@color/purple"
+                    android:background="@color/transparent"
+                    android:fontFamily="@font/nanum_barun_gothic"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    />
+            </RelativeLayout>
         </LinearLayout>
     </FrameLayout>
     <Button

@@ -31,7 +31,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
         when(p0.itemId){
-            R.id.home_fragment ->{
+            /*R.id.home_fragment ->{
                 homeFragment = HomeFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.container,homeFragment).commit()
             }
@@ -42,7 +42,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             R.id.mypage_fragment ->{
                 myPageFragment = MyPageFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.container,myPageFragment).commit()
-            }
+            }*/
         }
         return true
     }
