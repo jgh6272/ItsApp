@@ -1,4 +1,4 @@
-package com.example.itsapp
+package com.example.itsapp.retrofit
 
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
