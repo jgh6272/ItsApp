@@ -26,6 +26,7 @@ class JoinActivity : AppCompatActivity() {
     private var checkNick = false
     private var checkPw = false
     private var checkValidPw = false
+    private var checkName = false
     private val viewModel: JoinViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,8 +44,8 @@ class JoinActivity : AppCompatActivity() {
             val userName = join_name_edt.text.toString().trim()
             val userNickName = join_nick_name_edt.text.toString().trim()
             val joinMethod = "일반"
-            if (userId.equals("")&& password.equals("")&& userName.equals("")&& userNickName.equals("")){
-                Snackbar.make(join_activity,"회원정보를 입력해 주세요.",Snackbar.LENGTH_SHORT).show()
+            if(!checkName){
+                join_name_edt.requestFocus()
             }else if(!checkNick && !checkId) {
                 Snackbar.make(join_activity,"중복 검사 실시해주세요.",Snackbar.LENGTH_SHORT).show()
             }else if(!checkPw){
@@ -69,7 +70,7 @@ class JoinActivity : AppCompatActivity() {
                 viewModel.checkId(userId)
                 true
             }else {
-                Snackbar.make(join_activity,"적합한 아이디(이메일)을 입력해 주세요.",Snackbar.LENGTH_SHORT).show()
+                id_input_layout.error="적합한 아이디(이메일)을 입력해 주세요."
                 false
             }
         }
@@ -132,7 +133,26 @@ class JoinActivity : AppCompatActivity() {
         })
         join_name_edt.addTextChangedListener(object :TextWatcher{
             override fun afterTextChanged(p0: Editable?) {
-                n
+                if(join_name_edt.text!!.isEmpty()){
+                    name_input_layout.error = "이름을 입력해주세요."
+                    checkName = false
+                }else{
+                    name_input_layout.error = null
+                    checkName = true
+                }
+            }
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+        })
+        join_nick_name_edt.addTextChangedListener(object :TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {
+                if(join_nick_name_edt.text!!.isEmpty()){
+                    nickname_input_layout.error = "닉네임을 입력해주세요."
+                    checkNick = false
+                }else{
+                    nickname_input_layout.error = null
+                    checkNick = false
+                }
             }
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
@@ -143,7 +163,7 @@ class JoinActivity : AppCompatActivity() {
         /*아이디 중복 검사 LIVEDATA*/
         viewModel.checkIdLiveData.observe(this, Observer { code->
             checkId = if(code.equals("200")){
-                id_input_layout.error="아이디(이메일)을 사용가능"
+                id_input_layout.helperText="아이디(이메일) 사용가능"
                 true
             }else if(code.equals("204")){
                 id_input_layout.error="이미 사용중인 아이디입니다."
@@ -156,7 +176,7 @@ class JoinActivity : AppCompatActivity() {
         /*닉네임 중복 검사 LIVEDATA*/
         viewModel.checkNicknameLiveData.observe(this, Observer { code->
             checkNick = if(code.equals("200")){
-                nickname_input_layout.error = "닉네임 사용 가능"
+                nickname_input_layout.helperText = "닉네임 사용 가능"
                 true
             }else if(code.equals("204")){
                 nickname_input_layout.error = "이미 사용중인 닉네임입니다."
