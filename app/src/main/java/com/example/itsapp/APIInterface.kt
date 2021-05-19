@@ -1,23 +1,21 @@
 package com.example.itsapp
 
 import retrofit2.Call
-import retrofit2.http.*
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
+import retrofit2.http.POST
 
-data class ResponseDC(var result:String? = null)
 interface APIInterface {
-    @GET("/")
-    fun getRequest(@Query("name") name : String) : Call<ResponseDC>
 
+    /*회원가입*/
     @FormUrlEncoded
-    @POST("/")
-    fun postRequest(@Field("id") id : String,
-                    @Field("password") password: String) : Call<ResponseDC>
+    @POST("/android/join")
+    suspend fun join(
+        @Field("userId") userId: String,
+        @Field("userPw") userPw: String,
+        @Field("userName") userName: String,
+        @Field("userNickname") userNickname : String,
+        @Field("loginMethod") loginMethod: String
+    ):String
 
-    @FormUrlEncoded
-    @PUT("/{id}")
-    fun putRequest(@Path("id")id: String,
-                   @Field("content")content: String): Call<ResponseDC>
-
-    @DELETE("/{id}")
-    fun deleteRequest(@Path("id")id: String): Call<ResponseDC>
 }
