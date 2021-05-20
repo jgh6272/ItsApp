@@ -25,12 +25,11 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
-
     }
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
-        when(p0.itemId){
+        when(p0.itemId)
+        {
             R.id.home_fragment ->{
                 homeFragment = HomeFragment()
                 supportFragmentManager.beginTransaction().replace(R.id.container,homeFragment).commit()
@@ -46,5 +45,4 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
         return true
     }
-
 }

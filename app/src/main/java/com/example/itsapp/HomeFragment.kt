@@ -13,5 +13,4 @@ class HomeFragment : Fragment() {
         arguments?.let {
         }
     }
-
 }

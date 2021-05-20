@@ -43,10 +43,7 @@ class JoinActivity : AppCompatActivity() {
             val userName = join_name_edt.text.toString().trim()
             val userNickName = join_nick_name_edt.text.toString().trim()
             val joinMethod = "일반"
-            if (userId.equals("") && password.equals("") && userName.equals("") && userNickName.equals(
-                    ""
-                )
-            ) {
+            if (userId.equals("") && password.equals("") && userName.equals("") && userNickName.equals("")) {
                 Snackbar.make(join_activity, "회원정보를 입력해 주세요.", Snackbar.LENGTH_SHORT).show()
             } else if (!checkNick && !checkId) {
                 Snackbar.make(join_activity, "중복 검사 실시해주세요.", Snackbar.LENGTH_SHORT).show()
