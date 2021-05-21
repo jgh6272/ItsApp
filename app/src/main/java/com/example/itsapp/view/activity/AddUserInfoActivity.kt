@@ -1,11 +1,10 @@
-package com.example.itsapp
+package com.example.itsapp.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.viewModels
+import com.example.itsapp.R
 import com.example.itsapp.viewmodel.JoinViewModel
-import com.example.itsapp.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_add_user_info.*
 
 class AddUserInfoActivity : AppCompatActivity() {

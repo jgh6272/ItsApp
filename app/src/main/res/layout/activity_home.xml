@@ -4,24 +4,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.HomeActivity">
+    tools:context=".view.activity.HomeActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
+        <!--    프래그먼트 들어갈 부분    -->
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_above="@+id/toolbar_div"
+            android:layout_marginTop="60dp"
+            android:layout_above="@+id/nav_div" />
 
-            />
-        <View
-            android:id="@+id/toolbar_div"
+        <!--    네이게이션 상단 경계선    -->
+       <View
+            android:id="@+id/nav_div"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_above="@+id/bottom_navigation_view"
             android:background="@color/gray300" />
+
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/bottom_navigation_view"
             android:layout_width="match_parent"
@@ -30,7 +34,6 @@
             app:itemBackground="@color/white"
             app:itemIconTint="@color/purple"
             app:itemTextColor="@color/purple"
-            app:menu="@menu/tab_menu"
-            />
+            app:menu="@menu/tab_menu" />
     </RelativeLayout>
 </LinearLayout>

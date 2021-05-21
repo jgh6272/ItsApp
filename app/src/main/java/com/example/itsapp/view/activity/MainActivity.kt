@@ -1,4 +1,4 @@
-package com.example.itsapp.view
+package com.example.itsapp.view.activity
 
 import android.app.ActivityOptions
 import android.content.Intent
@@ -9,7 +9,6 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
-import com.example.itsapp.AddUserInfoActivity
 import com.example.itsapp.R
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken

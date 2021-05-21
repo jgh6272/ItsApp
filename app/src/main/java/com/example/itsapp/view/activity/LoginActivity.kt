@@ -1,4 +1,4 @@
-package com.example.itsapp.view
+package com.example.itsapp.view.activity
 
 import android.app.ActivityOptions
 import android.app.AlertDialog
@@ -6,14 +6,12 @@ import android.content.Intent
 import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.itsapp.R
 import com.example.itsapp.viewmodel.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
-import kotlinx.android.synthetic.main.activity_join.*
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_login.back_btn
 import org.mindrot.jbcrypt.BCrypt
@@ -73,7 +71,7 @@ class LoginActivity : AppCompatActivity() {
                 val isValidPassword = BCrypt.checkpw(userPw,user.jsonArray)
                 if(isValidPassword){
                     Snackbar.make(login_layout,"로그인 성공",Snackbar.LENGTH_SHORT).show()
-                    val intent = Intent(this,HomeActivity::class.java)
+                    val intent = Intent(this, HomeActivity::class.java)
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                     finish()
                 }else {
