@@ -7,4 +7,15 @@
     android:orientation="vertical"
     tools:context=".LoadingActivity">
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="Loading.."
+        android:fontFamily="@font/nanum_barun_gothic"
+        android:textColor="@color/purple"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:textSize="20dp"
+        />
+
 </LinearLayout>
