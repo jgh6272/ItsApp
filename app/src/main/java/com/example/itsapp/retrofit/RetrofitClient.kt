@@ -1,5 +1,8 @@
 package com.example.itsapp.retrofit
 
+import android.content.Context
+import com.example.itsapp.util.AddCookiesInterceptor
+import com.example.itsapp.util.ReceivedCookiesInterceptor
 import com.google.gson.GsonBuilder
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -10,12 +13,14 @@ object RetrofitClient {
 
     private var instance: Retrofit? = null
 
-    fun getInstance():Retrofit{
+    fun getInstance(context: Context):Retrofit{
         if(instance ==null){
             val gson = GsonBuilder()
                 .setLenient()
                 .create()
             val okHttpClient = OkHttpClient.Builder()
+                .addNetworkInterceptor(AddCookiesInterceptor(context))
+                .addNetworkInterceptor(ReceivedCookiesInterceptor(context))
                 .connectTimeout(1, TimeUnit.MINUTES)
                 .readTimeout(30, TimeUnit.SECONDS)
                 .writeTimeout(15, TimeUnit.SECONDS)
