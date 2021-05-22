@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.activity.AddUserInfoActivity"></activity>
+        <activity android:name=".LabtopActivity"></activity>
+        <activity android:name=".view.activity.AddUserInfoActivity" />
         <activity
             android:name=".view.activity.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
@@ -29,11 +30,13 @@
             android:name=".view.activity.JoinActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".view.activity.MainActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
 
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN" /> -->
+
+
+            <!-- <category android:name="android.intent.category.LAUNCHER" /> -->
+            <!-- </intent-filter> -->
         </activity> <!-- 카카오톡 로그인 -->
         <meta-data
             android:name="com.kakao.sdk.AppKey"

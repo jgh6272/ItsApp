@@ -15,8 +15,8 @@
             android:id="@+id/container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="60dp"
-            android:layout_above="@+id/nav_div" />
+            android:layout_above="@+id/nav_div"
+            android:layout_centerHorizontal="true"/>
 
         <!--    네이게이션 상단 경계선    -->
        <View
@@ -33,6 +33,7 @@
             android:layout_alignParentBottom="true"
             app:itemBackground="@color/white"
             app:itemIconTint="@color/purple"
+            app:itemIconSize="30dp"
             app:itemTextColor="@color/purple"
             app:menu="@menu/tab_menu" />
     </RelativeLayout>
