@@ -1,4 +1,4 @@
-package com.example.itsapp
+package com.example.itsapp.view.activity
 
 import android.app.ActivityOptions
 import android.content.Intent
@@ -6,11 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
-import com.example.itsapp.view.HomeActivity
+import com.example.itsapp.R
 import com.example.itsapp.viewmodel.JoinViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_add_user_info.*
-import kotlinx.android.synthetic.main.activity_home.*
 
 class AddUserInfoActivity : AppCompatActivity() {
 

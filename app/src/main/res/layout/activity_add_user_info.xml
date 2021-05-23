@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:id="@+id/add_user_info_activity"
-    tools:context=".AddUserInfoActivity">
+    tools:context=".view.activity.AddUserInfoActivity">
 
     <LinearLayout
         android:layout_width="match_parent"

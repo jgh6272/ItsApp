@@ -1,5 +1,7 @@
 package com.example.itsapp.viewmodel
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,8 +9,9 @@ import com.example.itsapp.retrofit.APIInterface
 import com.example.itsapp.retrofit.RetrofitClient
 import kotlinx.coroutines.launch
 
-class JoinViewModel:ViewModel() {
-    val service: APIInterface = RetrofitClient.getInstance().create(
+class JoinViewModel(application: Application):AndroidViewModel(application) {
+    val context = getApplication<Application>().applicationContext
+    val service: APIInterface = RetrofitClient.getInstance(context).create(
         APIInterface::class.java)
     val joinLiveData = MutableLiveData<String>()
     val checkIdLiveData = MutableLiveData<String>()

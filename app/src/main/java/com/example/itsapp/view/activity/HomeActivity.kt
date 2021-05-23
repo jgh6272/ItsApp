@@ -1,18 +1,21 @@
-package com.example.itsapp.view
+package com.example.itsapp.view.activity
 
+import android.app.ActivityOptions
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
-import android.view.View
-import androidx.fragment.app.Fragment
+import androidx.activity.viewModels
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
-import com.example.itsapp.HomeFragment
-import com.example.itsapp.MyPageFragment
-import com.example.itsapp.NewsFragment
+import com.example.itsapp.view.fragment.HomeFragment
+import com.example.itsapp.view.fragment.MyPageFragment
+import com.example.itsapp.view.fragment.NewsFragment
 import com.example.itsapp.R
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.example.itsapp.viewmodel.LoginViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_home.*
 
 class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
@@ -22,10 +25,23 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
     private lateinit var homeFragment : HomeFragment
     private lateinit var newsFragment: NewsFragment
     private lateinit var myPageFragment: MyPageFragment
+    private val viewModel:LoginViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
 
+        logout.setOnClickListener {
+            UserApiClient.instance.logout { error ->
+                if(error !=null){
+                    Log.e("kakao", "로그아웃 실패. SDK에서 토큰 삭제됨", error )
+                }else {
+                    Log.i("kakao", "로그아웃 성공. SDK에서 토큰 삭제됨");
+                }
+            }
+            viewModel.removeUserInfoPref()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        }
 
     }
 

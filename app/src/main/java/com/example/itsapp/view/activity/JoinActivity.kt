@@ -1,4 +1,4 @@
-package com.example.itsapp.view
+package com.example.itsapp.view.activity
 
 import android.app.ActivityOptions
 import android.content.Intent
@@ -6,18 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.util.Patterns
-import android.widget.Toast
 import com.example.itsapp.R
 import com.example.itsapp.viewmodel.JoinViewModel
 import androidx.activity.viewModels
-import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_join.*
 import org.mindrot.jbcrypt.BCrypt
-import org.w3c.dom.Text
 import java.util.regex.Pattern
 
 class JoinActivity : AppCompatActivity() {
@@ -190,7 +186,7 @@ class JoinActivity : AppCompatActivity() {
         viewModel.joinLiveData.observe(this, Observer {code ->
             if(code.equals("200")){
                 Snackbar.make(join_activity,"회원가입 성공",Snackbar.LENGTH_SHORT).show()
-                val intent = Intent(this,MainActivity::class.java)
+                val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 finish()
             }else{

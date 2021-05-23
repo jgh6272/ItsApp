@@ -1,4 +1,4 @@
-package com.example.itsapp.view
+package com.example.itsapp.view.activity
 
 import android.app.ActivityOptions
 import android.content.Intent
@@ -9,7 +9,6 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
-import com.example.itsapp.AddUserInfoActivity
 import com.example.itsapp.R
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
@@ -26,8 +25,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         /*이미지 자동 슬라이드*/
-        viewSlide();
+        viewSlide()
+        /*버튼 이벤트*/
         eventBtn()
+        /*카카오 자동 로그인*/
+        kakaoAutoLogin()
     }
     private fun eventBtn(){
         /*카카오톡 로그인 버튼*/
@@ -44,6 +46,19 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
         }
     }
+    /*카카오 자동 로그인*/
+    fun kakaoAutoLogin(){
+        UserApiClient.instance.me { user, error ->
+            if(error !=null){
+                Log.e("TAG", "사용자 요청 실패",error )
+            }else if(user !=null){
+                if(user.kakaoAccount?.email != null){
+                    val intent = Intent(this, LoadingActivity::class.java)
+                    startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                }
+            }
+        }
+    }
     fun kakaoLogin(){
         val callback: (OAuthToken?, Throwable?) -> Unit = { token, error ->
             if (error != null) {
@@ -54,9 +69,6 @@ class MainActivity : AppCompatActivity() {
                         Log.e("TAG", "사용자 정보 요청 실패", error)
                     }
                     else if (user != null) {
-                        Log.i("TAG", "사용자 정보 요청 성공" +
-                                "\n이메일: ${user.kakaoAccount?.email}" +
-                                "\n닉네임: ${user.kakaoAccount?.profile?.nickname}")
                         Log.i("MainActivity 카카오 로그인 : ", "로그인 성공 ${token.accessToken}")
                         val intent = Intent(this, AddUserInfoActivity::class.java)
                         intent.putExtra("email",user.kakaoAccount?.email)
