@@ -67,4 +67,7 @@ dependencies {
 
     //BCrypt 암호화
     implementation group: 'de.svenkubiak', name: 'jBCrypt', version: '0.4.1'
+
+    //recyclerview
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 }

@@ -17,7 +17,7 @@
             android:layout_marginTop="100dp"
             android:orientation="horizontal">
             <androidx.cardview.widget.CardView
-                android:id="@+id/labtop_cardview"
+                android:id="@+id/laptop_cardview"
                 android:layout_width="150dp"
                 android:layout_height="150dp">
                 <LinearLayout

@@ -14,7 +14,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".LabtopActivity"></activity>
         <activity android:name=".view.activity.AddUserInfoActivity" />
         <activity
             android:name=".view.activity.LoginActivity"
