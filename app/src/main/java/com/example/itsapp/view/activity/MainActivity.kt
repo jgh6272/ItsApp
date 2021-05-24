@@ -76,6 +76,7 @@ class MainActivity : AppCompatActivity() {
                         Log.i("MainActivity 카카오 로그인 : ", "로그인 성공 ${token.accessToken}")
                         val userId = user.kakaoAccount?.email
                         val userName = user.kakaoAccount?.profile?.nickname
+                        viewModel.putLoginMethod("카카오")
                         viewModel.kakaoLogin(userId!!, userName!!)
                         val intent = Intent(this, LoadingActivity::class.java)
                         intent.putExtra("loginMethod","kakao")

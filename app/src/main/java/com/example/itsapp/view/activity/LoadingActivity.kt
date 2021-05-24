@@ -24,7 +24,7 @@ class LoadingActivity : AppCompatActivity() {
         val animation = AnimationUtils.loadAnimation(this,R.anim.loading)
         loading_tv.animation=animation
 
-        val loginMethod = intent.getStringExtra("loginMethod")
+        val loginMethod = viewmodel.getLoginMethod()
         viewmodel.getLoginSession()
         viewmodel.userIdLiveData.observe(this, Observer { userId ->
             Log.d("TAG", "onCreate: $userId")

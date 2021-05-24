@@ -38,4 +38,7 @@ class HomeViewModel(application: Application): AndroidViewModel(application){
             secondJoinLiveData.value = data
         }
     }
+    fun getLoginMethod(): String? {
+        return prefs.getLoginMethod();
+    }
 }

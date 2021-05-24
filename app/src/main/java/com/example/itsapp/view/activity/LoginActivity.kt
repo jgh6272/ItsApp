@@ -72,7 +72,7 @@ class LoginActivity : AppCompatActivity() {
                 if(isValidPassword){
                     Snackbar.make(login_layout,"로그인 성공",Snackbar.LENGTH_SHORT).show()
                     val intent = Intent(this, HomeActivity::class.java)
-                    intent.putExtra("loginMethod","일반")
+                    viewModel.putLoginMethod("일반")
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                     finish()
                 }else {
