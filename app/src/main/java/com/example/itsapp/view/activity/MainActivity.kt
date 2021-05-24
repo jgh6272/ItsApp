@@ -9,7 +9,10 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
+import androidx.activity.viewModels
 import com.example.itsapp.R
+import com.example.itsapp.viewmodel.JoinViewModel
+import com.example.itsapp.viewmodel.LoginViewModel
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
@@ -21,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         R.drawable.comment,
         R.drawable.graph
     )
+    private val viewModel: JoinViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -70,9 +74,11 @@ class MainActivity : AppCompatActivity() {
                     }
                     else if (user != null) {
                         Log.i("MainActivity 카카오 로그인 : ", "로그인 성공 ${token.accessToken}")
-                        val intent = Intent(this, AddUserInfoActivity::class.java)
-                        intent.putExtra("email",user.kakaoAccount?.email)
-                        intent.putExtra("name",user.kakaoAccount?.profile?.nickname)
+                        val userId = user.kakaoAccount?.email
+                        val userName = user.kakaoAccount?.profile?.nickname
+                        viewModel.kakaoLogin(userId!!, userName!!)
+                        val intent = Intent(this, LoadingActivity::class.java)
+                        intent.putExtra("loginMethod","kakao")
                         startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                     }
                 }

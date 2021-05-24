@@ -66,7 +66,7 @@
         </RelativeLayout>
     </LinearLayout>
     <Button
-        android:id="@+id/kakao_join_btn"
+        android:id="@+id/kakaoId_update_btn"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="가입하기"

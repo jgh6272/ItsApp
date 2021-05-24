@@ -16,7 +16,9 @@
         android:usesCleartextTraffic="true">
         <activity
             android:name=".view.activity.LoadingActivity" />
-        <activity android:name=".view.activity.AddUserInfoActivity" />
+        <activity
+            android:name=".view.activity.AddUserInfoActivity"
+            android:windowSoftInputMode="adjustResize"/>
         <activity
             android:name=".view.activity.LoginActivity"
             android:windowSoftInputMode="adjustResize" />

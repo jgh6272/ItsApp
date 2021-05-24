@@ -7,16 +7,19 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.itsapp.retrofit.APIInterface
 import com.example.itsapp.retrofit.RetrofitClient
+import com.example.itsapp.util.SharedPreference
 import kotlinx.coroutines.launch
 
 class JoinViewModel(application: Application):AndroidViewModel(application) {
     val context = getApplication<Application>().applicationContext
     val service: APIInterface = RetrofitClient.getInstance(context).create(
         APIInterface::class.java)
+    val prefs = SharedPreference(application)
     val joinLiveData = MutableLiveData<String>()
     val checkIdLiveData = MutableLiveData<String>()
     val checkNicknameLiveData = MutableLiveData<String>()
     val kakaoLoginLiveData = MutableLiveData<String>()
+    val kakaoUserInfoLD = MutableLiveData<String>()
 
     fun join(userId : String, userPw : String , userName : String, userNickname: String, loginMethod:String){
         viewModelScope.launch {
@@ -36,10 +39,19 @@ class JoinViewModel(application: Application):AndroidViewModel(application) {
             checkNicknameLiveData.value = data
         }
     }
-    fun kakaoJoin(userId: String,userName:String,userNickname:String){
+    fun kakaoLogin(userId: String,userName:String){
         viewModelScope.launch {
-            val data = service.kakaoLogin(userId,userName,userNickname)
+            val data = service.kakaoLogin(userId,userName)
             kakaoLoginLiveData.value = data
         }
+    }
+    fun kakaoUserInfo(userId:String, userNickname: String){
+        viewModelScope.launch {
+            val data = service.kakaoUserInfo(userId,userNickname)
+            kakaoUserInfoLD.value =data
+        }
+    }
+    fun removeUserInfoPref(){
+        prefs.removeCookies()
     }
 }

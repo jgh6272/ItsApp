@@ -4,12 +4,15 @@ import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.itsapp.R
 import com.example.itsapp.viewmodel.JoinViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_add_user_info.*
+import com.kakao.sdk.user.UserApiClient.Companion as User
 
 class AddUserInfoActivity : AppCompatActivity() {
 
@@ -22,17 +25,32 @@ class AddUserInfoActivity : AppCompatActivity() {
         liveData()
     }
     private fun eventBtn(){
+        back_btn.setOnClickListener{
+            UserApiClient.instance.logout { error ->
+                if(error !=null){
+                    Log.e("kakao", "로그아웃 실패. SDK에서 토큰 삭제됨", error )
+                }else {
+                    Log.i("kakao", "로그아웃 성공. SDK에서 토큰 삭제됨");
+                }
+            }
+            viewModel.removeUserInfoPref()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            finish()
+        }
         kakao_nick_check_btn.setOnClickListener {
             val nickname = kakao_nick_et.text.toString().trim()
             viewModel.checkNick(nickname)
         }
 
-        kakao_join_btn.setOnClickListener {
-            val id = intent.getStringExtra("email")
-            val name = intent.getStringExtra("name")
+        kakaoId_update_btn.setOnClickListener {
+            val id = intent.getStringExtra("userId")
             val nickname = kakao_nick_et.text.toString().trim()
-            if(id!=null&&name!=null){
-                viewModel.kakaoJoin(id,name,nickname)
+            if(id!=null){
+                Log.d("TAG", "eventBtn: "+nickname)
+                viewModel.kakaoUserInfo(id,nickname)
+            }else {
+                Snackbar.make(add_user_info_activity,id+"에러",Snackbar.LENGTH_SHORT).show()
             }
         }
     }
@@ -46,10 +64,10 @@ class AddUserInfoActivity : AppCompatActivity() {
                 Snackbar.make(add_user_info_activity,"에러",Snackbar.LENGTH_SHORT).show()
             }
         })
-        viewModel.kakaoLoginLiveData.observe(this, Observer { code ->
+        viewModel.kakaoUserInfoLD.observe(this, Observer { code ->
             if(code.equals("200")){
-                Snackbar.make(add_user_info_activity,"회원가입 성공",Snackbar.LENGTH_LONG).show()
-                val intent = Intent(this, LoadingActivity::class.java)
+                Snackbar.make(add_user_info_activity,"닉네임 설정 성공",Snackbar.LENGTH_LONG).show()
+                val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                 finish()
             }else {

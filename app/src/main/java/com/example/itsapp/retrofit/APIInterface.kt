@@ -34,7 +34,21 @@ interface APIInterface {
     @POST("/android/kakaoLogin")
     suspend fun kakaoLogin(
         @Field("userId") userId:String,
-        @Field("userName") userName:String,
-        @Field("userNickname") userNickName: String
+        @Field("userName") userName:String
+    ):String
+
+    /*유저 정보 검사*/
+    @GET("/android/seceondJoin")
+    suspend fun seceondJoin(
+        @Query("userId") userId:String,
+        @Query("loginMethod") loginMethod: String
+    ):String
+
+    /*카카오 닉네임 설정*/
+    @FormUrlEncoded
+    @POST("/android/kakaoUserInfo")
+    suspend fun kakaoUserInfo(
+        @Field("userId") userId:String,
+        @Field("userNickname") userNickname: String
     ):String
 }
