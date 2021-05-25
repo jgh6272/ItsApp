@@ -1,66 +1,52 @@
 package com.example.itsapp.view.activity
 
-import android.app.ActivityOptions
-import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.MenuItem
-import androidx.activity.viewModels
+import android.widget.Toast
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import androidx.fragment.app.replace
 import com.example.itsapp.view.fragment.HomeFragment
 import com.example.itsapp.view.fragment.MyPageFragment
 import com.example.itsapp.view.fragment.NewsFragment
 import com.example.itsapp.R
-import com.example.itsapp.viewmodel.LoginViewModel
 import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 
-    private lateinit var fragmentManager: FragmentManager
-    private lateinit var  fragmentTransaction: FragmentTransaction
-    private lateinit var homeFragment : HomeFragment
-    private lateinit var newsFragment: NewsFragment
+    private lateinit var homeFragment: HomeFragment
     private lateinit var myPageFragment: MyPageFragment
-    private val viewModel:LoginViewModel by viewModels()
+    private lateinit var newsFragment: NewsFragment
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
+        bottom_navigation_view.setOnNavigationItemSelectedListener(this)
 
-        logout.setOnClickListener {
-            UserApiClient.instance.logout { error ->
-                if(error !=null){
-                    Log.e("kakao", "로그아웃 실패. SDK에서 토큰 삭제됨", error )
-                }else {
-                    Log.i("kakao", "로그아웃 성공. SDK에서 토큰 삭제됨");
-                }
-            }
-            viewModel.removeUserInfoPref()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-        }
-
+        // onCreate되면서 홈프래그먼트를 add로 바로 띄워준다.
+        homeFragment = HomeFragment.newInstance()
+        supportFragmentManager.beginTransaction().add(R.id.container,homeFragment).commit()
     }
 
     override fun onNavigationItemSelected(p0: MenuItem): Boolean {
-        when(p0.itemId){
-            /*R.id.home_fragment ->{
-                homeFragment = HomeFragment()
+        when(p0.itemId) {
+            R.id.action_home -> {
+                homeFragment = HomeFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.container,homeFragment).commit()
             }
-            R.id.news_fragment ->{
-                newsFragment = NewsFragment()
+            R.id.action_news ->{
+                newsFragment = NewsFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.container,newsFragment).commit()
             }
-            R.id.mypage_fragment ->{
-                myPageFragment = MyPageFragment()
+            R.id.action_mypage ->{
+                myPageFragment = MyPageFragment.newInstance()
                 supportFragmentManager.beginTransaction().replace(R.id.container,myPageFragment).commit()
-            }*/
+            }
         }
         return true
     }
-
 }
