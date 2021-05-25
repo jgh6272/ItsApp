@@ -32,13 +32,10 @@ class HomeViewModel(application: Application): AndroidViewModel(application){
         return userSession
     }
 
-    fun seceondJoin(userId:String, loginMethod:String){
+    fun seceondJoin(userId:String){
         viewModelScope.launch {
-            val data = service.seceondJoin(userId,loginMethod)
+            val data = service.seceondJoin(userId)
             secondJoinLiveData.value = data
         }
-    }
-    fun getLoginMethod(): String? {
-        return prefs.getLoginMethod();
     }
 }

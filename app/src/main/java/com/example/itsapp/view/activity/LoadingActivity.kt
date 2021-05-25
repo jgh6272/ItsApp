@@ -2,6 +2,7 @@ package com.example.itsapp.view.activity
 
 import android.app.ActivityOptions
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -9,6 +10,7 @@ import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.itsapp.R
+import com.example.itsapp.util.SharedPreference
 import com.example.itsapp.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_loading.*
 
@@ -16,6 +18,7 @@ class LoadingActivity : AppCompatActivity() {
     private val viewmodel:HomeViewModel by viewModels()
     companion object{
         lateinit var id:String
+        lateinit var prefs:SharedPreference
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,19 +27,13 @@ class LoadingActivity : AppCompatActivity() {
         val animation = AnimationUtils.loadAnimation(this,R.anim.loading)
         loading_tv.animation=animation
 
-        val loginMethod = viewmodel.getLoginMethod()
+        prefs = SharedPreference(applicationContext)
         viewmodel.getLoginSession()
         viewmodel.userIdLiveData.observe(this, Observer { userId ->
             Log.d("TAG", "onCreate: $userId")
             id = userId
             if(userId!=""){
-                if (loginMethod =="일반") {
-                    val intent = Intent(this,
-                       HomeActivity::class.java)
-                   startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-                }else{
-                        viewmodel.seceondJoin(userId, "카카오")
-                }
+                viewmodel.seceondJoin(userId)
             }else {
                 viewmodel.getLoginSession()
             }

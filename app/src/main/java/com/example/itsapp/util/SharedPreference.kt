@@ -19,9 +19,9 @@ class SharedPreference(context: Context) {
         prefs.edit().remove("cookies").apply()
     }
     fun getLoginMethod(): String? {
-        return prefs.getString("loginMethod", "")
+        return prefs.getString("loginMethod", "카카오")
     }
-    fun putLoginMethod(value: String?) {
+    fun putLoginMethod(value: String) {
         prefs.edit().putString("loginMethod", value).apply()
     }
 }

@@ -2,6 +2,7 @@ package com.example.itsapp.view.activity
 
 import android.app.ActivityOptions
 import android.content.Intent
+import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,13 +11,18 @@ import android.view.ViewGroup
 import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.activity.viewModels
+import androidx.lifecycle.Observer
 import com.example.itsapp.R
+import com.example.itsapp.util.SharedPreference
 import com.example.itsapp.viewmodel.JoinViewModel
 import com.example.itsapp.viewmodel.LoginViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
+import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.activity_main.login_btn
 
 class MainActivity : AppCompatActivity() {
     private var images = intArrayOf(
@@ -25,15 +31,20 @@ class MainActivity : AppCompatActivity() {
         R.drawable.graph
     )
     private val viewModel: JoinViewModel by viewModels()
+    companion object{
+        lateinit var prefs: SharedPreference
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        prefs = SharedPreference(applicationContext)
         /*이미지 자동 슬라이드*/
         viewSlide()
         /*버튼 이벤트*/
         eventBtn()
         /*카카오 자동 로그인*/
         kakaoAutoLogin()
+        liveData()
     }
     private fun eventBtn(){
         /*카카오톡 로그인 버튼*/
@@ -76,11 +87,8 @@ class MainActivity : AppCompatActivity() {
                         Log.i("MainActivity 카카오 로그인 : ", "로그인 성공 ${token.accessToken}")
                         val userId = user.kakaoAccount?.email
                         val userName = user.kakaoAccount?.profile?.nickname
-                        viewModel.putLoginMethod("카카오")
+                        prefs.putLoginMethod("카카오")
                         viewModel.kakaoLogin(userId!!, userName!!)
-                        val intent = Intent(this, LoadingActivity::class.java)
-                        intent.putExtra("loginMethod","kakao")
-                        startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                     }
                 }
             }
@@ -90,6 +98,20 @@ class MainActivity : AppCompatActivity() {
         } else {
             LoginClient.instance.loginWithKakaoAccount(this, callback = callback)
         }
+    }
+    fun liveData(){
+        viewModel.kakaoLoginLiveData.observe(this, Observer { code ->
+            if(code.equals("200")){
+                Snackbar.make(main_activity,"로그인 성공",Snackbar.LENGTH_SHORT).show()
+                val intent = Intent(this, LoadingActivity::class.java)
+                intent.putExtra("loginMethod","kakao")
+                startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            }else if(code.equals("204")){
+                Snackbar.make(main_activity,"카카오 계정과 동일한 아이디가 존재합니다.",Snackbar.LENGTH_SHORT).show()
+            }else {
+                Snackbar.make(main_activity,"에러", Snackbar.LENGTH_SHORT).show()
+            }
+        })
     }
     fun viewSlide(){
         for (image in images){

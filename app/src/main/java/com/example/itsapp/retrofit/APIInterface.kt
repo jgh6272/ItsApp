@@ -40,8 +40,7 @@ interface APIInterface {
     /*유저 정보 검사*/
     @GET("/android/seceondJoin")
     suspend fun seceondJoin(
-        @Query("userId") userId:String,
-        @Query("loginMethod") loginMethod: String
+        @Query("userId") userId:String
     ):String
 
     /*카카오 닉네임 설정*/

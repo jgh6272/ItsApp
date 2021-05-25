@@ -10,6 +10,7 @@ import android.widget.EditText
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.itsapp.R
+import com.example.itsapp.util.SharedPreference
 import com.example.itsapp.viewmodel.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_login.*
@@ -20,10 +21,15 @@ class LoginActivity : AppCompatActivity() {
 
 
     private val viewModel:LoginViewModel by viewModels()
+    companion object{
+        lateinit var prefs: SharedPreference
+
+    }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        prefs = SharedPreference(applicationContext)
         uiFunc()
         buttonEvent()
         liveData()
@@ -72,7 +78,8 @@ class LoginActivity : AppCompatActivity() {
                 if(isValidPassword){
                     Snackbar.make(login_layout,"로그인 성공",Snackbar.LENGTH_SHORT).show()
                     val intent = Intent(this, HomeActivity::class.java)
-                    viewModel.putLoginMethod("일반")
+                    intent.putExtra("loginMethod","일반")
+                    prefs.putLoginMethod("일반")
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                     finish()
                 }else {
