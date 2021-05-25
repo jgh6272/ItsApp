@@ -55,7 +55,7 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.userInfo(userId)
             }
         }
-        forgot_password_tv.setOnClickListener{
+        /*forgot_password_tv.setOnClickListener{
             val builder =AlertDialog.Builder(this)
             val dialogView = layoutInflater.inflate(R.layout.dialog_find_password,null)
             val dialogText = dialogView.findViewById<EditText>(R.id.dialog_id)
@@ -68,18 +68,16 @@ class LoginActivity : AppCompatActivity() {
 
                 }
                 .show()
-        }
+        }*/
     }
     private fun liveData(){
         viewModel.loginLiveData.observe(this, Observer {user->
             val userPw = login_pw_et.text.toString().trim()
             if(user.code.equals("200")){
-                val isValidPassword = BCrypt.checkpw(userPw,user.jsonArray[0].password)
+                val isValidPassword = BCrypt.checkpw(userPw, user.jsonArray.password)
                 if(isValidPassword){
                     Snackbar.make(login_layout,"로그인 성공",Snackbar.LENGTH_SHORT).show()
-                    val intent = Intent(this, HomeActivity::class.java)
-                    intent.putExtra("loginMethod","일반")
-                    prefs.putLoginMethod("일반")
+                    val intent = Intent(this, LoadingActivity::class.java)
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                     finish()
                 }else {

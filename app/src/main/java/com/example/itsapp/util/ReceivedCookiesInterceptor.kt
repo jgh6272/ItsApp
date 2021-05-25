@@ -19,6 +19,7 @@ class ReceivedCookiesInterceptor(context:Context) :Interceptor{
                 cookies.add(header)
             }
 //        sharedPreferences에 cookies를 넣어주는 작업
+            Log.d("TAG", "intercept: $cookies")
             prefs.putCookies(cookies)
         }
         return originalResponse

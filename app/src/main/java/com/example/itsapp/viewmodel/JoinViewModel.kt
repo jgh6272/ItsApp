@@ -51,9 +51,6 @@ class JoinViewModel(application: Application):AndroidViewModel(application) {
             kakaoUserInfoLD.value =data
         }
     }
-    fun putLoginMethod(value:String) {
-        prefs.putLoginMethod(value)
-    }
     fun removeUserInfoPref(){
         prefs.removeCookies()
     }

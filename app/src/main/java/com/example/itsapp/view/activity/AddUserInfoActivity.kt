@@ -25,19 +25,6 @@ class AddUserInfoActivity : AppCompatActivity() {
         liveData()
     }
     private fun eventBtn(){
-        back_btn.setOnClickListener{
-            UserApiClient.instance.logout { error ->
-                if(error !=null){
-                    Log.e("kakao", "로그아웃 실패. SDK에서 토큰 삭제됨", error )
-                }else {
-                    Log.i("kakao", "로그아웃 성공. SDK에서 토큰 삭제됨");
-                }
-            }
-            viewModel.removeUserInfoPref()
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-            finish()
-        }
         kakao_nick_check_btn.setOnClickListener {
             val nickname = kakao_nick_et.text.toString().trim()
             viewModel.checkNick(nickname)

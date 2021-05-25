@@ -26,10 +26,4 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
             loginLiveData.value = data
         }
     }
-    fun putLoginMethod(value:String) {
-        prefs.putLoginMethod(value)
-    }
-    fun removeUserInfoPref(){
-        prefs.removeCookies()
-    }
 }
