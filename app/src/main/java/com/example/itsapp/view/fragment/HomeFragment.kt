@@ -10,12 +10,12 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {
 
-    private lateinit var laptopFragment: LaptopFragment
-    private lateinit var desktopFragment: DesktopFragment
-    private lateinit var phoneFragment: PhoneFragment
-    private lateinit var tabletFragment: TabletFragment
-    private lateinit var watchFragment: WatchFragment
-    private lateinit var etcDeviceFragment: EtcDeviceFragment
+    private lateinit var appleFragment: AppleFragment
+    private lateinit var lgFragment: LgFragment
+    private lateinit var samsungFragment: SamsungFragment
+    private lateinit var dellFragment: DellFragment
+    private lateinit var lenovoFragment: LenovoFragment
+    private lateinit var asusFragment: AsusFragment
 
     companion object{
         const val TAG : String = "로그"
@@ -40,28 +40,28 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home,container,false)
 
         view.laptop_cardview.setOnClickListener{
-            laptopFragment = LaptopFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,laptopFragment)?.commit()
+            appleFragment = AppleFragment.newInstance()
+            fragmentManager?.beginTransaction()?.replace(R.id.container,appleFragment)?.commit()
         }
         view.desktop_cardview.setOnClickListener {
-            desktopFragment = DesktopFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,desktopFragment)?.commit()
+            lgFragment = LgFragment.newInstance()
+            fragmentManager?.beginTransaction()?.replace(R.id.container,lgFragment)?.commit()
         }
         view.phone_cardview.setOnClickListener {
-            phoneFragment = PhoneFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,phoneFragment)?.commit()
+            samsungFragment = SamsungFragment.newInstance()
+            fragmentManager?.beginTransaction()?.replace(R.id.container,samsungFragment)?.commit()
         }
         view.tablet_cardview.setOnClickListener {
-            tabletFragment = TabletFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,tabletFragment)?.commit()
+            dellFragment = DellFragment.newInstance()
+            fragmentManager?.beginTransaction()?.replace(R.id.container,dellFragment)?.commit()
         }
         view.watch_cardview.setOnClickListener {
-            watchFragment = WatchFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,watchFragment)?.commit()
+            lenovoFragment = LenovoFragment.newInstance()
+            fragmentManager?.beginTransaction()?.replace(R.id.container,lenovoFragment)?.commit()
         }
         view.etc_cardview.setOnClickListener {
-            etcDeviceFragment = EtcDeviceFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,etcDeviceFragment)?.commit()
+            asusFragment = AsusFragment.newInstance()
+            fragmentManager?.beginTransaction()?.replace(R.id.container,asusFragment)?.commit()
         }
         return view
     }

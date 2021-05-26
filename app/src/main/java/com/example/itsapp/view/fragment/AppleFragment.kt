@@ -9,18 +9,18 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.itsapp.Brand
 import com.example.itsapp.BrandAdapter
 import com.example.itsapp.R
-import kotlinx.android.synthetic.main.fragment_laptop.*
+import kotlinx.android.synthetic.main.fragment_apple.*
 
-class LaptopFragment : Fragment() {
+class AppleFragment : Fragment() {
     companion object{
         const val TAG : String = "로그"
-        fun newInstance() : LaptopFragment{
-            return LaptopFragment()
+        fun newInstance() : AppleFragment{
+            return AppleFragment()
         }
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_laptop,container,false)
+        val view = inflater.inflate(R.layout.fragment_apple,container,false)
         return view
     }
 

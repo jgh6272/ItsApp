@@ -7,15 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.itsapp.R
 
-class EtcDeviceFragment : Fragment() {
+class SamsungFragment : Fragment() {
     companion object{
         const val TAG : String = "로그"
-        fun newInstance() : EtcDeviceFragment{
-            return EtcDeviceFragment()
+        fun newInstance() : SamsungFragment{
+            return SamsungFragment()
         }
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_etc_device,container,false)
+        val view = inflater.inflate(R.layout.fragment_samsung,container,false)
         return view
     }
 }

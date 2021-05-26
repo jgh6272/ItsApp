@@ -7,16 +7,15 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.itsapp.R
 
-class DesktopFragment : Fragment() {
-
+class AsusFragment : Fragment() {
     companion object{
         const val TAG : String = "로그"
-        fun newInstance() : DesktopFragment{
-            return DesktopFragment()
+        fun newInstance() : AsusFragment{
+            return AsusFragment()
         }
     }
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_desktop,container,false)
+        val view = inflater.inflate(R.layout.fragment_asus,container,false)
         return view
     }
 }
