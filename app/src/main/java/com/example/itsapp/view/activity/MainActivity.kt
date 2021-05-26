@@ -2,7 +2,6 @@ package com.example.itsapp.view.activity
 
 import android.app.ActivityOptions
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -15,12 +14,10 @@ import androidx.lifecycle.Observer
 import com.example.itsapp.R
 import com.example.itsapp.util.SharedPreference
 import com.example.itsapp.viewmodel.JoinViewModel
-import com.example.itsapp.viewmodel.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
-import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.activity_main.login_btn
 
@@ -44,6 +41,8 @@ class MainActivity : AppCompatActivity() {
         eventBtn()
         /*카카오 자동 로그인*/
         kakaoAutoLogin()
+        /*일반 자동 로그인*/
+        generalAutoLogin()
         liveData()
     }
     private fun eventBtn(){
@@ -103,7 +102,6 @@ class MainActivity : AppCompatActivity() {
             if(code.equals("200")){
                 Snackbar.make(main_activity,"로그인 성공",Snackbar.LENGTH_SHORT).show()
                 val intent = Intent(this, LoadingActivity::class.java)
-                intent.putExtra("loginMethod","kakao")
                 startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
             }else if(code.equals("204")){
                 Snackbar.make(main_activity,"카카오 계정과 동일한 아이디가 존재합니다.",Snackbar.LENGTH_SHORT).show()
@@ -111,6 +109,13 @@ class MainActivity : AppCompatActivity() {
                 Snackbar.make(main_activity,"에러", Snackbar.LENGTH_SHORT).show()
             }
         })
+    }
+    fun generalAutoLogin(){
+        val userId = viewModel.getLoginSession()
+        if(userId != " "){
+            val intent = Intent(this, LoadingActivity::class.java)
+            startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        }
     }
     fun viewSlide(){
         for (image in images){

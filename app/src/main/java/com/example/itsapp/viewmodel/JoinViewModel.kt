@@ -1,6 +1,7 @@
 package com.example.itsapp.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -20,6 +21,7 @@ class JoinViewModel(application: Application):AndroidViewModel(application) {
     val checkNicknameLiveData = MutableLiveData<String>()
     val kakaoLoginLiveData = MutableLiveData<String>()
     val kakaoUserInfoLD = MutableLiveData<String>()
+    val userIdLiveData = MutableLiveData<String>()
 
     fun join(userId : String, userPw : String , userName : String, userNickname: String, loginMethod:String){
         viewModelScope.launch {
@@ -51,7 +53,17 @@ class JoinViewModel(application: Application):AndroidViewModel(application) {
             kakaoUserInfoLD.value =data
         }
     }
-    fun removeUserInfoPref(){
-        prefs.removeCookies()
+    fun getLoginSession():String{
+        var userSession = ""
+        val iterator = prefs.getCookies()?.iterator()
+        if(iterator!=null){
+            while(iterator.hasNext()){
+                userSession =iterator.next()
+                userSession = userSession.split(";")[0].split("=")[1]
+                Log.d("userInfo", "getLoginSession: $userSession")
+            }
+        }
+        userIdLiveData.postValue(userSession)
+        return userSession
     }
 }

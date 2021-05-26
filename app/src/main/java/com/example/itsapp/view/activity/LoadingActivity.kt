@@ -18,17 +18,20 @@ class LoadingActivity : AppCompatActivity() {
     private val viewmodel:HomeViewModel by viewModels()
     companion object{
         lateinit var id:String
-        lateinit var prefs:SharedPreference
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_loading)
 
+        loadingEffect()
+        viewmodel.getLoginSession()
+        liveData()
+    }
+    private fun loadingEffect(){
         val animation = AnimationUtils.loadAnimation(this,R.anim.loading)
         loading_tv.animation=animation
-
-        prefs = SharedPreference(applicationContext)
-        viewmodel.getLoginSession()
+    }
+    private fun liveData(){
         viewmodel.userIdLiveData.observe(this, Observer { userId ->
             Log.d("TAG", "onCreate: $userId")
             id = userId
@@ -38,7 +41,6 @@ class LoadingActivity : AppCompatActivity() {
                 viewmodel.getLoginSession()
             }
         })
-
         viewmodel.secondJoinLiveData.observe(this, Observer { code ->
             if(code.equals("200")){
                 val intent = Intent(this, HomeActivity::class.java)
