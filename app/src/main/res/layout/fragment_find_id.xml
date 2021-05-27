@@ -3,12 +3,28 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/find_id_fragment"
     tools:context=".view.fragment.FindIdFragment">
 
-    <TextView
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:id="@+id/id_input_layout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="id" />
+        android:layout_height="wrap_content"
+        android:hint="이름"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        app:errorEnabled="true"
+        >
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/join_id_edt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:maxLength="45"
+            android:fontFamily="@font/nanum_barun_gothic"
+            android:textSize="13dp"/>
+    </com.google.android.material.textfield.TextInputLayout>
 
 </FrameLayout>

@@ -62,6 +62,9 @@ class JoinViewModel(application: Application):AndroidViewModel(application) {
                 userSession = userSession.split(";")[0].split("=")[1]
                 Log.d("userInfo", "getLoginSession: $userSession")
             }
+        }else if(iterator==null){
+            userIdLiveData.postValue(userSession)
+            return userSession
         }
         userIdLiveData.postValue(userSession)
         return userSession
