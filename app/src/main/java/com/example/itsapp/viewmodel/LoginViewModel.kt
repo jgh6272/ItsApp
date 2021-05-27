@@ -16,7 +16,6 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
     val context = getApplication<Application>().applicationContext
     val service: APIInterface = RetrofitClient.getInstance(context).create(
         APIInterface::class.java)
-    val prefs = SharedPreference(application)
     val loginLiveData = MutableLiveData<UserInfo>()
 
     /*유저 정보*/

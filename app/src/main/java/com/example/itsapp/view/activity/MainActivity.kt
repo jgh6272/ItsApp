@@ -42,7 +42,7 @@ class MainActivity : AppCompatActivity() {
         /*카카오 자동 로그인*/
         kakaoAutoLogin()
         /*일반 자동 로그인*/
-        generalAutoLogin()
+        /*generalAutoLogin()*/
         liveData()
     }
     private fun eventBtn(){
@@ -115,6 +115,8 @@ class MainActivity : AppCompatActivity() {
         if(userId != " "){
             val intent = Intent(this, LoadingActivity::class.java)
             startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        }else {
+
         }
     }
     fun viewSlide(){

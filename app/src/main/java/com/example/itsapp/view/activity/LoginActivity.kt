@@ -55,20 +55,10 @@ class LoginActivity : AppCompatActivity() {
                 viewModel.userInfo(userId)
             }
         }
-        /*forgot_password_tv.setOnClickListener{
-            val builder =AlertDialog.Builder(this)
-            val dialogView = layoutInflater.inflate(R.layout.dialog_find_password,null)
-            val dialogText = dialogView.findViewById<EditText>(R.id.dialog_id)
-            builder.setView(dialogView)
-                .setTitle("비밀번호 찾기")
-                .setPositiveButton("확인"){ dialogInterface, i ->
-
-                }
-                .setNegativeButton("취소"){dialogInterface, i ->
-
-                }
-                .show()
-        }*/
+        forgot_password_tv.setOnClickListener{
+            val intent = Intent(this, FindPasswordActivity::class.java)
+            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+        }
     }
     private fun liveData(){
         viewModel.loginLiveData.observe(this, Observer {user->
