@@ -10,14 +10,37 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/transparent">
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="15dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="홈"
+                    android:textSize="20dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center"/>
+            </FrameLayout>
+        </androidx.appcompat.widget.Toolbar>
+        <View
+            android:id="@+id/toolbar_div"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/bottom_navigation_view"
+            android:background="@color/gray300" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="100dp"
+            android:layout_marginTop="70dp"
             android:orientation="horizontal">
             <androidx.cardview.widget.CardView
-                android:id="@+id/laptop_cardview"
+                android:id="@+id/apple_cardview"
                 android:layout_width="150dp"
                 android:layout_height="150dp">
                 <LinearLayout
@@ -41,7 +64,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/desktop_cardview"
+                android:id="@+id/lg_cardview"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginLeft="20dp">
@@ -74,7 +97,7 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/phone_cardview"
+                android:id="@+id/samsung_cardview"
                 android:layout_width="150dp"
                 android:layout_height="150dp">
                 <LinearLayout
@@ -98,7 +121,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/tablet_cardview"
+                android:id="@+id/dell_cardview"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginLeft="20dp">
@@ -130,7 +153,7 @@
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/watch_cardview"
+                android:id="@+id/lenovo_cardview"
                 android:layout_width="150dp"
                 android:layout_height="150dp">
                 <LinearLayout
@@ -154,7 +177,7 @@
             </androidx.cardview.widget.CardView>
 
             <androidx.cardview.widget.CardView
-                android:id="@+id/etc_cardview"
+                android:id="@+id/asus_cardview"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginLeft="20dp">

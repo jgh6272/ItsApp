@@ -14,11 +14,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity
-            android:name=".view.activity.LoadingActivity" />
+        <activity android:name=".ReviewActivity"></activity>
+        <activity android:name=".AsusActivity" />
+        <activity android:name=".LenovoActivity" />
+        <activity android:name=".DellActivity" />
+        <activity android:name=".SamsungActivity" />
+        <activity android:name=".LgActivity" />
+        <activity android:name=".AppleActivity" />
+        <activity android:name=".view.activity.LoadingActivity" />
         <activity
             android:name=".view.activity.AddUserInfoActivity"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".view.activity.LoginActivity"
             android:windowSoftInputMode="adjustResize" />

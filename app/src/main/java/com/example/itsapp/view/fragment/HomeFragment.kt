@@ -1,22 +1,15 @@
 package com.example.itsapp.view.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.itsapp.R
+import com.example.itsapp.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {
-
-    private lateinit var appleFragment: AppleFragment
-    private lateinit var lgFragment: LgFragment
-    private lateinit var samsungFragment: SamsungFragment
-    private lateinit var dellFragment: DellFragment
-    private lateinit var lenovoFragment: LenovoFragment
-    private lateinit var asusFragment: AsusFragment
-
     companion object{
         const val TAG : String = "로그"
         fun newInstance() : HomeFragment{
@@ -39,29 +32,29 @@ class HomeFragment : Fragment() {
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home,container,false)
 
-        view.laptop_cardview.setOnClickListener{
-            appleFragment = AppleFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,appleFragment)?.commit()
+        view.apple_cardview.setOnClickListener{
+            val intent = Intent(context, AppleActivity::class.java)
+            startActivity(intent)
         }
-        view.desktop_cardview.setOnClickListener {
-            lgFragment = LgFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,lgFragment)?.commit()
+        view.lg_cardview.setOnClickListener {
+            val intent = Intent(context, LgActivity::class.java)
+            startActivity(intent)
         }
-        view.phone_cardview.setOnClickListener {
-            samsungFragment = SamsungFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,samsungFragment)?.commit()
+        view.samsung_cardview.setOnClickListener {
+            val intent = Intent(context, SamsungActivity::class.java)
+            startActivity(intent)
         }
-        view.tablet_cardview.setOnClickListener {
-            dellFragment = DellFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,dellFragment)?.commit()
+        view.dell_cardview.setOnClickListener {
+            val intent = Intent(context, DellActivity::class.java)
+            startActivity(intent)
         }
-        view.watch_cardview.setOnClickListener {
-            lenovoFragment = LenovoFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,lenovoFragment)?.commit()
+        view.lenovo_cardview.setOnClickListener {
+            val intent = Intent(context, LenovoActivity::class.java)
+            startActivity(intent)
         }
-        view.etc_cardview.setOnClickListener {
-            asusFragment = AsusFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,asusFragment)?.commit()
+        view.asus_cardview.setOnClickListener {
+            val intent = Intent(context, AsusActivity::class.java)
+            startActivity(intent)
         }
         return view
     }

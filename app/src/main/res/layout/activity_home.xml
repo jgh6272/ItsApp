@@ -5,17 +5,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/home_activity"
+    android:orientation="vertical"
     tools:context=".view.activity.HomeActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <Button
-            android:id="@+id/logout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="logout"
-            />
         <FrameLayout
             android:id="@+id/container"
             android:layout_width="match_parent"
