@@ -50,4 +50,9 @@ interface APIInterface {
         @Field("userId") userId:String,
         @Field("userNickname") userNickname: String
     ):String
+
+    /*비밀번호 변경*/
+    @FormUrlEncoded
+    @POST("/android/updatePw")
+    suspend fun updatePw(@Field("userId") userID:String,@Field("userPw") userPw:String):String
 }

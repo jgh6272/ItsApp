@@ -17,12 +17,19 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
     val service: APIInterface = RetrofitClient.getInstance(context).create(
         APIInterface::class.java)
     val loginLiveData = MutableLiveData<UserInfo>()
+    val updatePwLiveData = MutableLiveData<String>()
 
     /*유저 정보*/
     fun userInfo(userId:String){
         viewModelScope.launch {
             val data = service.userInfo(userId)
             loginLiveData.value = data
+        }
+    }
+    fun updatePw(userId:String,userPw:String){
+        viewModelScope.launch {
+            val data = service.updatePw(userId,userPw)
+            updatePwLiveData.value = data
         }
     }
 }
