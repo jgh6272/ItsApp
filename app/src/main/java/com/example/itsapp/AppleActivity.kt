@@ -14,19 +14,19 @@ class AppleActivity : AppCompatActivity() {
         back_btn.setOnClickListener {
             finish()
         }
-        val deviceList = arrayListOf(
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치")
-        )
-        rv_device.layoutManager = GridLayoutManager(this,2)
-        rv_device.adapter = DeviceAdapter(deviceList)
+//        val deviceList = arrayListOf(
+//            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
+//            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
+//            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
+//            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
+//            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
+//            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
+//            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
+//            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
+//            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
+//            Device(R.drawable.macbook,"Mac Book Pro 16인치")
+//        )
+//        rv_device.layoutManager = GridLayoutManager(this,2)
+//        rv_device.adapter = DeviceAdapter(deviceList)
     }
 }

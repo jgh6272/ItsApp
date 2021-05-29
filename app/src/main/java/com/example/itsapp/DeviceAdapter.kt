@@ -28,12 +28,10 @@ class DeviceAdapter(val deviceList:ArrayList<Device>) : RecyclerView.Adapter<Dev
         val deviceImg = itemView.findViewById<ImageView>(R.id.device_img)
         val name = itemView.findViewById<TextView>(R.id.device_name)
     }
-
     interface OnItemClickListener{
         fun onItemClick(v:View, data: Device, pos : Int)
     }
     private var listener : OnItemClickListener? = null
-
     fun setOnItemClickListener(listener : OnItemClickListener) {
         this.listener = listener
     }
