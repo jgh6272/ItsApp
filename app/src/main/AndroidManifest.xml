@@ -14,7 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ReviewActivity"></activity>
+        <activity android:name=".TestActivity"></activity>
+        <activity android:name=".ReviewActivity" />
         <activity android:name=".AsusActivity" />
         <activity android:name=".LenovoActivity" />
         <activity android:name=".DellActivity" />

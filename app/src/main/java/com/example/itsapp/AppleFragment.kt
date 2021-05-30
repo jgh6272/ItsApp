@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.itsapp.view.fragment.NewsFragment
@@ -16,7 +17,8 @@ import kotlinx.android.synthetic.main.fragment_apple.*
 
 class AppleFragment : Fragment() {
 
-    lateinit var deviceAdapter: DeviceAdapter
+    val deviceList = arrayListOf<Device>()
+    val deviceAdapter = DeviceAdapter(deviceList)
 
     companion object{
         const val TAG : String = "로그"
@@ -44,19 +46,27 @@ class AppleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val deviceList = arrayListOf(
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치"),
-            Device(R.drawable.macbook,"Mac Book Pro 16인치")
-        )
         rv_device.layoutManager = GridLayoutManager(activity,2)
-        rv_device.adapter = DeviceAdapter(deviceList)
+        rv_device.adapter = deviceAdapter
+
+        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치1"))
+        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치2"))
+        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치3"))
+        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치4"))
+        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치5"))
+        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치6"))
+
+        deviceAdapter.setItemClickListener(object : DeviceAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                Toast.makeText(activity,"${deviceList[position].name}",Toast.LENGTH_SHORT).show()
+                if(position == 0) {
+                    val intent = Intent(context, ReviewActivity::class.java)
+                    startActivity(intent)
+                }else if(position == 2){
+                    val intent = Intent(context, TestActivity::class.java)
+                    startActivity(intent)
+                }
+            }
+        })
     }
 }
