@@ -82,7 +82,7 @@
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/nanum_barun_gothic"
                     android:gravity="center"
-                    android:text="아이디/비밀번호 잊으셨나요?  " />
+                    android:text="비밀번호 잊으셨나요?  " />
 
                 <TextView
                     android:id="@+id/forgot_password_tv"
@@ -90,7 +90,7 @@
                     android:layout_height="wrap_content"
                     android:layout_toRightOf="@+id/info_password_tv"
                     android:fontFamily="@font/nanum_barun_gothic"
-                    android:text="아이디/비밀번호 찾기" />
+                    android:text="비밀번호 재설정" />
             </RelativeLayout>
         </LinearLayout>
     </FrameLayout>

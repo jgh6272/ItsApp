@@ -1,16 +1,12 @@
 package com.example.itsapp.util
 
 import java.util.*
-import javax.activation.DataHandler
-import javax.activation.FileDataSource
 import javax.mail.Message
 import javax.mail.PasswordAuthentication
 import javax.mail.Session
 import javax.mail.Transport
 import javax.mail.internet.InternetAddress
-import javax.mail.internet.MimeBodyPart
 import javax.mail.internet.MimeMessage
-import javax.mail.internet.MimeMultipart
 
 class MailSender {
 
@@ -20,8 +16,8 @@ class MailSender {
         dest: String       // 받는 메일 주소
     ) {
         // 보내는 메일 주소와 비밀번호
-        val username = "";
-        val password = "";
+        val username = "jgh6272@gmail.com";
+        val password = "Hyung0725@";
 
         val props = Properties();
         props.put("mail.smtp.auth", "true");

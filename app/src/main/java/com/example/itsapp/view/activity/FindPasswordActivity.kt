@@ -1,6 +1,7 @@
 package com.example.itsapp.view.activity
 
 import android.os.Bundle
+import android.os.StrictMode
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
@@ -20,6 +21,7 @@ class FindPasswordActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_find_password)
 
+        thread()
         btnEvent()
         liveData()
     }
@@ -35,11 +37,12 @@ class FindPasswordActivity : AppCompatActivity() {
     private fun liveData(){
         viewModel.loginLiveData.observe(this, Observer {result ->
             if(result.code.equals("200")){
-                if(getRamdomPassword(8)!=null){
-                    userPw=BCrypt.hashpw(getRamdomPassword(8),BCrypt.gensalt())
+                val newPw = getRamdomPassword(8)
+                if(newPw!=null){
+                    userPw=BCrypt.hashpw(newPw,BCrypt.gensalt())
                 }
                 val sender = MailSender()
-                sender.sendEmail("ItsApp 비밀번호 재설정","ItsApp의 새로운 비밀번호는 "+getRamdomPassword(8)+"입니다. 마이페이지를 통해 비밀번호를 변경해주세요.",userId)
+                sender.sendEmail("ItsApp 비밀번호 재설정","ItsApp의 새로운 비밀번호는 "+newPw+"(대문자)입니다. 마이페이지를 통해 비밀번호를 변경해주세요.",userId)
                 viewModel.updatePw(userId,userPw)
             }else {
                 Snackbar.make(find_pw_layout,"해당 아이디로 회원가입된 계정이 없습니다.",Snackbar.LENGTH_SHORT).show()
@@ -69,5 +72,11 @@ class FindPasswordActivity : AppCompatActivity() {
             sb.append(charSet[idx])
         }
         return sb.toString()
+    }
+    private fun thread(){
+        StrictMode.setThreadPolicy(StrictMode.ThreadPolicy.Builder()
+            .permitDiskReads()
+            .permitDiskWrites()
+            .permitNetwork().build());
     }
 }
