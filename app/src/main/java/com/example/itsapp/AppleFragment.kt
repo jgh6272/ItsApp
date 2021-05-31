@@ -49,7 +49,7 @@ class AppleFragment : Fragment() {
         rv_device.layoutManager = GridLayoutManager(activity,2)
         rv_device.adapter = deviceAdapter
 
-        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치1"))
+        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치"))
         deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치2"))
         deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치3"))
         deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치4"))
@@ -61,9 +61,6 @@ class AppleFragment : Fragment() {
                 Toast.makeText(activity,"${deviceList[position].name}",Toast.LENGTH_SHORT).show()
                 if(position == 0) {
                     val intent = Intent(context, ReviewActivity::class.java)
-                    startActivity(intent)
-                }else if(position == 2){
-                    val intent = Intent(context, TestActivity::class.java)
                     startActivity(intent)
                 }
             }

@@ -50,4 +50,8 @@ interface APIInterface {
         @Field("userId") userId:String,
         @Field("userNickname") userNickname: String
     ):String
+
+    @GET("/android/review")
+    suspend fun getDeviceInfo(
+        @Query("deviceName") deviceName : String):String
 }
