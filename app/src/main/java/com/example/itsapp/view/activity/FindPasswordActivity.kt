@@ -1,12 +1,11 @@
 package com.example.itsapp.view.activity
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.example.itsapp.R
-import com.example.itsapp.util.GMailSender
+import com.example.itsapp.util.MailSender
 import com.example.itsapp.viewmodel.LoginViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_find_password.*
@@ -39,8 +38,8 @@ class FindPasswordActivity : AppCompatActivity() {
                 if(getRamdomPassword(8)!=null){
                     userPw=BCrypt.hashpw(getRamdomPassword(8),BCrypt.gensalt())
                 }
-                val sender = GMailSender("jgh6272@gmail.com","Hyung0725@")
-                sender.sendMail("ItsApp 비밀번호 재설정","ItsApp의 새로운 비밀번호는 "+getRamdomPassword(8)+"입니다. 마이페이지를 통해 비밀번호를 변경해주세요.",userId)
+                val sender = MailSender()
+                sender.sendEmail("ItsApp 비밀번호 재설정","ItsApp의 새로운 비밀번호는 "+getRamdomPassword(8)+"입니다. 마이페이지를 통해 비밀번호를 변경해주세요.",userId)
                 viewModel.updatePw(userId,userPw)
             }else {
                 Snackbar.make(find_pw_layout,"해당 아이디로 회원가입된 계정이 없습니다.",Snackbar.LENGTH_SHORT).show()
