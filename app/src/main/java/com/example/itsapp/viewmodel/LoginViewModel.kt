@@ -16,6 +16,7 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
     val context = getApplication<Application>().applicationContext
     val service: APIInterface = RetrofitClient.getInstance(context).create(
         APIInterface::class.java)
+    val prefs = SharedPreference(application)
     val loginLiveData = MutableLiveData<UserInfo>()
     val updatePwLiveData = MutableLiveData<String>()
 
@@ -31,5 +32,8 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
             val data = service.updatePw(userId,userPw)
             updatePwLiveData.value = data
         }
+    }
+    fun setLoginMethod(value:String){
+        prefs.loginMethod = value
     }
 }

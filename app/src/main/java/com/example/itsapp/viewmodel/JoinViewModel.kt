@@ -69,4 +69,10 @@ class JoinViewModel(application: Application):AndroidViewModel(application) {
         userIdLiveData.postValue(userSession)
         return userSession
     }
+    fun setLoginMethod(value:String){
+        prefs.loginMethod = value
+    }
+    fun getLoginMethod(): String? {
+        return prefs.loginMethod
+    }
 }

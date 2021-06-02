@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.SharedPreferences
 
 class SharedPreference(context: Context) {
+
     val prefs : SharedPreferences =
         context.getSharedPreferences("userInfo",Context.MODE_PRIVATE)
 
@@ -18,4 +19,8 @@ class SharedPreference(context: Context) {
     fun removeCookies(){
         prefs.edit().remove("cookies").apply()
     }
+
+    var loginMethod :String?
+    get() = prefs.getString("loginMethod","")
+    set(value) = prefs.edit().putString("loginMethod",value).apply()
 }

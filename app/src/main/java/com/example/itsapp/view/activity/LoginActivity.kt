@@ -67,6 +67,7 @@ class LoginActivity : AppCompatActivity() {
                 val isValidPassword = BCrypt.checkpw(userPw, user.jsonArray.password)
                 if(isValidPassword){
                     Snackbar.make(login_layout,"로그인 성공",Snackbar.LENGTH_SHORT).show()
+                    viewModel.setLoginMethod("일반")
                     val intent = Intent(this, LoadingActivity::class.java)
                     startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
                     finish()

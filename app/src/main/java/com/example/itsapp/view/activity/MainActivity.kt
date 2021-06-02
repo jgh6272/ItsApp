@@ -39,9 +39,8 @@ class MainActivity : AppCompatActivity() {
         viewSlide()
         /*버튼 이벤트*/
         eventBtn()
-        /*카카오 자동 로그인*/
-        kakaoAutoLogin()
         /*일반 자동 로그인*/
+        generalAutoLogin()
         liveData()
     }
     private fun eventBtn(){
@@ -100,6 +99,7 @@ class MainActivity : AppCompatActivity() {
         viewModel.kakaoLoginLiveData.observe(this, Observer { code ->
             if(code.equals("200")){
                 Snackbar.make(main_activity,"로그인 성공",Snackbar.LENGTH_SHORT).show()
+                viewModel.setLoginMethod("카카오")
                 val intent = Intent(this, LoadingActivity::class.java)
                 startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
             }else if(code.equals("204")){
@@ -110,12 +110,18 @@ class MainActivity : AppCompatActivity() {
         })
     }
     fun generalAutoLogin(){
-        val userId = viewModel.getLoginSession()
-        if(userId != " "){
-            val intent = Intent(this, LoadingActivity::class.java)
-            startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
-        }else {
-
+        if(!viewModel.getLoginMethod().equals("일반")){
+            /*카카오 자동 로그인*/
+            kakaoAutoLogin()
+        }
+        else if(viewModel.getLoginMethod().equals("일반")) {
+            val userId = viewModel.getLoginSession()
+            if(userId != " "){
+                viewModel.setLoginMethod("일반")
+                val intent = Intent(this, LoadingActivity::class.java)
+                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                finish()
+            }
         }
     }
     fun viewSlide(){
