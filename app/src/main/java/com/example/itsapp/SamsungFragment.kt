@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.itsapp.view.fragment.NewsFragment
-import kotlinx.android.synthetic.main.activity_apple.*
 
 class SamsungFragment : Fragment() {
     companion object{

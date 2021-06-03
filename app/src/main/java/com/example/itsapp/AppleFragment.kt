@@ -10,9 +10,6 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.itsapp.view.fragment.NewsFragment
-import kotlinx.android.synthetic.main.activity_apple.*
-import kotlinx.android.synthetic.main.activity_apple.rv_device
 import kotlinx.android.synthetic.main.fragment_apple.*
 
 class AppleFragment : Fragment() {
@@ -49,12 +46,12 @@ class AppleFragment : Fragment() {
         rv_device.layoutManager = GridLayoutManager(activity,2)
         rv_device.adapter = deviceAdapter
 
-        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치"))
-        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치2"))
-        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치3"))
-        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치4"))
-        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치5"))
-        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro 16인치6"))
+        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro"))
+        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro"))
+        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro"))
+        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro"))
+        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro"))
+        deviceList.add(Device(R.drawable.macbook,"Mac Book Pro"))
 
         deviceAdapter.setItemClickListener(object : DeviceAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
