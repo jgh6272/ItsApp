@@ -23,9 +23,10 @@
                 android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
 
             <TextView
+                android:id="@+id/device_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="리뷰"
+                android:text="Mac Book Pro"
                 android:textSize="20dp"
                 android:textColor="@color/black"
                 android:layout_gravity="center"/>
@@ -38,17 +39,5 @@
         android:layout_height="1dp"
         android:layout_above="@+id/bottom_navigation_view"
         android:background="@color/gray300" />
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp">
-
-        <TextView
-            android:id="@+id/device_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:text="기기명"/>
-    </FrameLayout>
 
 </LinearLayout>

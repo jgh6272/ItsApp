@@ -8,6 +8,7 @@ import android.widget.AdapterView
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.itsapp.model.vo.Device
 
 class DeviceAdapter(val deviceList:ArrayList<Device>) : RecyclerView.Adapter<DeviceAdapter.ViewHolder>(){
 
@@ -23,8 +24,9 @@ class DeviceAdapter(val deviceList:ArrayList<Device>) : RecyclerView.Adapter<Dev
     }
 
     override fun onBindViewHolder(holder: DeviceAdapter.ViewHolder, position: Int) {
-        holder.deviceImg.setImageResource(deviceList.get(position).deviceImg)
-        holder.name.text = deviceList.get(position).name
+        holder.deviceName.text = deviceList.get(position).deviceName
+        holder.reviewPoint.text = deviceList.get(position).reviewPoint.toString()
+        holder.reviewCount.text = deviceList.get(position).reviewCount.toString()
 
         holder.itemView.setOnClickListener{
             itemClickListener.onClick(it, position)
@@ -32,8 +34,9 @@ class DeviceAdapter(val deviceList:ArrayList<Device>) : RecyclerView.Adapter<Dev
     }
 
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
-        val deviceImg = itemView.findViewById<ImageView>(R.id.device_img)
-        val name = itemView.findViewById<TextView>(R.id.device_name)
+        val deviceName = itemView.findViewById<TextView>(R.id.device_name)
+        val reviewPoint = itemView.findViewById<TextView>(R.id.review_point)
+        val reviewCount = itemView.findViewById<TextView>(R.id.review_count)
     }
     interface OnItemClickListener{
         fun onClick(v: View, position: Int)

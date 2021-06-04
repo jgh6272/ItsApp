@@ -1,7 +1,9 @@
 package com.example.itsapp.retrofit
 
+import com.example.itsapp.model.vo.DeviceInfo
 import com.example.itsapp.model.vo.User
 import com.example.itsapp.model.vo.UserInfo
+import retrofit2.Call
 import retrofit2.http.*
 
 interface APIInterface {
@@ -54,4 +56,7 @@ interface APIInterface {
     @GET("/android/review")
     suspend fun getDeviceInfo(
         @Query("deviceName") deviceName : String):String
+
+    @GET("/android/getDevice")
+    fun getDevice() : Call<DeviceInfo>
 }
