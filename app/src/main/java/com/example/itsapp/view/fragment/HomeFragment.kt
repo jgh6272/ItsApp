@@ -1,21 +1,17 @@
 package com.example.itsapp.view.fragment
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.itsapp.R
+import com.example.itsapp.*
 import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {
 
-    private lateinit var laptopFragment: LaptopFragment
-    private lateinit var desktopFragment: DesktopFragment
-    private lateinit var phoneFragment: PhoneFragment
-    private lateinit var tabletFragment: TabletFragment
-    private lateinit var watchFragment: WatchFragment
-    private lateinit var etcDeviceFragment: EtcDeviceFragment
+    private var appleFragment = AppleFragment()
 
     companion object{
         const val TAG : String = "로그"
@@ -24,44 +20,49 @@ class HomeFragment : Fragment() {
         }
     }
 
-//    // 메모리에 올라갔을때
-//    override fun onCreate(savedInstanceState: Bundle?) {
-//        super.onCreate(savedInstanceState)
-//        Log.d(TAG, "HomeFragment -onCreate() called")
-//    }
-//
-//    override fun onAttach(context: Context) {
-//        super.onAttach(context)
-//        Log.d(TAG, "HomeFragment -onAttach() called")
-//    }
-
     // 뷰가 생성됐을 때
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_home,container,false)
 
-        view.laptop_cardview.setOnClickListener{
-            laptopFragment = LaptopFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,laptopFragment)?.commit()
+        // 브랜드별 프래그먼트들을 만들지 말고 하나만 만들어서
+        // 클릭된게 apple_cardview 이면 브랜드 프래그먼트에 Apple 이라는 걸 bundle 객체를 생성해(key와 value) 저장한다음
+        // 브랜드 프래그먼트로 전달한다.
+        view.apple_cardview.setOnClickListener{
+            var bundle = Bundle()
+            bundle.putString("deviceBrand","Apple")
+            appleFragment.arguments = bundle
+            Log.d("putString", bundle.toString())
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,appleFragment).commit()
         }
-        view.desktop_cardview.setOnClickListener {
-            desktopFragment = DesktopFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,desktopFragment)?.commit()
+        view.lg_cardview.setOnClickListener {
+            var bundle = Bundle()
+            bundle.putString("deviceBrand","LG")
+            appleFragment.arguments = bundle
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,appleFragment).commit()
         }
-        view.phone_cardview.setOnClickListener {
-            phoneFragment = PhoneFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,phoneFragment)?.commit()
+        view.samsung_cardview.setOnClickListener {
+            var bundle = Bundle()
+            bundle.putString("deviceBrand","SAMSUNG")
+            appleFragment.arguments = bundle
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,appleFragment).commit()
         }
-        view.tablet_cardview.setOnClickListener {
-            tabletFragment = TabletFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,tabletFragment)?.commit()
+        view.dell_cardview.setOnClickListener {
+            var bundle = Bundle()
+            bundle.putString("deviceBrand","DELL")
+            appleFragment.arguments = bundle
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,appleFragment).commit()
         }
-        view.watch_cardview.setOnClickListener {
-            watchFragment = WatchFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,watchFragment)?.commit()
+        view.lenovo_cardview.setOnClickListener {
+            var bundle = Bundle()
+            bundle.putString("deviceBrand","LENOVO")
+            appleFragment.arguments = bundle
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,appleFragment).commit()
         }
-        view.etc_cardview.setOnClickListener {
-            etcDeviceFragment = EtcDeviceFragment.newInstance()
-            fragmentManager?.beginTransaction()?.replace(R.id.container,etcDeviceFragment)?.commit()
+        view.asus_cardview.setOnClickListener {
+            var bundle = Bundle()
+            bundle.putString("deviceBrand","ASUS")
+            appleFragment.arguments = bundle
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,appleFragment).commit()
         }
         return view
     }

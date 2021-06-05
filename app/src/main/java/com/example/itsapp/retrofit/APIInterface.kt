@@ -1,6 +1,7 @@
 package com.example.itsapp.retrofit
 
 import com.example.itsapp.model.vo.SearchNews
+import com.example.itsapp.model.vo.DeviceInfo
 import com.example.itsapp.model.vo.User
 import com.example.itsapp.model.vo.UserInfo
 import retrofit2.Call
@@ -67,4 +68,9 @@ interface APIInterface {
         @Query("display") display: Int? = null,
         @Query("start") start: Int? = null
     ): Call<SearchNews>
+
+    @GET("/android/getDevice")
+    suspend fun getDevice(
+        @Query("deviceBrand") deviceBrand : String
+    ) : DeviceInfo
 }
