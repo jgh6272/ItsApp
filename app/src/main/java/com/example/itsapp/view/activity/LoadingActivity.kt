@@ -2,7 +2,6 @@ package com.example.itsapp.view.activity
 
 import android.app.ActivityOptions
 import android.content.Intent
-import android.content.SharedPreferences
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +9,6 @@ import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import com.example.itsapp.R
-import com.example.itsapp.util.SharedPreference
 import com.example.itsapp.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.activity_loading.*
 
@@ -45,10 +43,12 @@ class LoadingActivity : AppCompatActivity() {
             if(code.equals("200")){
                 val intent = Intent(this, HomeActivity::class.java)
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                finish()
             }else if (code.equals("204")) {
                 val intent = Intent(this, AddUserInfoActivity::class.java)
                 intent.putExtra("userId",id)
                 startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                finish()
             }
         })
     }
