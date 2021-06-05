@@ -1,7 +1,9 @@
 package com.example.itsapp.retrofit
 
+import com.example.itsapp.model.vo.SearchNews
 import com.example.itsapp.model.vo.User
 import com.example.itsapp.model.vo.UserInfo
+import retrofit2.Call
 import retrofit2.http.*
 
 interface APIInterface {
@@ -55,4 +57,14 @@ interface APIInterface {
     @FormUrlEncoded
     @POST("/android/updatePw")
     suspend fun updatePw(@Field("userId") userID:String,@Field("userPw") userPw:String):String
+
+    /*네이버 검색 api*/
+    @GET("v1/search/news.json")
+    fun getSearchNews(
+        @Header("X-Naver-Client-Id") clientId: String,
+        @Header("X-Naver-Client-Secret") clientSecret: String,
+        @Query("query") query: String,
+        @Query("display") display: Int? = null,
+        @Query("start") start: Int? = null
+    ): Call<SearchNews>
 }

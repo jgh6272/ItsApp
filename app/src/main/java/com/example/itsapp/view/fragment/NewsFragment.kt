@@ -9,7 +9,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itsapp.R
-import com.example.itsapp.util.NaverSearchApi
 import com.example.itsapp.view.adapter.NewsAdapter
 
 
@@ -30,8 +29,6 @@ class NewsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "NewsFragment -onCreate() called")
-        thread = NaverSearchApi()
-        thread.start()
     }
 
     override fun onAttach(context: Context) {
