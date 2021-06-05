@@ -1,6 +1,5 @@
 package com.example.itsapp.view.fragment
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -41,8 +40,6 @@ class HomeFragment : Fragment() {
         val view = inflater.inflate(R.layout.fragment_home,container,false)
 
         view.apple_cardview.setOnClickListener{
-//            val intent = Intent(context, AppleActivity::class.java)
-//            startActivity(intent)
             appleFragment = AppleFragment.newInstance()
             fragmentManager?.beginTransaction()?.replace(R.id.container,appleFragment)?.commit()
         }
@@ -67,5 +64,13 @@ class HomeFragment : Fragment() {
             fragmentManager?.beginTransaction()?.replace(R.id.container,asusFragment)?.commit()
         }
         return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        // 브랜드별 프래그먼트들을 만들지 말고 하나만 만들어서
+        // 클릭된게 apple_cardview 이면 프래그먼트에 그 Apple 값을 넘기고?
+        // Apple 이라는 걸 알리고?
     }
 }

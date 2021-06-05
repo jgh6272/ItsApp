@@ -1,21 +1,19 @@
-package com.example.itsapp
+package com.example.itsapp.view.fragment
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import com.example.itsapp.view.fragment.NewsFragment
+import com.example.itsapp.R
 
-class LgFragment : Fragment() {
+class SamsungFragment : Fragment() {
     companion object{
         const val TAG : String = "로그"
 
-        fun newInstance() : LgFragment {
-            return LgFragment()
+        fun newInstance() : SamsungFragment {
+            return SamsungFragment()
         }
     }
 
@@ -30,7 +28,7 @@ class LgFragment : Fragment() {
 
     // 뷰가 생성됐을 때
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_lg,container,false)
+        val view = inflater.inflate(R.layout.fragment_samsung,container,false)
         return view
     }
 

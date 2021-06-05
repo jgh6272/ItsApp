@@ -10,7 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itsapp.model.vo.Device
 
-class DeviceAdapter(val deviceList:ArrayList<Device>) : RecyclerView.Adapter<DeviceAdapter.ViewHolder>(){
+class DeviceAdapter(var deviceList:ArrayList<Device>) : RecyclerView.Adapter<DeviceAdapter.ViewHolder>(){
 
     private lateinit var itemClickListener : OnItemClickListener
 
@@ -25,6 +25,7 @@ class DeviceAdapter(val deviceList:ArrayList<Device>) : RecyclerView.Adapter<Dev
 
     override fun onBindViewHolder(holder: DeviceAdapter.ViewHolder, position: Int) {
         holder.deviceName.text = deviceList.get(position).deviceName
+        holder.deviceBrand.text = deviceList.get(position).deviceBrand
         holder.reviewPoint.text = deviceList.get(position).reviewPoint.toString()
         holder.reviewCount.text = deviceList.get(position).reviewCount.toString()
 
@@ -33,8 +34,14 @@ class DeviceAdapter(val deviceList:ArrayList<Device>) : RecyclerView.Adapter<Dev
         }
     }
 
+    fun updateItem(item: List<Device>){
+        deviceList = item as ArrayList<Device>
+        notifyDataSetChanged()
+    }
+
     class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView){
         val deviceName = itemView.findViewById<TextView>(R.id.device_name)
+        val deviceBrand = itemView.findViewById<TextView>(R.id.device_brand)
         val reviewPoint = itemView.findViewById<TextView>(R.id.review_point)
         val reviewCount = itemView.findViewById<TextView>(R.id.review_count)
     }

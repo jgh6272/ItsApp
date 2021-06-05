@@ -53,10 +53,6 @@ interface APIInterface {
         @Field("userNickname") userNickname: String
     ):String
 
-    @GET("/android/review")
-    suspend fun getDeviceInfo(
-        @Query("deviceName") deviceName : String):String
-
     @GET("/android/getDevice")
-    fun getDevice() : Call<DeviceInfo>
+    suspend fun getDevice() : DeviceInfo
 }

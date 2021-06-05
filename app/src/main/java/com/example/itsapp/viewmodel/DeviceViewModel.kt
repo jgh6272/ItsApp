@@ -21,28 +21,14 @@ class DeviceViewModel(application: Application): AndroidViewModel(application) {
         APIInterface::class.java)
     val prefs = SharedPreference(application)
 
-    val deviceNameLiveData = MutableLiveData<String>()
-    val deviceLiveData = MutableLiveData<DeviceInfo?>()
+    val deviceLiveData = MutableLiveData<DeviceInfo>()
 
-    fun getDeviceInfo(deviceName: String){
-        viewModelScope.launch {
-            val data = service.getDeviceInfo(deviceName)
-            deviceNameLiveData.value = data
-
-        }
-    }
     fun getDevice(){
-//        service.getDevice().enqueue(object : Callback<DeviceInfo> {
-//            override fun onResponse(call: Call<DeviceInfo>, response: Response<DeviceInfo>) {
-//                Log.d("Response : ",response.body().toString())
-//                val result : DeviceInfo? = response.body()
-//                deviceLiveData.postValue(result)
-//            }
-//            override fun onFailure(call: Call<DeviceInfo>, t: Throwable) {
-//
-//            }
-//
-//        })
-
+        viewModelScope.launch {
+            val data:DeviceInfo = service.getDevice()
+            deviceLiveData.value = data
+            Log.d("getDevice",data.jsonArray.toString())
+            Log.d("getDevice",data.code.toString())
+        }
     }
 }
