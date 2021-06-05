@@ -7,13 +7,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.RecyclerView
 import com.example.itsapp.R
+import com.example.itsapp.util.NaverSearchApi
+import com.example.itsapp.view.adapter.NewsAdapter
 
 
 class NewsFragment : Fragment() {
+
+    private lateinit var mRecyclerView:RecyclerView
+    private lateinit var mAdapter:NewsAdapter
+    private lateinit var mLayoutManager:RecyclerView.LayoutManager
+    private lateinit var thread:Thread
     companion object{
         const val TAG : String = "로그"
-
         fun newInstance() : NewsFragment{
             return NewsFragment()
         }
@@ -23,6 +30,8 @@ class NewsFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.d(TAG, "NewsFragment -onCreate() called")
+        thread = NaverSearchApi()
+        thread.start()
     }
 
     override fun onAttach(context: Context) {

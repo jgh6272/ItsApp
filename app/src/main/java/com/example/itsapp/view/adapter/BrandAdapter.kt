@@ -1,4 +1,4 @@
-package com.example.itsapp
+package com.example.itsapp.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,10 +6,12 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.itsapp.model.vo.Brand
+import com.example.itsapp.R
 
 class BrandAdapter(val brandList : ArrayList<Brand>) : RecyclerView.Adapter<BrandAdapter.CustomViewHolder>(){
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BrandAdapter.CustomViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CustomViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.device_brand_list_item,parent,false)
         return CustomViewHolder(view)
     }
@@ -18,7 +20,7 @@ class BrandAdapter(val brandList : ArrayList<Brand>) : RecyclerView.Adapter<Bran
         return brandList.size
     }
 
-    override fun onBindViewHolder(holder: BrandAdapter.CustomViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: CustomViewHolder, position: Int) {
         holder.deviceImg.setImageResource(brandList.get(position).deviceImg)
         holder.brandName.text = brandList.get(position).brandName
         holder.deviceName.text = brandList.get(position).deviceName
