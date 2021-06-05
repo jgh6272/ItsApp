@@ -74,5 +74,5 @@ dependencies {
     implementation group: 'de.svenkubiak', name: 'jBCrypt', version: '0.4.1'
 
     //recyclerview
-    implementation 'androidx.recyclerview:recyclerview:1.2.0'
+    implementation 'androidx.recyclerview:recyclerview:1.2.1'
 }

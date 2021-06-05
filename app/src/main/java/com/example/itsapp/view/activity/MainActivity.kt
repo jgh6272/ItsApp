@@ -102,6 +102,7 @@ class MainActivity : AppCompatActivity() {
                 viewModel.setLoginMethod("카카오")
                 val intent = Intent(this, LoadingActivity::class.java)
                 startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                finish()
             }else if(code.equals("204")){
                 Snackbar.make(main_activity,"카카오 계정과 동일한 아이디가 존재합니다.",Snackbar.LENGTH_SHORT).show()
             }else {
