@@ -27,6 +27,8 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         setContentView(R.layout.activity_home)
         bottom_navigation_view.setOnNavigationItemSelectedListener(this)
 
+
+
         // onCreate되면서 홈프래그먼트를 add로 바로 띄워준다.
         homeFragment = HomeFragment.newInstance()
         supportFragmentManager.beginTransaction().add(R.id.container,homeFragment).commit()
@@ -49,4 +51,5 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
         }
         return true
     }
+
 }

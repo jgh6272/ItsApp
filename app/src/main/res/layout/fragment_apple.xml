@@ -22,9 +22,10 @@
                 android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
 
             <TextView
+                android:id="@+id/device_brand"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Apple"
+                android:text="브랜드 명"
                 android:textSize="20dp"
                 android:textColor="@color/black"
                 android:layout_gravity="center"/>

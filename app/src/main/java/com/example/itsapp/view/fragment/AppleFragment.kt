@@ -25,7 +25,6 @@ class AppleFragment : Fragment() {
     val deviceList = arrayListOf<Device>()
     val deviceAdapter = DeviceAdapter(deviceList)
     private val viewModel: DeviceViewModel by viewModels()
-    private val homeFragment : HomeFragment = TODO()
 
 
     companion object{
@@ -57,11 +56,13 @@ class AppleFragment : Fragment() {
         rv_device.layoutManager = GridLayoutManager(activity,2)
         rv_device.adapter = deviceAdapter
 
-        // HomeFragment에서 클릭된 카드뷰 정보(어느 브랜드 인지)를 받아와서 (HomeFragment <--> Fragment(this)
+        // HomeFragment에서 클릭된 카드뷰 정보(어느 브랜드 인지)를 받아온다. (HomeFragment <--> Fragment(this)
+            // HomeFragment에서 bundle 객체를 전달받아 그 값을 변수(deviceBrand)에 저장한다.
         // 서버에 브랜드 정보를 보내고 그 브랜드에 맞는 디바이스 정보를 받아와서 (Fragment <--> 서버)
-        //
-
-        viewModel.getDevice()
+            // deviceBrand 값을 서버에 전송해서 해당 브랜드 맞는 디바이스 정보를 가져와 화면에 뿌려준다.
+        val deviceBrand = arguments?.getString("deviceBrand")
+        device_brand.text = deviceBrand
+        viewModel.getDevice(deviceBrand!!)
         viewModel.deviceLiveData.observe(viewLifecycleOwner, Observer { deviceInfo ->
             if(deviceInfo.code.equals("200")){
                 Log.d("getDeviceInfo Code",deviceInfo.code)

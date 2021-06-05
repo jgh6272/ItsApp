@@ -23,9 +23,9 @@ class DeviceViewModel(application: Application): AndroidViewModel(application) {
 
     val deviceLiveData = MutableLiveData<DeviceInfo>()
 
-    fun getDevice(){
+    fun getDevice(deviceBrand : String){
         viewModelScope.launch {
-            val data:DeviceInfo = service.getDevice()
+            val data:DeviceInfo = service.getDevice(deviceBrand)
             deviceLiveData.value = data
             Log.d("getDevice",data.jsonArray.toString())
             Log.d("getDevice",data.code.toString())
