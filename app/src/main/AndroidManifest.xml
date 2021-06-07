@@ -18,7 +18,6 @@
             android:windowSoftInputMode="adjustResize"/>
         <activity android:name=".view.activity.LoadingActivity" />
         <activity android:name=".ReviewActivity" />
-        <activity android:name=".view.activity.LoadingActivity" />
         <activity
             android:name=".view.activity.AddUserInfoActivity"
             android:windowSoftInputMode="adjustResize"/>
