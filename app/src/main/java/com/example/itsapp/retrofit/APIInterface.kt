@@ -73,4 +73,10 @@ interface APIInterface {
     suspend fun getDevice(
         @Query("deviceBrand") deviceBrand : String
     ) : DeviceInfo
+
+    @GET("android/getDeviceInfo")
+    suspend fun getDeviceInfo(
+        @Query("deviceName") deviceName : String
+    ) : DeviceInfo
+
 }

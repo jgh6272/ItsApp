@@ -1,20 +1,18 @@
-package com.example.itsapp
+package com.example.itsapp.view.adapter
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.example.itsapp.R
 import com.example.itsapp.model.vo.Device
 
 class DeviceAdapter(var deviceList:ArrayList<Device>) : RecyclerView.Adapter<DeviceAdapter.ViewHolder>(){
 
     private lateinit var itemClickListener : OnItemClickListener
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DeviceAdapter.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.device_item,parent,false)
         return ViewHolder(view)
     }
@@ -23,7 +21,7 @@ class DeviceAdapter(var deviceList:ArrayList<Device>) : RecyclerView.Adapter<Dev
         return deviceList.size
     }
 
-    override fun onBindViewHolder(holder: DeviceAdapter.ViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.deviceName.text = deviceList.get(position).deviceName
         holder.deviceBrand.text = deviceList.get(position).deviceBrand
         holder.reviewPoint.text = deviceList.get(position).reviewPoint.toString()

@@ -31,4 +31,12 @@ class DeviceViewModel(application: Application): AndroidViewModel(application) {
             Log.d("getDevice",data.code.toString())
         }
     }
+
+    fun getDeviceInfo(deviceName : String){
+        viewModelScope.launch {
+            val data:DeviceInfo = service.getDeviceInfo(deviceName)
+            deviceLiveData.value = data
+            Log.d("getDevice",data.jsonArray.toString())
+        }
+    }
 }

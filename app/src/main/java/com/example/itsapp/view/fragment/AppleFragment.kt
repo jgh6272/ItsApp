@@ -12,19 +12,19 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.itsapp.DeviceAdapter
+import com.example.itsapp.view.adapter.DeviceAdapter
 import com.example.itsapp.R
-import com.example.itsapp.ReviewActivity
+import com.example.itsapp.DeviceInfoActivity
 import com.example.itsapp.model.vo.Device
 import com.example.itsapp.viewmodel.DeviceViewModel
 import kotlinx.android.synthetic.main.fragment_apple.*
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class AppleFragment : Fragment() {
 
     val deviceList = arrayListOf<Device>()
     val deviceAdapter = DeviceAdapter(deviceList)
     private val viewModel: DeviceViewModel by viewModels()
+    private val deviceInfoActivity = DeviceInfoActivity()
 
 
     companion object{
@@ -53,6 +53,7 @@ class AppleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
         rv_device.layoutManager = GridLayoutManager(activity,2)
         rv_device.adapter = deviceAdapter
 
@@ -72,10 +73,12 @@ class AppleFragment : Fragment() {
 
         deviceAdapter.setItemClickListener(object : DeviceAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
-                if(position == 0) {
-                    val intent = Intent(context, ReviewActivity::class.java)
+
+                // 클릭된 deviceName을 DeviceInfoActivity로 넘겨줘야 한다.
+                var deviceName = deviceAdapter.deviceList[position].deviceName
+
+                val intent = Intent(context, DeviceInfoActivity::class.java)
                     startActivity(intent)
-                }
             }
         })
     }

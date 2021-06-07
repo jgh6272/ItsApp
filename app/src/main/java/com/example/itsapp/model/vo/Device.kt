@@ -6,5 +6,6 @@ data class Device(
     @SerializedName("DEVICE_NAME") var deviceName: String,
     @SerializedName("DEVICE_BRAND") var deviceBrand: String,
     @SerializedName("REVIEW_POINT") var reviewPoint: Double,
-    @SerializedName("REVIEW_COUNT") var reviewCount: Int
+    @SerializedName("REVIEW_COUNT") var reviewCount: Int,
+    @SerializedName("DEVICE_PRICE") var devicePrice: Int
 )
