@@ -18,6 +18,7 @@ import com.example.itsapp.DeviceInfoActivity
 import com.example.itsapp.model.vo.Device
 import com.example.itsapp.viewmodel.DeviceViewModel
 import kotlinx.android.synthetic.main.fragment_apple.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class AppleFragment : Fragment() {
 
@@ -73,12 +74,14 @@ class AppleFragment : Fragment() {
 
         deviceAdapter.setItemClickListener(object : DeviceAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
-
                 // 클릭된 deviceName을 DeviceInfoActivity로 넘겨줘야 한다.
+                // 액티비티로 넘겨준 deviceName으로 어떤 제품을 불러올 것인지를 체크하기 위함
+                // 액티비티로 넘겨 주는 거기 때문에 bundle이 아니라 intent로 넘긴다.
+                // 프래그먼트로 넘길 시엔 bundle 사용
                 var deviceName = deviceAdapter.deviceList[position].deviceName
-
-                val intent = Intent(context, DeviceInfoActivity::class.java)
-                    startActivity(intent)
+                val intent = Intent(activity, DeviceInfoActivity::class.java)
+                intent.putExtra("deviceName",deviceName)
+                startActivity(intent)
             }
         })
     }

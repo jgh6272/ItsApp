@@ -1,9 +1,6 @@
 package com.example.itsapp.retrofit
 
-import com.example.itsapp.model.vo.SearchNews
-import com.example.itsapp.model.vo.DeviceInfo
-import com.example.itsapp.model.vo.User
-import com.example.itsapp.model.vo.UserInfo
+import com.example.itsapp.model.vo.*
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -78,5 +75,4 @@ interface APIInterface {
     suspend fun getDeviceInfo(
         @Query("deviceName") deviceName : String
     ) : DeviceInfo
-
 }
