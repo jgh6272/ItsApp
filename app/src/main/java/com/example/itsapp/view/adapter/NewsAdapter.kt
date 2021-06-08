@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itsapp.R
 import com.example.itsapp.model.vo.Items
@@ -16,8 +17,10 @@ class NewsAdapter(private val items: List<Items>) : RecyclerView.Adapter<NewsAda
         val main: TextView
         val title:TextView
         val date:TextView
+        val cardview: CardView
         init {
             // Define click listener for the ViewHolder's View.
+            cardview = view.findViewById(R.id.news_cardview)
             main = view.findViewById(R.id.news_title_tv)
             title = view.findViewById(R.id.news_main_tv)
             date = view.findViewById(R.id.news_date_tv)

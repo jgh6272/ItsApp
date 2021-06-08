@@ -14,6 +14,7 @@ import com.example.itsapp.R
 import com.example.itsapp.model.vo.ResultGetSearchNews
 import com.example.itsapp.retrofit.NaverApi
 import com.example.itsapp.view.adapter.NewsAdapter
+import com.example.itsapp.viewmodel.NewsViewModel
 import retrofit2.Call
 import retrofit2.Callback
 
@@ -21,6 +22,7 @@ import retrofit2.Callback
 class NewsFragment : Fragment() {
 
     private val naverApi = NaverApi.create()
+    private val viewModel:NewsViewModel by viewModels()
     private lateinit var recyclerView:RecyclerView
     companion object{
         const val TAG : String = "로그"
@@ -46,26 +48,7 @@ class NewsFragment : Fragment() {
         recyclerView = view.findViewById(R.id.category_news)
         var layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
         recyclerView.layoutManager = layoutManager
-        searchNews("맥북",1,100)
+        viewModel.searchNews("맥북",1,100, recyclerView)
         return view
-    }
-
-    fun searchNews(query:String, start:Int,display:Int){
-        naverApi.getSearchNews(query,start,display)
-            .enqueue(object : Callback<ResultGetSearchNews> {
-                override fun onResponse(
-                    call: Call<ResultGetSearchNews>,
-                    response: retrofit2.Response<ResultGetSearchNews>
-                ){
-                    var result = response.body()
-                    var itemResult = result!!.items
-                    val mAdapter = NewsAdapter(itemResult)
-                    recyclerView.adapter = mAdapter
-                    Log.d("네이버 Api", "onResponse: $response.toString()")
-                }
-                override fun onFailure(call: Call<ResultGetSearchNews>, t: Throwable) {
-                    Log.d("네이버 Api", "onFailure: $t")
-                }
-            })
     }
 }
