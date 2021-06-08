@@ -1,23 +1,38 @@
 package com.example.itsapp.view.adapter
 
+import android.os.Build
+import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itsapp.R
+import com.example.itsapp.model.vo.Items
 
-class NewsAdapter(private val dataSet: Array<String>) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+class NewsAdapter(private val items: List<Items>) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val writer: TextView
+        val main: TextView
         val title:TextView
-        val image:ImageView
+        val date:TextView
         init {
             // Define click listener for the ViewHolder's View.
-            writer = view.findViewById(R.id.news_writer)
-            title = view.findViewById(R.id.news_title)
-            image = view.findViewById(R.id.news_image)
+            main = view.findViewById(R.id.news_title_tv)
+            title = view.findViewById(R.id.news_main_tv)
+            date = view.findViewById(R.id.news_date_tv)
+        }
+        fun setItem(item:Items){
+            main.setText(item.description.htmlToString())
+            title.setText(item.title.htmlToString())
+            date.setText(item.pubDate)
+        }
+        fun String.htmlToString() : String {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                return Html.fromHtml(this, Html.FROM_HTML_MODE_LEGACY).toString()
+            } else {
+                return Html.fromHtml(this).toString()
+            }
         }
     }
 
@@ -32,9 +47,9 @@ class NewsAdapter(private val dataSet: Array<String>) : RecyclerView.Adapter<New
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-        viewHolder.writer.text = dataSet[position]
-        viewHolder.title.text = dataSet[position]
+       var item:Items = items.get(position)
+        viewHolder.setItem(item)
     }
     // Return the size of your dataset (invoked by the layout manager)
-    override fun getItemCount() = dataSet.size
+    override fun getItemCount() = items.size
 }

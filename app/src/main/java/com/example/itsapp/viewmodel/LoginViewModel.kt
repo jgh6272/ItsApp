@@ -1,10 +1,8 @@
 package com.example.itsapp.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.itsapp.model.vo.UserInfo
 import com.example.itsapp.retrofit.APIInterface
