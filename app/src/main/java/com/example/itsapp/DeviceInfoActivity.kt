@@ -4,9 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.RatingBar
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.example.itsapp.model.vo.DeviceInfo
 import com.example.itsapp.viewmodel.DeviceViewModel
 import com.example.itsapp.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_device_info.*
@@ -35,8 +37,11 @@ class DeviceInfoActivity : AppCompatActivity() {
                 device_brand.text = deviceInfo.jsonArray[0].deviceBrand
                 device_name.text = deviceInfo.jsonArray[0].deviceName
                 device_point_avg.text = deviceInfo.jsonArray[0].reviewPoint.toString()
-                device_price.text = deviceInfo.jsonArray[0].devicePrice.toString()
+                device_point_avg2.text = deviceInfo.jsonArray[0].reviewPoint.toString()
+                device_price.text = deviceInfo.jsonArray[0].devicePrice
                 review_count.text = deviceInfo.jsonArray[0].reviewCount.toString()
+                rating_bar.rating = deviceInfo.jsonArray[0].reviewPoint.toFloat()
+                rating_bar2.rating = deviceInfo.jsonArray[0].reviewPoint.toFloat()
             }
         })
     }
