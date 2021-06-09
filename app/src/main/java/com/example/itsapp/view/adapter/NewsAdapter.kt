@@ -1,5 +1,6 @@
 package com.example.itsapp.view.adapter
 
+import android.app.Activity
 import android.app.ActivityOptions
 import android.content.Intent
 import android.os.Build
@@ -16,9 +17,16 @@ import com.example.itsapp.R
 import com.example.itsapp.model.vo.Items
 import com.example.itsapp.view.activity.MainActivity
 import com.example.itsapp.view.activity.ShowNewsActivity
+import com.example.itsapp.view.fragment.NewsFragment
 
-class NewsAdapter(private val items: List<Items>) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
+class NewsAdapter(private val items: List<Items>,
+                  getActivity: Activity
+) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
+    val getActivity:Activity
+    init {
+        this.getActivity = getActivity
+    }
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val main: TextView
         val title:TextView
@@ -59,8 +67,14 @@ class NewsAdapter(private val items: List<Items>) : RecyclerView.Adapter<NewsAda
         var item:Items = items.get(position)
         viewHolder.setItem(item)
         viewHolder.cardview.setOnClickListener {
+            itemClickEvent(item)
         }
     }
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = items.size
+    fun itemClickEvent(item:Items){
+        val intent = Intent(getActivity,ShowNewsActivity::class.java)
+        intent.putExtra("url",item.originallink)
+        getActivity.startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(getActivity).toBundle())
+    }
 }

@@ -15,7 +15,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="ISSUE"
+            android:text="오늘의 이야기"
             android:textSize="25dp"
             android:textColor="@color/white"
             android:fontFamily="@font/im_cre_soojin_otf"
@@ -36,7 +36,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="최근 이슈"
+            android:text="News"
             android:fontFamily="@font/nanum_barun_gothic"
             android:textColor="@color/black"
             android:textSize="16dp"
@@ -45,22 +45,22 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/category_news"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="310dp"
             android:scrollbars="vertical"
             />
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="꿀 Tip"
+            android:text="Blog"
             android:fontFamily="@font/nanum_barun_gothic"
             android:textColor="@color/black"
             android:textSize="16dp"
             android:gravity="left"
             />
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/category_cafe"
+            android:id="@+id/category_blog"
             android:layout_width="match_parent"
-            android:layout_height="300dp"
+            android:layout_height="310dp"
             android:scrollbars="vertical"
             />
     </LinearLayout>

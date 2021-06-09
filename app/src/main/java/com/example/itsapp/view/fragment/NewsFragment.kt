@@ -50,7 +50,7 @@ class NewsFragment : Fragment() {
     fun LiveData(){
         viewModel.newsLiveData.observe(viewLifecycleOwner, Observer {
             var result = it.items
-            val mAdapter = NewsAdapter(result)
+            val mAdapter = this!!.activity?.let { it1 -> NewsAdapter(result, it1) }
             recyclerView.adapter = mAdapter
         })
     }
