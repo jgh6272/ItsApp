@@ -2,19 +2,13 @@ package com.example.itsapp.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.view.MenuItem
-import android.widget.Toast
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
-import androidx.fragment.app.replace
 import com.example.itsapp.view.fragment.HomeFragment
 import com.example.itsapp.view.fragment.MyPageFragment
 import com.example.itsapp.view.fragment.NewsFragment
 import com.example.itsapp.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_home.*
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemSelectedListener {
 

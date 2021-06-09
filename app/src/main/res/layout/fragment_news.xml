@@ -9,14 +9,16 @@
 
     <androidx.appcompat.widget.Toolbar
         android:layout_width="match_parent"
-        android:layout_height="50dp">
+        android:layout_height="wrap_content"
+        android:background="@color/purple"
+        >
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="발견"
+            android:text="ISSUE"
             android:textSize="25dp"
-            android:textColor="@color/black"
-            android:fontFamily="@font/nanum_barun_gothic"
+            android:textColor="@color/white"
+            android:fontFamily="@font/im_cre_soojin_otf"
             android:layout_gravity="center"/>
     </androidx.appcompat.widget.Toolbar>
     <View

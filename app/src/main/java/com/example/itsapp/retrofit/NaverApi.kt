@@ -11,12 +11,13 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface NaverApi {
+    /*suspend fun : 오랫동안 비동기로 사용될 코드라는 뜻*/
     @GET("search/news.json")
-    fun getSearchNews(
+    suspend fun getSearchNews(
         @Query("query") query: String,
         @Query("start") start:Int? = null,
         @Query("display") display:Int? = null
-    ): Call<ResultGetSearchNews>
+    ): ResultGetSearchNews
 
     companion object{
         const val BASE_URL = "https://openapi.naver.com/v1/"

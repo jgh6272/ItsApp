@@ -1,15 +1,21 @@
 package com.example.itsapp.view.adapter
 
+import android.app.ActivityOptions
+import android.content.Intent
 import android.os.Build
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itsapp.R
 import com.example.itsapp.model.vo.Items
+import com.example.itsapp.view.activity.MainActivity
+import com.example.itsapp.view.activity.ShowNewsActivity
 
 class NewsAdapter(private val items: List<Items>) : RecyclerView.Adapter<NewsAdapter.ViewHolder>() {
 
@@ -50,8 +56,10 @@ class NewsAdapter(private val items: List<Items>) : RecyclerView.Adapter<NewsAda
 
         // Get element from your dataset at this position and replace the
         // contents of the view with that element
-       var item:Items = items.get(position)
+        var item:Items = items.get(position)
         viewHolder.setItem(item)
+        viewHolder.cardview.setOnClickListener {
+        }
     }
     // Return the size of your dataset (invoked by the layout manager)
     override fun getItemCount() = items.size

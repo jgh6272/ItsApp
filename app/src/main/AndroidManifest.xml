@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ShowNewsActivity"></activity>
+        <activity android:name=".view.activity.ShowNewsActivity"></activity>
         <activity
             android:name=".view.activity.FindPasswordActivity"
             android:windowSoftInputMode="adjustResize" />

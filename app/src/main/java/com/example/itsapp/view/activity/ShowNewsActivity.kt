@@ -1,14 +1,18 @@
-package com.example.itsapp
+package com.example.itsapp.view.activity
 
 import android.annotation.SuppressLint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.webkit.WebViewClient
+import androidx.activity.viewModels
+import com.example.itsapp.R
+import com.example.itsapp.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_show_news.*
 
 class ShowNewsActivity : AppCompatActivity() {
 
+    val viewModel : LoginViewModel by viewModels()
     @SuppressLint("SetJavaScriptEnabled")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,7 +24,7 @@ class ShowNewsActivity : AppCompatActivity() {
             settings.javaScriptEnabled=true
         }
         intent.getStringExtra("")
-        web_view.loadUrl()
+        web_view.loadUrl("")
     }
     override fun onBackPressed() {
         if (web_view.canGoBack()) {
