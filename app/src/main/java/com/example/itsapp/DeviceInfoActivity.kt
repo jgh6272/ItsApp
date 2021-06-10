@@ -24,6 +24,10 @@ class DeviceInfoActivity : AppCompatActivity() {
         back_btn.setOnClickListener {
             finish()
         }
+//        go_to_review_write_activity.setOnClickListener {
+//            val intent = Intent(this,ReviewWriteActivity::class.java)
+//            startActivity(intent)
+//        }
 
         // 디바이스를 선택한 프래그먼트로 부터 deviceName을 넘겨 받아
         // deviceName에 저장한다.
@@ -42,6 +46,16 @@ class DeviceInfoActivity : AppCompatActivity() {
                 review_count.text = deviceInfo.jsonArray[0].reviewCount.toString()
                 rating_bar.rating = deviceInfo.jsonArray[0].reviewPoint.toFloat()
                 rating_bar2.rating = deviceInfo.jsonArray[0].reviewPoint.toFloat()
+            }
+        })
+        viewModel.deviceInfoLiveData.observe(this, Observer { deviceInfo ->
+            if(deviceInfo.code.equals("200")){
+                go_to_review_write_activity.setOnClickListener {
+                    val deviceName = deviceInfo.jsonArray[0].deviceName
+                    val intent = Intent(this, ReviewWriteActivity::class.java)
+                    intent.putExtra("deviceName",deviceName)
+                    startActivity(intent)
+                }
             }
         })
     }

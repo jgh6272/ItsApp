@@ -44,6 +44,7 @@ dependencies {
     implementation files('../libs/activation.jar')
     implementation files('../libs/additionnal.jar')
     implementation files('../libs/mail.jar')
+    implementation 'androidx.wear:wear:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
@@ -55,6 +56,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.google.code.gson:gson:2.8.6'
+    compileOnly 'com.google.android.wearable:wearable:2.5.0'
 
     def lifecycle_version = "2.3.0"
     // ViewModel

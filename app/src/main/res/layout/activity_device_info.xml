@@ -37,6 +37,8 @@
                 android:src="@drawable/ic_baseline_star_border_24"
                 android:layout_gravity="right"
                 android:background="@color/transparent"/>
+
+
         </FrameLayout>
     </androidx.appcompat.widget.Toolbar>
 
@@ -49,7 +51,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:background="@color/gray300">
 
         <LinearLayout
@@ -587,7 +590,21 @@
                             android:text="리뷰글"/>
                     </LinearLayout>
                 </LinearLayout>
+
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary">
+        <Button
+            android:id="@+id/go_to_review_write_activity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:background="@color/transparent"
+            android:textSize="20dp"
+            android:text="리뷰 작성"/>
+    </LinearLayout>
 </LinearLayout>

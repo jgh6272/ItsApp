@@ -15,13 +15,17 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.activity.FindPasswordActivity"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity
+            android:name=".ReviewWriteActivity"
+            android:label="@string/title_activity_review_write"/>
+        <activity
+            android:name=".view.activity.FindPasswordActivity"
+            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".view.activity.LoadingActivity" />
         <activity android:name=".DeviceInfoActivity" />
         <activity
             android:name=".view.activity.AddUserInfoActivity"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".view.activity.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
@@ -32,6 +36,7 @@
         <activity android:name=".view.activity.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity> <!-- 카카오톡 로그인 -->
@@ -42,8 +47,10 @@
         <activity android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data
                     android:host="oauth"
                     android:scheme="kakaocdc72611d8426465074f8f4a37d48a59" />

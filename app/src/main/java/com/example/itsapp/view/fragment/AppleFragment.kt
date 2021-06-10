@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.example.itsapp.view.adapter.DeviceAdapter
 import com.example.itsapp.R
 import com.example.itsapp.DeviceInfoActivity
+import com.example.itsapp.ReviewWriteActivity
 import com.example.itsapp.model.vo.Device
 import com.example.itsapp.viewmodel.DeviceViewModel
 import kotlinx.android.synthetic.main.fragment_apple.*
