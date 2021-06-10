@@ -1,10 +1,10 @@
 package com.example.itsapp.retrofit
 
-import com.example.itsapp.model.vo.ResultGetSearchNews
+import com.example.itsapp.model.vo.Blog
+import com.example.itsapp.model.vo.News
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
@@ -17,7 +17,14 @@ interface NaverApi {
         @Query("query") query: String,
         @Query("start") start:Int? = null,
         @Query("display") display:Int? = null
-    ): ResultGetSearchNews
+    ): News
+
+    @GET("search/blog.json")
+    suspend fun getSearchBlog(
+        @Query("query") query: String,
+        @Query("start") start:Int? = null,
+        @Query("display") display:Int? = null
+    ): Blog
 
     companion object{
         const val BASE_URL = "https://openapi.naver.com/v1/"

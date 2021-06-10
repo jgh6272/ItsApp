@@ -12,13 +12,15 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itsapp.R
+import com.example.itsapp.view.adapter.BlogAdapter
 import com.example.itsapp.view.adapter.NewsAdapter
 import com.example.itsapp.viewmodel.NewsViewModel
 
 class NewsFragment : Fragment() {
 
     private val viewModel:NewsViewModel by viewModels()
-    private lateinit var recyclerView:RecyclerView
+    private lateinit var newsRecyclerView:RecyclerView
+    private lateinit var blogRecyclerView:RecyclerView
     companion object{
         const val TAG : String = "로그"
         fun newInstance() : NewsFragment{
@@ -40,10 +42,14 @@ class NewsFragment : Fragment() {
     // 뷰가 생성됐을 때
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_news,container,false)
-        recyclerView = view.findViewById(R.id.category_news)
-        var layoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
-        recyclerView.layoutManager = layoutManager
-        viewModel.searchReadNews("맥북",1,20, recyclerView)
+        newsRecyclerView = view.findViewById(R.id.category_news)
+        var NewsLayoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
+        newsRecyclerView.layoutManager = NewsLayoutManager
+        viewModel.searchReadNews("맥북",1,20)
+        blogRecyclerView = view.findViewById(R.id.category_blog)
+        var BlogLayoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
+        blogRecyclerView.layoutManager = BlogLayoutManager
+        viewModel.searchReadBlog("맥북",1,20)
         LiveData()
         return view
     }
@@ -51,7 +57,12 @@ class NewsFragment : Fragment() {
         viewModel.newsLiveData.observe(viewLifecycleOwner, Observer {
             var result = it.items
             val mAdapter = this!!.activity?.let { it1 -> NewsAdapter(result, it1) }
-            recyclerView.adapter = mAdapter
+            newsRecyclerView.adapter = mAdapter
+        })
+        viewModel.blogLiveData.observe(viewLifecycleOwner, Observer {
+            var result = it.items
+            val mAdapter = this!!.activity?.let { it1 -> BlogAdapter(result, it1) }
+            blogRecyclerView.adapter = mAdapter
         })
     }
 }
