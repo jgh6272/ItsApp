@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itsapp.R
 import com.example.itsapp.view.adapter.BlogAdapter
+import com.example.itsapp.view.adapter.CategoryAdapter
 import com.example.itsapp.view.adapter.NewsAdapter
 import com.example.itsapp.viewmodel.NewsViewModel
 
@@ -21,6 +22,7 @@ class NewsFragment : Fragment() {
     private val viewModel:NewsViewModel by viewModels()
     private lateinit var newsRecyclerView:RecyclerView
     private lateinit var blogRecyclerView:RecyclerView
+    private lateinit var partRecyclerView:RecyclerView
     companion object{
         const val TAG : String = "로그"
         fun newInstance() : NewsFragment{
@@ -42,14 +44,7 @@ class NewsFragment : Fragment() {
     // 뷰가 생성됐을 때
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         val view = inflater.inflate(R.layout.fragment_news,container,false)
-        newsRecyclerView = view.findViewById(R.id.category_news)
-        var NewsLayoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
-        newsRecyclerView.layoutManager = NewsLayoutManager
-        viewModel.searchReadNews("맥북",1,20)
-        blogRecyclerView = view.findViewById(R.id.category_blog)
-        var BlogLayoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
-        blogRecyclerView.layoutManager = BlogLayoutManager
-        viewModel.searchReadBlog("맥북",1,20)
+        recyclerView(view)
         LiveData()
         return view
     }
@@ -64,5 +59,26 @@ class NewsFragment : Fragment() {
             val mAdapter = this!!.activity?.let { it1 -> BlogAdapter(result, it1) }
             blogRecyclerView.adapter = mAdapter
         })
+        viewModel.partLiveData.observe(viewLifecycleOwner, Observer {
+            if(it.code.equals("200")){
+                partRecyclerView.adapter = CategoryAdapter(it.brand)
+            }
+        })
+    }
+    fun recyclerView(view:View){
+        partRecyclerView = view.findViewById(R.id.category_news)
+        var PartLayoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
+        partRecyclerView.layoutManager = PartLayoutManager
+        viewModel.getPart()
+
+        newsRecyclerView = view.findViewById(R.id.news_rv)
+        var NewsLayoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
+        newsRecyclerView.layoutManager = NewsLayoutManager
+        viewModel.searchReadNews("맥북",1,20)
+
+        blogRecyclerView = view.findViewById(R.id.blog_rv)
+        var BlogLayoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
+        blogRecyclerView.layoutManager = BlogLayoutManager
+        viewModel.searchReadBlog("맥북",1,20)
     }
 }

@@ -33,9 +33,9 @@ class NewsAdapter(private val items: List<NewsItems>,
             date = view.findViewById(R.id.news_date_tv)
         }
         fun setItem(item:NewsItems){
-            main.setText(item.description.htmlToString())
-            title.setText(item.title.htmlToString())
-            date.setText(item.pubDate)
+            main.text=item.description.htmlToString()
+            title.text = item.title.htmlToString()
+            date.text = item.pubDate
         }
         fun String.htmlToString() : String {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {

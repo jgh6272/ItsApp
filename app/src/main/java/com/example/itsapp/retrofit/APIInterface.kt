@@ -1,5 +1,6 @@
 package com.example.itsapp.retrofit
 
+import com.example.itsapp.model.vo.BrandPart
 import com.example.itsapp.model.vo.DeviceInfo
 import com.example.itsapp.model.vo.UserInfo
 import retrofit2.Call
@@ -61,4 +62,7 @@ interface APIInterface {
     suspend fun getDevice(
         @Query("deviceBrand") deviceBrand : String
     ) : DeviceInfo
+
+    @GET("/android/getBrand")
+    suspend fun getBrand() : BrandPart
 }

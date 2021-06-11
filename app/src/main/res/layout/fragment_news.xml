@@ -27,11 +27,16 @@
         android:layout_height="1dp"
         android:layout_above="@+id/bottom_navigation_view"
         android:background="@color/gray300" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/category_news"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="horizontal"
+        />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:weightSum="2"
         >
         <TextView
             android:layout_width="match_parent"
@@ -44,9 +49,9 @@
              android:textStyle="bold"
             />
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/category_news"
+            android:id="@+id/news_rv"
             android:layout_width="match_parent"
-            android:layout_height="310dp"
+            android:layout_height="250dp"
             android:scrollbars="vertical"
             />
         <TextView
@@ -60,9 +65,9 @@
             android:textStyle="bold"
             />
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/category_blog"
+            android:id="@+id/blog_rv"
             android:layout_width="match_parent"
-            android:layout_height="310dp"
+            android:layout_height="250dp"
             android:scrollbars="vertical"
             />
     </LinearLayout>
