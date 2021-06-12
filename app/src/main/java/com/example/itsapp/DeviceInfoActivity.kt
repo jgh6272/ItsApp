@@ -77,5 +77,17 @@ class DeviceInfoActivity : AppCompatActivity() {
                 reviewAdapter.updateItem(reviewInfo.jsonArray)
             }
         })
+
+        // 해당 디바이스에 대한 리뷰 점수 별 리뷰 개수를 불러온다.
+        reviewViewModel.getReviewPointCount(deviceName)
+        reviewViewModel.reviewPointCountLiveData.observe(this, Observer { deviceInfo ->
+            if(deviceInfo.code.equals("200")){
+                review_count_5_point_text.text = deviceInfo.jsonArray[0].reviewPoint5Count.toString()
+                review_count_4_point_text.text = deviceInfo.jsonArray[0].reviewPoint4Count.toString()
+                review_count_3_point_text.text = deviceInfo.jsonArray[0].reviewPoint3Count.toString()
+                review_count_2_point_text.text = deviceInfo.jsonArray[0].reviewPoint2Count.toString()
+                review_count_1_point_text.text = deviceInfo.jsonArray[0].reviewPoint1Count.toString()
+            }
+        })
     }
 }
