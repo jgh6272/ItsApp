@@ -14,7 +14,7 @@
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@color/purple">
+            android:background="@color/white">
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -24,9 +24,9 @@
                     android:layout_height="wrap_content"
                     android:text="리얼리뷰"
                     android:textSize="25dp"
-                    android:textColor="@color/white"
+                    android:textColor="@color/purple"
                     android:fontFamily="@font/im_cre_soojin_otf"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="left"/>
             </FrameLayout>
         </androidx.appcompat.widget.Toolbar>
         <View
@@ -34,7 +34,7 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_above="@+id/bottom_navigation_view"
-            android:background="@color/gray300" />
+            android:background="@color/purple" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

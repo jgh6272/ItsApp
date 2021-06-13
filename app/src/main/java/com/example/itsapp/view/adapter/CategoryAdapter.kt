@@ -1,6 +1,5 @@
 package com.example.itsapp.view.adapter
 
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.itsapp.R
 import com.example.itsapp.model.vo.Device
 
-class CategoryAdapter(private val items:List<Device>) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>(){
+class CategoryAdapter(private val items:List<Device>) : RecyclerView.Adapter<CategoryAdapter.ViewHolder>(),View.OnClickListener{
     class ViewHolder(view:View) :RecyclerView.ViewHolder(view) {
         val brand : TextView
         init {
@@ -28,5 +27,9 @@ class CategoryAdapter(private val items:List<Device>) : RecyclerView.Adapter<Cat
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         var items:Device = items.get(position)
         holder.setText(items)
+    }
+
+    override fun onClick(p0: View?) {
+        TODO("Not yet implemented")
     }
 }
