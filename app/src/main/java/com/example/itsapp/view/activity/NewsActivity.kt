@@ -1,12 +1,12 @@
-package com.example.itsapp
+package com.example.itsapp.view.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.activity.viewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.itsapp.R
 import com.example.itsapp.view.adapter.NewsAdapter
 import com.example.itsapp.viewmodel.NewsViewModel
 

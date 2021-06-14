@@ -14,8 +14,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".TipsActivity"></activity>
-        <activity android:name=".NewsActivity" />
+        <activity android:name=".view.activity.TipsActivity"></activity>
+        <activity android:name=".view.activity.NewsActivity" />
         <activity android:name=".view.activity.ShowIssueActivity" />
         <activity
             android:name=".view.activity.FindPasswordActivity"

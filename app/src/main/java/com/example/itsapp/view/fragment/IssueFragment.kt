@@ -13,9 +13,9 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.itsapp.NewsActivity
+import com.example.itsapp.view.activity.NewsActivity
 import com.example.itsapp.R
-import com.example.itsapp.TipsActivity
+import com.example.itsapp.view.activity.TipsActivity
 import com.example.itsapp.view.adapter.BlogAdapter
 import com.example.itsapp.view.adapter.NewsAdapter
 import com.example.itsapp.viewmodel.NewsViewModel
@@ -125,11 +125,13 @@ class IssueFragment : Fragment() {
     }
     fun btnEvent(view: View){
         recent_news_tv.setOnClickListener{
-            val intent = Intent(view.context,NewsActivity::class.java)
+            val intent = Intent(view.context,
+                NewsActivity::class.java)
             startActivity(intent)
         }
         tips_tv.setOnClickListener{
-            val intent = Intent(view.context,TipsActivity::class.java)
+            val intent = Intent(view.context,
+                TipsActivity::class.java)
             startActivity(intent)
         }
     }
