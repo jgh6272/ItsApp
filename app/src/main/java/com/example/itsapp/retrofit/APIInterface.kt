@@ -87,4 +87,14 @@ interface APIInterface {
     suspend fun getReviewPointCount(
         @Query("deviceName") deviceName : String
     ) : DeviceInfo
+
+    @FormUrlEncoded
+    @POST("/android/writeReview")
+    suspend fun writeReview(
+        @Field("deviceName") deviceName: String,
+        @Field("userId") userId: String,
+        @Field("reviewPoint") reviewPoint: Int,
+        @Field("contentPros") contentPros: String,
+        @Field("contentCons") contentCons: String
+    ) : ReviewInfo
 }

@@ -136,6 +136,7 @@
                     android:textStyle="bold"
                     android:text="좋았던 점"/>
                 <EditText
+                    android:id="@+id/content_pros_edt"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:gravity="start"
@@ -149,6 +150,7 @@
                     android:textStyle="bold"
                     android:text="아쉬운 점"/>
                 <EditText
+                    android:id="@+id/content_cons_edt"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
                     android:gravity="start"
@@ -161,6 +163,7 @@
         android:layout_height="wrap_content"
         android:background="@color/colorPrimary">
         <Button
+            android:id="@+id/write_btn"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
