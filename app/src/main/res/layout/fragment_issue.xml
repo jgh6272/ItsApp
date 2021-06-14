@@ -6,7 +6,7 @@
     android:id="@+id/news_fragment"
     android:orientation="vertical"
     android:background="@color/gray300"
-    tools:context=".view.fragment.NewsFragment">
+    tools:context=".view.fragment.IssueFragment">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -58,7 +58,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/news_rv"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 />
             <View
@@ -81,7 +81,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/blog_rv"
                 android:layout_width="match_parent"
-                android:layout_height="250dp"
+                android:layout_height="wrap_content"
                 android:background="@color/white"
                 />
             <View

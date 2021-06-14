@@ -5,7 +5,7 @@ import android.os.Bundle
 import android.view.MenuItem
 import com.example.itsapp.view.fragment.HomeFragment
 import com.example.itsapp.view.fragment.MyPageFragment
-import com.example.itsapp.view.fragment.NewsFragment
+import com.example.itsapp.view.fragment.IssueFragment
 import com.example.itsapp.R
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_home.*
@@ -14,7 +14,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
 
     private lateinit var homeFragment: HomeFragment
     private lateinit var myPageFragment: MyPageFragment
-    private lateinit var newsFragment: NewsFragment
+    private lateinit var issueFragment: IssueFragment
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,8 +35,8 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
                 supportFragmentManager.beginTransaction().replace(R.id.container,homeFragment).commit()
             }
             R.id.action_news ->{
-                newsFragment = NewsFragment.newInstance()
-                supportFragmentManager.beginTransaction().replace(R.id.container,newsFragment).commit()
+                issueFragment = IssueFragment.newInstance()
+                supportFragmentManager.beginTransaction().replace(R.id.container,issueFragment).commit()
             }
             R.id.action_mypage ->{
                 myPageFragment = MyPageFragment.newInstance()

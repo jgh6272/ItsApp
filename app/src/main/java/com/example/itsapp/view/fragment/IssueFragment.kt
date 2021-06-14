@@ -1,6 +1,7 @@
 package com.example.itsapp.view.fragment
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
@@ -12,9 +13,10 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.example.itsapp.NewsActivity
 import com.example.itsapp.R
+import com.example.itsapp.TipsActivity
 import com.example.itsapp.view.adapter.BlogAdapter
-import com.example.itsapp.view.adapter.CategoryAdapter
 import com.example.itsapp.view.adapter.NewsAdapter
 import com.example.itsapp.viewmodel.NewsViewModel
 import com.github.mikephil.charting.animation.Easing
@@ -24,18 +26,17 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.ColorTemplate.COLORFUL_COLORS
-import kotlinx.android.synthetic.main.fragment_news.*
+import kotlinx.android.synthetic.main.fragment_issue.*
 
-class NewsFragment : Fragment() {
+class IssueFragment : Fragment() {
 
     private val viewModel:NewsViewModel by viewModels()
     private lateinit var newsRecyclerView:RecyclerView
     private lateinit var blogRecyclerView:RecyclerView
-    private lateinit var partRecyclerView:RecyclerView
     companion object{
         const val TAG : String = "로그"
-        fun newInstance() : NewsFragment{
-            return NewsFragment()
+        fun newInstance() : IssueFragment{
+            return IssueFragment()
         }
     }
 
@@ -52,11 +53,15 @@ class NewsFragment : Fragment() {
 
     // 뷰가 생성됐을 때
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        val view = inflater.inflate(R.layout.fragment_news,container,false)
+        val view = inflater.inflate(R.layout.fragment_issue,container,false)
+        return view
+    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         recyclerView(view)
         pieChart(view)
         LiveData()
-        return view
+        btnEvent(view)
     }
     fun LiveData(){
         viewModel.newsLiveData.observe(viewLifecycleOwner, Observer {
@@ -69,26 +74,17 @@ class NewsFragment : Fragment() {
             val mAdapter = this!!.activity?.let { it1 -> BlogAdapter(result, it1) }
             blogRecyclerView.adapter = mAdapter
         })
-        viewModel.partLiveData.observe(viewLifecycleOwner, Observer {
-            if(it.code.equals("200")){
-                partRecyclerView.adapter = CategoryAdapter(it.brand)
-            }
-        })
     }
     fun recyclerView(view:View){
-       /* partRecyclerView = view.findViewById(R.id.category_news)
-        var PartLayoutManager = LinearLayoutManager(view.context,LinearLayoutManager.HORIZONTAL,false)
-        partRecyclerView.layoutManager = PartLayoutManager
-        viewModel.getPart()*/
         newsRecyclerView = view.findViewById(R.id.news_rv)
         var NewsLayoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
         newsRecyclerView.layoutManager = NewsLayoutManager
-        viewModel.searchReadNews("맥북",1,20)
+        viewModel.searchReadNews("노트북",1,3)
 
         blogRecyclerView = view.findViewById(R.id.blog_rv)
         var BlogLayoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
         blogRecyclerView.layoutManager = BlogLayoutManager
-        viewModel.searchReadBlog("맥북",1,20)
+        viewModel.searchReadBlog("노트북",1,3)
     }
     fun pieChart(view:View){
         val chart:PieChart = view.findViewById(R.id.trand_chart)
@@ -96,11 +92,12 @@ class NewsFragment : Fragment() {
 
         //data set
         val entries = ArrayList<PieEntry>()
-        entries.add(PieEntry(508f,"Apple"))
-        entries.add(PieEntry(600f,"Orange"))
-        entries.add(PieEntry(750f,"Mango"))
-        entries.add(PieEntry(508f,"RedOrange"))
-        entries.add(PieEntry(670f,"Other"))
+        entries.add(PieEntry(508f,"LG"))
+        entries.add(PieEntry(600f,"Samsung"))
+        entries.add(PieEntry(750f,"Apple"))
+        entries.add(PieEntry(508f,"DELL"))
+        entries.add(PieEntry(335f,"ASUS"))
+        entries.add(PieEntry(335f,"LENOVO"))
 
         val colorsItems = ArrayList<Int>()
         for(c in ColorTemplate.VORDIPLOM_COLORS) colorsItems.add(c)
@@ -125,6 +122,15 @@ class NewsFragment : Fragment() {
             animateY(1400, Easing.EaseInOutQuad)
             animate()
         }
-
+    }
+    fun btnEvent(view: View){
+        recent_news_tv.setOnClickListener{
+            val intent = Intent(view.context,NewsActivity::class.java)
+            startActivity(intent)
+        }
+        tips_tv.setOnClickListener{
+            val intent = Intent(view.context,TipsActivity::class.java)
+            startActivity(intent)
+        }
     }
 }
