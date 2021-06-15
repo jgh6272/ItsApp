@@ -1,24 +1,21 @@
-package com.example.itsapp
+package com.example.itsapp.view.activity
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.widget.RatingBar
-import android.widget.Toast
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.itsapp.model.vo.Device
-import com.example.itsapp.model.vo.DeviceInfo
+import com.example.itsapp.R
 import com.example.itsapp.model.vo.Review
-import com.example.itsapp.model.vo.ReviewInfo
-import com.example.itsapp.view.adapter.DeviceAdapter
 import com.example.itsapp.view.adapter.ReviewAdapter
 import com.example.itsapp.viewmodel.DeviceViewModel
-import com.example.itsapp.viewmodel.LoginViewModel
 import com.example.itsapp.viewmodel.ReviewViewModel
 import kotlinx.android.synthetic.main.activity_device_info.*
+import kotlinx.android.synthetic.main.review_item.*
 
 class DeviceInfoActivity : AppCompatActivity() {
 
@@ -67,6 +64,7 @@ class DeviceInfoActivity : AppCompatActivity() {
 
         rv_review.layoutManager = LinearLayoutManager(this)
         rv_review.adapter = reviewAdapter
+        rv_review.addItemDecoration(DividerItemDecoration(this, 1));
 
         // DeviewInfoActivity에서 보여지는 3개의 리뷰는
         // 리뷰의 좋아요 수가 제일 높은 상위 3개만 보여진다.

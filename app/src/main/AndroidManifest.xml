@@ -15,14 +15,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".view.activity.ReviewWriteActivity"></activity>
         <activity
             android:name=".ReviewWriteActivity"
-            android:label="@string/title_activity_review_write"/>
+            android:label="@string/title_activity_review_write" />
         <activity
             android:name=".view.activity.FindPasswordActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".view.activity.LoadingActivity" />
-        <activity android:name=".DeviceInfoActivity" />
+        <activity android:name=".view.activity.DeviceInfoActivity" />
         <activity
             android:name=".view.activity.AddUserInfoActivity"
             android:windowSoftInputMode="adjustResize" />

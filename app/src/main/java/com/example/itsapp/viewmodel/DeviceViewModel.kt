@@ -29,8 +29,8 @@ class DeviceViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch {
             val data:DeviceInfo = service.getDevice(deviceBrand)
             deviceLiveData.value = data
-            Log.d("getDevice",data.jsonArray.toString())
-            Log.d("getDevice",data.code.toString())
+//            Log.d("getDevice",data.jsonArray.toString())
+//            Log.d("getDevice",data.code.toString())
         }
     }
 
@@ -38,7 +38,7 @@ class DeviceViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch {
             val data:DeviceInfo = service.getDeviceInfo(deviceName)
             deviceInfoLiveData.value = data
-            Log.d("getDeviceInfo",data.jsonArray.toString())
+//            Log.d("getDeviceInfo",data.jsonArray.toString())
         }
     }
 }

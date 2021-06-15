@@ -7,19 +7,16 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.itsapp.view.adapter.DeviceAdapter
 import com.example.itsapp.R
-import com.example.itsapp.DeviceInfoActivity
-import com.example.itsapp.ReviewWriteActivity
+import com.example.itsapp.view.activity.DeviceInfoActivity
 import com.example.itsapp.model.vo.Device
 import com.example.itsapp.viewmodel.DeviceViewModel
 import kotlinx.android.synthetic.main.fragment_apple.*
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class AppleFragment : Fragment() {
 
