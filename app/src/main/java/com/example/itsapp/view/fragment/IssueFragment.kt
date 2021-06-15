@@ -26,6 +26,7 @@ import com.github.mikephil.charting.data.PieDataSet
 import com.github.mikephil.charting.data.PieEntry
 import com.github.mikephil.charting.utils.ColorTemplate
 import com.github.mikephil.charting.utils.ColorTemplate.COLORFUL_COLORS
+import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.fragment_issue.*
 
 class IssueFragment : Fragment() {
@@ -33,6 +34,12 @@ class IssueFragment : Fragment() {
     private val viewModel:NewsViewModel by viewModels()
     private lateinit var newsRecyclerView:RecyclerView
     private lateinit var blogRecyclerView:RecyclerView
+    private var appleCnt : Int = 0
+    private var samsungCnt :Int = 0
+    private var lgCnt : Int = 0
+    private var dellCnt:Int = 0
+    private var lenovoCnt:Int = 0
+    private var asusCnt:Int = 0
     companion object{
         const val TAG : String = "로그"
         fun newInstance() : IssueFragment{
@@ -60,10 +67,10 @@ class IssueFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         recyclerView(view)
         pieChart(view)
-        LiveData()
+        LiveData(view)
         btnEvent(view)
     }
-    fun LiveData(){
+    fun LiveData(view:View){
         viewModel.newsLiveData.observe(viewLifecycleOwner, Observer {
             var result = it.items
             val mAdapter = this!!.activity?.let { it1 -> NewsAdapter(result, it1) }
@@ -73,6 +80,22 @@ class IssueFragment : Fragment() {
             var result = it.items
             val mAdapter = this!!.activity?.let { it1 -> BlogAdapter(result, it1) }
             blogRecyclerView.adapter = mAdapter
+        })
+        viewModel.deviceLiveData.observe(viewLifecycleOwner, Observer {
+            if(it.code.equals("200")){
+                for(i in 0..1){
+                    when(it.jsonArray[i].deviceBrand){
+                        "Apple" -> appleCnt = it.jsonArray[i].reviewCount
+                        "Samsung" -> samsungCnt = it.jsonArray[i].reviewCount
+                        "LG" -> lgCnt = it.jsonArray[i].reviewCount
+                        "DELL" -> dellCnt = it.jsonArray[i].reviewCount
+                        "LENOVO" -> lenovoCnt = it.jsonArray[i].reviewCount
+                        "ASUS" -> asusCnt = it.jsonArray[i].reviewCount
+                    }
+                }
+            }else{
+                Snackbar.make(view,"리뷰 카운트를 불러오지 못했습니다.",Snackbar.LENGTH_SHORT).show()
+            }
         })
     }
     fun recyclerView(view:View){
@@ -87,17 +110,18 @@ class IssueFragment : Fragment() {
         viewModel.searchReadBlog("노트북",1,3)
     }
     fun pieChart(view:View){
+        viewModel.getReviewCnt()
         val chart:PieChart = view.findViewById(R.id.trand_chart)
         chart.setUsePercentValues(true)
 
         //data set
         val entries = ArrayList<PieEntry>()
-        entries.add(PieEntry(508f,"LG"))
-        entries.add(PieEntry(600f,"Samsung"))
-        entries.add(PieEntry(750f,"Apple"))
-        entries.add(PieEntry(508f,"DELL"))
-        entries.add(PieEntry(335f,"ASUS"))
-        entries.add(PieEntry(335f,"LENOVO"))
+        entries.add(PieEntry(lgCnt.toFloat(),"LG"))
+        entries.add(PieEntry(samsungCnt.toFloat(),"Samsung"))
+        entries.add(PieEntry(appleCnt.toFloat(),"Apple"))
+        entries.add(PieEntry(dellCnt.toFloat(),"DELL"))
+        entries.add(PieEntry(asusCnt.toFloat(),"ASUS"))
+        entries.add(PieEntry(lenovoCnt.toFloat(),"LENOVO"))
 
         val colorsItems = ArrayList<Int>()
         for(c in ColorTemplate.VORDIPLOM_COLORS) colorsItems.add(c)

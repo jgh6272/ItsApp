@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.itsapp.model.vo.Blog
 import com.example.itsapp.model.vo.BrandPart
+import com.example.itsapp.model.vo.DeviceInfo
 import com.example.itsapp.model.vo.News
 import com.example.itsapp.retrofit.APIInterface
 import com.example.itsapp.retrofit.NaverApi
@@ -20,7 +21,7 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
         APIInterface::class.java)
     val newsLiveData = MutableLiveData<News>()
     val blogLiveData = MutableLiveData<Blog>()
-    val partLiveData = MutableLiveData<BrandPart>()
+    val deviceLiveData = MutableLiveData<DeviceInfo>()
 
     fun searchReadNews(query:String, start:Int,display:Int){
         /*viewModelScope.launch : viewmodel lifecycle안에 있을때 사용하겠다.*/
@@ -36,10 +37,10 @@ class NewsViewModel(application: Application):AndroidViewModel(application) {
             blogLiveData.value = data
         }
     }
-    fun getPart(){
+    fun getReviewCnt(){
         viewModelScope.launch {
-            val data = service. getBrand()
-            partLiveData.value =data
+            val data  = service.getReviewCnt()
+            deviceLiveData.value = data
         }
     }
 }
