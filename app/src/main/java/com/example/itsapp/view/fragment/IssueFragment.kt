@@ -116,12 +116,12 @@ class IssueFragment : Fragment() {
 
         //data set
         val entries = ArrayList<PieEntry>()
-        entries.add(PieEntry(lgCnt.toFloat(),"LG"))
-        entries.add(PieEntry(samsungCnt.toFloat(),"Samsung"))
-        entries.add(PieEntry(appleCnt.toFloat(),"Apple"))
-        entries.add(PieEntry(dellCnt.toFloat(),"DELL"))
-        entries.add(PieEntry(asusCnt.toFloat(),"ASUS"))
-        entries.add(PieEntry(lenovoCnt.toFloat(),"LENOVO"))
+        entries.add(PieEntry(250f,"LG"))
+        entries.add(PieEntry(350f,"Samsung"))
+        entries.add(PieEntry(600f,"Apple"))
+        entries.add(PieEntry(200f,"DELL"))
+        entries.add(PieEntry(150f,"ASUS"))
+        entries.add(PieEntry(150f,"LENOVO"))
 
         val colorsItems = ArrayList<Int>()
         for(c in ColorTemplate.VORDIPLOM_COLORS) colorsItems.add(c)
