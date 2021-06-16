@@ -102,7 +102,7 @@ class IssueFragment : Fragment() {
         newsRecyclerView = view.findViewById(R.id.news_rv)
         var NewsLayoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
         newsRecyclerView.layoutManager = NewsLayoutManager
-        viewModel.searchReadNews("노트북",1,3)
+        viewModel.searchReadNews("노트북 이슈",1,3)
 
         blogRecyclerView = view.findViewById(R.id.blog_rv)
         var BlogLayoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)

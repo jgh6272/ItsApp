@@ -92,7 +92,7 @@
                 android:id="@+id/graph_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="#Trand"
+                android:text="#Review Trand"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:gravity="left"
