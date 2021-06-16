@@ -1,22 +1,30 @@
 package com.example.itsapp.retrofit
 
-import com.example.itsapp.model.vo.ResultGetSearchNews
+import com.example.itsapp.model.vo.Blog
+import com.example.itsapp.model.vo.News
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface NaverApi {
+    /*suspend fun : 오랫동안 비동기로 사용될 코드라는 뜻*/
     @GET("search/news.json")
-    fun getSearchNews(
+    suspend fun getSearchNews(
         @Query("query") query: String,
         @Query("start") start:Int? = null,
         @Query("display") display:Int? = null
-    ): Call<ResultGetSearchNews>
+    ): News
+
+    @GET("search/blog.json")
+    suspend fun getSearchBlog(
+        @Query("query") query: String,
+        @Query("start") start:Int? = null,
+        @Query("display") display:Int? = null
+    ): Blog
 
     companion object{
         const val BASE_URL = "https://openapi.naver.com/v1/"

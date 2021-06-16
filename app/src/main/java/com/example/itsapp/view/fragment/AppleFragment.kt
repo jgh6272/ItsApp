@@ -7,24 +7,23 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.itsapp.DeviceAdapter
+import com.example.itsapp.view.adapter.DeviceAdapter
 import com.example.itsapp.R
-import com.example.itsapp.ReviewActivity
+import com.example.itsapp.view.activity.DeviceInfoActivity
 import com.example.itsapp.model.vo.Device
 import com.example.itsapp.viewmodel.DeviceViewModel
 import kotlinx.android.synthetic.main.fragment_apple.*
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class AppleFragment : Fragment() {
 
     val deviceList = arrayListOf<Device>()
     val deviceAdapter = DeviceAdapter(deviceList)
     private val viewModel: DeviceViewModel by viewModels()
+    private val deviceInfoActivity = DeviceInfoActivity()
 
 
     companion object{
@@ -53,6 +52,11 @@ class AppleFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        back_btn.setOnClickListener {
+
+        }
+
         rv_device.layoutManager = GridLayoutManager(activity,2)
         rv_device.adapter = deviceAdapter
 
@@ -72,10 +76,14 @@ class AppleFragment : Fragment() {
 
         deviceAdapter.setItemClickListener(object : DeviceAdapter.OnItemClickListener {
             override fun onClick(v: View, position: Int) {
-                if(position == 0) {
-                    val intent = Intent(context, ReviewActivity::class.java)
-                    startActivity(intent)
-                }
+                // 클릭된 deviceName을 DeviceInfoActivity로 넘겨줘야 한다.
+                // 액티비티로 넘겨준 deviceName으로 어떤 제품을 불러올 것인지를 체크하기 위함
+                // 액티비티로 넘겨 주는 거기 때문에 bundle이 아니라 intent로 넘긴다.
+                // 프래그먼트로 넘길 시엔 bundle 사용
+                var deviceName = deviceAdapter.deviceList[position].deviceName
+                val intent = Intent(activity, DeviceInfoActivity::class.java)
+                intent.putExtra("deviceName",deviceName)
+                startActivity(intent)
             }
         })
     }

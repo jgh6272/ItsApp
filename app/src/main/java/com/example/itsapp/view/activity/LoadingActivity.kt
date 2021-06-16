@@ -41,13 +41,14 @@ class LoadingActivity : AppCompatActivity() {
         })
         viewmodel.secondJoinLiveData.observe(this, Observer { code ->
             if(code.equals("200")){
-                val intent = Intent(this, HomeActivity::class.java)
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                startActivity(Intent(this, HomeActivity::class.java))
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 finish()
             }else if (code.equals("204")) {
                 val intent = Intent(this, AddUserInfoActivity::class.java)
                 intent.putExtra("userId",id)
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                startActivity(intent)
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 finish()
             }
         })

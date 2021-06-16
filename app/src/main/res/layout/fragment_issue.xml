@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/news_fragment"
+    android:orientation="vertical"
+    android:background="@color/gray300"
+    tools:context=".view.fragment.IssueFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="오늘의 이야기"
+                android:textSize="25dp"
+                android:textColor="@color/purple"
+                android:fontFamily="@font/im_cre_soojin_otf"
+                android:layout_gravity="left"/>
+        </androidx.appcompat.widget.Toolbar>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_above="@+id/bottom_navigation_view"
+            android:background="@color/purple" />
+    </LinearLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:id="@+id/recent_news_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="#Recent News"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:drawableRight="@drawable/arrow_right_foreground"
+                android:background="@color/white"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/news_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray300" />
+            <TextView
+                android:id="@+id/tips_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="#Tips!"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:background="@color/white"
+                android:layout_marginTop="6dp"
+                android:drawableRight="@drawable/arrow_right_foreground"
+                />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/blog_rv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray300" />
+            <TextView
+                android:id="@+id/graph_tv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="#Review Trand"
+                android:textColor="@color/black"
+                android:textSize="20dp"
+                android:gravity="left"
+                android:textStyle="bold"
+                android:background="@color/white"
+                android:layout_marginTop="6dp"
+                />
+            <com.github.mikephil.charting.charts.PieChart
+                android:id="@+id/trand_chart"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:background="@color/white"
+                />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/gray300" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

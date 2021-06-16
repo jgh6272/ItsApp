@@ -49,13 +49,13 @@ class MainActivity : AppCompatActivity() {
             kakaoLogin()
         }
         login_btn.setOnClickListener {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            startActivity(Intent(this, LoginActivity::class.java))
+            overridePendingTransition(R.anim.right_in, R.anim.left_out);
         }
         /*회원가입 버튼*/
         join_btn.setOnClickListener{
-            val intent = Intent(this, JoinActivity::class.java)
-            startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            startActivity(Intent(this, JoinActivity::class.java))
+            overridePendingTransition(R.anim.right_in, R.anim.left_out);
         }
     }
     /*카카오 자동 로그인*/
@@ -65,8 +65,9 @@ class MainActivity : AppCompatActivity() {
                 Log.e("TAG", "사용자 요청 실패",error )
             }else if(user !=null){
                 if(user.kakaoAccount?.email != null){
-                    val intent = Intent(this, LoadingActivity::class.java)
-                    startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                    startActivity(Intent(this, LoadingActivity::class.java))
+                    overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                    finish()
                 }
             }
         }
@@ -100,8 +101,8 @@ class MainActivity : AppCompatActivity() {
             if(code.equals("200")){
                 Snackbar.make(main_activity,"로그인 성공",Snackbar.LENGTH_SHORT).show()
                 viewModel.setLoginMethod("카카오")
-                val intent = Intent(this, LoadingActivity::class.java)
-                startActivity(intent,ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                startActivity(Intent(this, LoadingActivity::class.java))
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 finish()
             }else if(code.equals("204")){
                 Snackbar.make(main_activity,"카카오 계정과 동일한 아이디가 존재합니다.",Snackbar.LENGTH_SHORT).show()
@@ -119,8 +120,8 @@ class MainActivity : AppCompatActivity() {
             val userId = viewModel.getLoginSession()
             if(userId != " "){
                 viewModel.setLoginMethod("일반")
-                val intent = Intent(this, LoadingActivity::class.java)
-                startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                startActivity(Intent(this, LoadingActivity::class.java))
+                overridePendingTransition(R.anim.right_in, R.anim.left_out);
                 finish()
             }
         }

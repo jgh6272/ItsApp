@@ -14,13 +14,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".view.activity.FindPasswordActivity"
-            android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".view.activity.TipsActivity"></activity>
+        <activity android:name=".view.activity.NewsActivity" />
+        <activity android:name=".view.activity.ShowIssueActivity" />
+        <activity
+            android:name=".view.activity.FindPasswordActivity"
+            android:windowSoftInputMode="adjustResize" />
+        <activity android:name=".view.activity.ReviewWriteActivity"></activity>
         <activity android:name=".view.activity.LoadingActivity" />
-        <activity android:name=".ReviewActivity" />
+        <activity android:name=".view.activity.DeviceInfoActivity" />
         <activity
             android:name=".view.activity.AddUserInfoActivity"
-            android:windowSoftInputMode="adjustResize"/>
+            android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".view.activity.LoginActivity"
             android:windowSoftInputMode="adjustResize" />
