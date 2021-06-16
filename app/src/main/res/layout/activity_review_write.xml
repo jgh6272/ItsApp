@@ -30,6 +30,7 @@
                 android:text="리뷰 작성"
                 android:textSize="20dp"
                 android:textColor="@color/black"
+                android:textStyle="bold"
                 android:layout_gravity="center"/>
 
         </FrameLayout>
@@ -82,6 +83,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:textSize="16dp"
+                        android:textColor="@color/black"
                         android:text="기기명"/>
                 </LinearLayout>
             </LinearLayout>
@@ -99,6 +101,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:textSize="25dp"
+                    android:textColor="@color/black"
                     android:text="평점을 선택해주세요"/>
                 <RatingBar
                     android:id="@+id/rating_bar"
@@ -128,27 +131,51 @@
                 android:background="@color/white"
                 android:layout_marginTop="7dp"
                 android:orientation="vertical">
-
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:text="좋았던 점"/>
+                    android:paddingLeft="10dp"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp"
+                    android:paddingBottom="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/smile"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="20dp"
+                        android:textStyle="bold"
+                        android:textColor="@color/black"
+                        android:text="좋았던 점"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="(최소 20자 이상)"/>
+                </LinearLayout>
                 <EditText
                     android:id="@+id/content_pros_edt"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="12dp"
+                    android:isScrollContainer="true"
+                    android:inputType="textMultiLine"
                     android:gravity="start"
                     android:background="@null"
                     android:maxLength="500"
-                    android:hint="사용하시고 좋았던 점에 대해 리뷰를 남겨주세요."/>
+                    android:hint="사용하시고 좋았던 점에 대해 리뷰를 남겨주세요.\n\n\n\n\n\n\n"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingRight="12dp">
                     <TextView
                         android:id="@+id/content_pros_edt_length"
                         android:layout_width="wrap_content"
@@ -165,26 +192,51 @@
                     android:layout_height="2px"
                     android:background="@color/gray300" />
 
-                <TextView
+                <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:textSize="20dp"
-                    android:textStyle="bold"
-                    android:text="아쉬운 점"/>
+                    android:paddingTop="10dp"
+                    android:paddingLeft="10dp"
+                    android:orientation="horizontal"
+                    android:paddingBottom="10dp">
+
+                    <ImageView
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_gravity="center_vertical"
+                        android:src="@drawable/crying"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:textSize="20dp"
+                        android:textColor="@color/black"
+                        android:textStyle="bold"
+                        android:text="아쉬운 점"/>
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginLeft="5dp"
+                        android:text="(최소 20자 이상)"/>
+                </LinearLayout>
                 <EditText
                     android:id="@+id/content_cons_edt"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
+                    android:layout_height="wrap_content"
+                    android:paddingLeft="12dp"
+                    android:isScrollContainer="true"
+                    android:inputType="textMultiLine"
                     android:gravity="start"
                     android:maxLength="500"
                     android:background="@null"
-                    android:hint="사용하시고 아쉬운 점에 대해 리뷰를 남겨주세요."/>
+                    android:hint="사용하시고 아쉬운 점에 대해 리뷰를 남겨주세요.\n\n\n\n\n\n\n"/>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="right"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:paddingRight="12dp">
                     <TextView
                         android:id="@+id/content_cons_edt_length"
                         android:layout_width="wrap_content"

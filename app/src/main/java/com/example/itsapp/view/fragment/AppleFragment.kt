@@ -53,6 +53,10 @@ class AppleFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
 
+        back_btn.setOnClickListener {
+
+        }
+
         rv_device.layoutManager = GridLayoutManager(activity,2)
         rv_device.adapter = deviceAdapter
 

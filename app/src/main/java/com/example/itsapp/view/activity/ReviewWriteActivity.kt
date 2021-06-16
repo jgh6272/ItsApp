@@ -1,6 +1,7 @@
 package com.example.itsapp.view.activity
 
 import android.annotation.SuppressLint
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
@@ -8,19 +9,23 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import com.example.itsapp.R
+import com.example.itsapp.util.SharedPreference
 import com.example.itsapp.viewmodel.DeviceViewModel
 import com.example.itsapp.viewmodel.HomeViewModel
 import com.example.itsapp.viewmodel.ReviewViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_review_write.*
+import okhttp3.internal.userAgent
 
 class ReviewWriteActivity : AppCompatActivity() {
     private val deviceViewModel: DeviceViewModel by viewModels()
     private val reviewViewModel: ReviewViewModel by viewModels()
+    private val homeViewModel : HomeViewModel by viewModels()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -90,7 +95,7 @@ class ReviewWriteActivity : AppCompatActivity() {
         write_btn.setOnClickListener {
             val deviceName = deviceName
             // 로그인된 회원의 아이디를 받아와야댐
-            val userId = "alsrbs12304@naver.com"
+            val userId = homeViewModel.getLoginSession()
             val reviewPoint:Int = rating_bar.rating.toInt()
             val contentPros = content_pros_edt.text.toString()
             val contentCons = content_cons_edt.text.toString()
