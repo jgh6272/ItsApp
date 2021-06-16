@@ -1,5 +1,6 @@
 package com.example.itsapp.retrofit
 
+import com.example.itsapp.model.vo.*
 import com.example.itsapp.model.vo.BrandPart
 import com.example.itsapp.model.vo.DeviceInfo
 import com.example.itsapp.model.vo.UserInfo
@@ -65,4 +66,31 @@ interface APIInterface {
 
     @GET("/android/getReviewCnt")
     suspend fun getReviewCnt() : DeviceInfo
+
+    @GET("/android/getDeviceInfo")
+    suspend fun getDeviceInfo(
+        @Query("deviceName") deviceName : String
+    ) : DeviceInfo
+
+    // 상위 3개 리뷰 갖고오는 함수
+    @GET("/android/getReviewThird")
+    suspend fun getReviewThird(
+        @Query("deviceName") deviceName : String
+    ) : ReviewInfo
+
+    // 해당 디바이스 리뷰 점수 별 리뷰 개수 갖고오는 함수
+    @GET("/android/getReviewPointCount")
+    suspend fun getReviewPointCount(
+        @Query("deviceName") deviceName : String
+    ) : DeviceInfo
+
+    @FormUrlEncoded
+    @POST("/android/writeReview")
+    suspend fun writeReview(
+        @Field("deviceName") deviceName: String,
+        @Field("userId") userId: String,
+        @Field("reviewPoint") reviewPoint: Int,
+        @Field("contentPros") contentPros: String,
+        @Field("contentCons") contentCons: String
+    ) : ReviewInfo
 }

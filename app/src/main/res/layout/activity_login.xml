@@ -103,6 +103,5 @@
         android:layout_gravity="bottom"
         android:textColor="@color/white"
         android:background="@drawable/join_button_round"
-        android:textSize="18dp"
-        />
+        android:textSize="18dp" />
 </LinearLayout>
