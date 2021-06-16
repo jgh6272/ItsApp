@@ -1,26 +1,19 @@
 package com.example.itsapp.view.activity
 
-import android.annotation.SuppressLint
-import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
-import android.widget.Toast
 import androidx.activity.viewModels
-import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
-import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import com.example.itsapp.R
-import com.example.itsapp.util.SharedPreference
 import com.example.itsapp.viewmodel.DeviceViewModel
 import com.example.itsapp.viewmodel.HomeViewModel
 import com.example.itsapp.viewmodel.ReviewViewModel
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_review_write.*
-import okhttp3.internal.userAgent
 
 class ReviewWriteActivity : AppCompatActivity() {
     private val deviceViewModel: DeviceViewModel by viewModels()

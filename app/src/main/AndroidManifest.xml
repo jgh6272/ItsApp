@@ -21,9 +21,6 @@
             android:name=".view.activity.FindPasswordActivity"
             android:windowSoftInputMode="adjustResize" />
         <activity android:name=".view.activity.ReviewWriteActivity"></activity>
-        <activity
-            android:name=".view.activity.FindPasswordActivity"
-            android:windowSoftInputMode="adjustResize" />
         <activity android:name=".view.activity.LoadingActivity" />
         <activity android:name=".view.activity.DeviceInfoActivity" />
         <activity
