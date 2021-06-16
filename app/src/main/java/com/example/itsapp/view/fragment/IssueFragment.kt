@@ -81,7 +81,7 @@ class IssueFragment : Fragment() {
             val mAdapter = this!!.activity?.let { it1 -> BlogAdapter(result, it1) }
             blogRecyclerView.adapter = mAdapter
         })
-        viewModel.deviceLiveData.observe(viewLifecycleOwner, Observer {
+        /*viewModel.deviceLiveData.observe(viewLifecycleOwner, Observer {
             if(it.code.equals("200")){
                 for(i in 0..1){
                     when(it.jsonArray[i].deviceBrand){
@@ -96,7 +96,7 @@ class IssueFragment : Fragment() {
             }else{
                 Snackbar.make(view,"리뷰 카운트를 불러오지 못했습니다.",Snackbar.LENGTH_SHORT).show()
             }
-        })
+        })*/
     }
     fun recyclerView(view:View){
         newsRecyclerView = view.findViewById(R.id.news_rv)
@@ -110,18 +110,18 @@ class IssueFragment : Fragment() {
         viewModel.searchReadBlog("노트북",1,3)
     }
     fun pieChart(view:View){
-        viewModel.getReviewCnt()
+        /*viewModel.getReviewCnt()*/
         val chart:PieChart = view.findViewById(R.id.trand_chart)
         chart.setUsePercentValues(true)
 
         //data set
         val entries = ArrayList<PieEntry>()
         entries.add(PieEntry(250f,"LG"))
-        entries.add(PieEntry(350f,"Samsung"))
-        entries.add(PieEntry(600f,"Apple"))
-        entries.add(PieEntry(200f,"DELL"))
-        entries.add(PieEntry(150f,"ASUS"))
-        entries.add(PieEntry(150f,"LENOVO"))
+        entries.add(PieEntry(200f,"Samsung"))
+        entries.add(PieEntry(350f,"Apple"))
+        entries.add(PieEntry(100f,"DELL"))
+        entries.add(PieEntry(50f,"ASUS"))
+        entries.add(PieEntry(50f,"LENOVO"))
 
         val colorsItems = ArrayList<Int>()
         for(c in ColorTemplate.VORDIPLOM_COLORS) colorsItems.add(c)
