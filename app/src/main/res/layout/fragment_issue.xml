@@ -21,17 +21,18 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="오늘의 이야기"
+                android:text="TODAY'S STORY"
                 android:textSize="25dp"
-                android:textColor="@color/purple"
-                android:fontFamily="@font/im_cre_soojin_otf"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nanum_barun_gothic"
+                android:textStyle="bold"
                 android:layout_gravity="left"/>
         </androidx.appcompat.widget.Toolbar>
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_above="@+id/bottom_navigation_view"
-            android:background="@color/purple" />
+            android:background="@color/gray500" />
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
