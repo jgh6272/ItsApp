@@ -11,7 +11,7 @@ import kotlinx.android.synthetic.main.fragment_home.view.*
 
 class HomeFragment : Fragment() {
 
-    private var appleFragment = AppleFragment()
+    private var deviceFragment = DeviceFragment()
 
     companion object{
         const val TAG : String = "로그"
@@ -30,39 +30,39 @@ class HomeFragment : Fragment() {
         view.apple_cardview.setOnClickListener{
             var bundle = Bundle()
             bundle.putString("deviceBrand","Apple")
-            appleFragment.arguments = bundle
+            deviceFragment.arguments = bundle
             Log.d("putString", bundle.toString())
-            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,appleFragment).commit()
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,deviceFragment).commit()
         }
         view.lg_cardview.setOnClickListener {
             var bundle = Bundle()
             bundle.putString("deviceBrand","LG")
-            appleFragment.arguments = bundle
-            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,appleFragment).commit()
+            deviceFragment.arguments = bundle
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,deviceFragment).commit()
         }
         view.samsung_cardview.setOnClickListener {
             var bundle = Bundle()
             bundle.putString("deviceBrand","SAMSUNG")
-            appleFragment.arguments = bundle
-            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,appleFragment).commit()
+            deviceFragment.arguments = bundle
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,deviceFragment).commit()
         }
         view.dell_cardview.setOnClickListener {
             var bundle = Bundle()
             bundle.putString("deviceBrand","DELL")
-            appleFragment.arguments = bundle
-            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,appleFragment).commit()
+            deviceFragment.arguments = bundle
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,deviceFragment).commit()
         }
         view.lenovo_cardview.setOnClickListener {
             var bundle = Bundle()
             bundle.putString("deviceBrand","LENOVO")
-            appleFragment.arguments = bundle
-            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,appleFragment).commit()
+            deviceFragment.arguments = bundle
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,deviceFragment).commit()
         }
         view.asus_cardview.setOnClickListener {
             var bundle = Bundle()
             bundle.putString("deviceBrand","ASUS")
-            appleFragment.arguments = bundle
-            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,appleFragment).commit()
+            deviceFragment.arguments = bundle
+            activity?.supportFragmentManager!!.beginTransaction().replace(R.id.container,deviceFragment).commit()
         }
         return view
     }
