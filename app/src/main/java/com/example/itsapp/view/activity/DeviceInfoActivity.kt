@@ -32,6 +32,7 @@ class DeviceInfoActivity : AppCompatActivity() {
             finish()
         }
 
+
         // 디바이스를 선택한 프래그먼트로 부터 deviceName을 넘겨 받아
         // deviceName에 저장한다.
         val intent = intent
@@ -61,6 +62,12 @@ class DeviceInfoActivity : AppCompatActivity() {
                 }
             }
         })
+
+        go_to_review_all.setOnClickListener {
+            val intent = Intent(this,ReviewActivity::class.java)
+            intent.putExtra("deviceName",deviceName)
+            startActivity(intent)
+        }
 
         rv_review.layoutManager = LinearLayoutManager(this)
         rv_review.adapter = reviewAdapter

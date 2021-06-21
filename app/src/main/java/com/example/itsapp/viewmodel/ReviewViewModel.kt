@@ -19,6 +19,13 @@ class ReviewViewModel(application: Application): AndroidViewModel(application) {
     val reviewPointCountLiveData = MutableLiveData<DeviceInfo>()
     val writeReviewLiveData = MutableLiveData<ReviewInfo>()
 
+    fun getReviewAll(deviceName : String){
+        viewModelScope.launch {
+            val data:ReviewInfo = service.getReviewAll(deviceName)
+            reviewLiveData.value = data
+        }
+    }
+
     fun getReviewThird(deviewName: String){
         viewModelScope.launch {
             val data:ReviewInfo = service.getReviewThird(deviewName)

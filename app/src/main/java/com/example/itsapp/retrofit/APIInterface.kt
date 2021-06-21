@@ -72,6 +72,11 @@ interface APIInterface {
         @Query("deviceName") deviceName : String
     ) : DeviceInfo
 
+    @GET("/android/getReviewAll")
+    suspend fun getReviewAll(
+        @Query("deviceName") deviceName: String
+    ) : ReviewInfo
+
     // 상위 3개 리뷰 갖고오는 함수
     @GET("/android/getReviewThird")
     suspend fun getReviewThird(
