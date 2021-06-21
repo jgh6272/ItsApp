@@ -29,7 +29,7 @@
                 android:layout_gravity="center"
                 android:text="카카오로 회원가입"
                 android:fontFamily="@font/nanum_barun_gothic"
-                android:textColor="@color/purple"
+                android:textColor="@color/black"
                 android:textSize="20dp"/>
         </androidx.appcompat.widget.Toolbar>
 
@@ -60,7 +60,7 @@
                 android:fontFamily="@font/nanum_barun_gothic"
                 android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:textColor="@color/purple"
+                android:textColor="@color/black"
                 android:background="@color/transparent"
                 />
         </RelativeLayout>

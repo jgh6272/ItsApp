@@ -17,7 +17,7 @@
            android:layout_height="wrap_content"
            android:text="Loading.."
            android:fontFamily="@font/nanum_barun_gothic"
-           android:textColor="@color/purple"
+           android:textColor="@color/black"
            android:background="@color/transparent"
            android:gravity="center"
            android:layout_gravity="center"

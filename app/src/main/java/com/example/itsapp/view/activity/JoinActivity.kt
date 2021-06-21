@@ -4,13 +4,16 @@ import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.StrictMode
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
+import android.view.View
 import com.example.itsapp.R
 import com.example.itsapp.viewmodel.JoinViewModel
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
+import com.example.itsapp.util.MailSender
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.activity_join.*
 import org.mindrot.jbcrypt.BCrypt
@@ -18,15 +21,19 @@ import java.util.regex.Pattern
 
 class JoinActivity : AppCompatActivity() {
 
+    private var userId:String = ""
+    private var emailCode:String = ""
     private var checkId = false
     private var checkNick = false
     private var checkPw = false
     private var checkValidPw = false
     private var checkName = false
+    private var checkEmail = false
     private val viewModel: JoinViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_join)
+        thread()
         liveData()
         btnEvent()
         textWarcher()
@@ -34,7 +41,7 @@ class JoinActivity : AppCompatActivity() {
     private fun btnEvent(){
         /*회원가입 버튼*/
         join_btn.setOnClickListener {
-            val userId = join_id_edt.text.toString().trim()
+            userId = join_id_edt.text.toString().trim()
             val password = join_password_edt.text.toString().trim()
             val encryptionPw = BCrypt.hashpw(password, BCrypt.gensalt())
             val userName = join_name_edt.text.toString().trim()
@@ -59,15 +66,14 @@ class JoinActivity : AppCompatActivity() {
         }
         /*아이디 중복 검사*/
         check_id.setOnClickListener {
-            val userId = join_id_edt.text.toString().trim()
+            userId = join_id_edt.text.toString().trim()
             /*간단한 이메일 유효성 검사*/
             val pattern = Patterns.EMAIL_ADDRESS
-            checkId = if(!userId.equals("")&&pattern.matcher(userId).matches()){
+            if(!userId.equals("")&&pattern.matcher(userId).matches()){
                 viewModel.checkId(userId)
-                true
             }else {
                 id_input_layout.error="적합한 아이디(이메일)을 입력해 주세요."
-                false
+                checkId = false
             }
         }
         /*닉네임 중복 검사*/
@@ -77,6 +83,19 @@ class JoinActivity : AppCompatActivity() {
                 viewModel.checkNick(userNickName)
             }else{
                 Snackbar.make(join_activity,"닉네임을 입력해 주세요.",Snackbar.LENGTH_SHORT).show()
+            }
+        }
+        email_check_btn.setOnClickListener{
+            val code = email_code_et.text?.trim().toString()
+            if(code.equals(emailCode) && !code.equals("") && !checkEmail){
+                time_text.visibility = View.GONE
+                viewModel.countDownTimer.cancel()
+                Snackbar.make(join_activity,"이메일 인증 완료되었습니다.",Snackbar.LENGTH_SHORT).show()
+            }else if(checkEmail){
+                Snackbar.make(join_activity,"이미 인증 완료했습니다.",Snackbar.LENGTH_SHORT).show()
+            }else {
+                Snackbar.make(join_activity,"인증번호가 틀렸습니다.",Snackbar.LENGTH_SHORT).show()
+                time_text.text = ""
             }
         }
     }
@@ -158,15 +177,27 @@ class JoinActivity : AppCompatActivity() {
     private fun liveData(){
         /*아이디 중복 검사 LIVEDATA*/
         viewModel.checkIdLiveData.observe(this, Observer { code->
-            checkId = if(code.equals("200")){
+            if(code.equals("200")){
                 id_input_layout.helperText="아이디(이메일) 사용가능"
-                true
+                checkId = true
+                val sender = MailSender()
+                emailCode = sender.getEmailCode()
+                sender.sendEmail("ItsApp 회원가입","ItsApp 회원가입 이메일 인증 코드는 ${emailCode}입니다.",userId)
+                viewModel.countDown()
             }else if(code.equals("204")){
                 id_input_layout.error="이미 사용중인 아이디입니다."
-                false
+                checkId = false
             }else{
                 Snackbar.make(join_activity,"에러",Snackbar.LENGTH_SHORT).show()
-                false
+                checkId = false
+            }
+        })
+        /*인증코드 카운트다운 LIVEDATA*/
+        viewModel.count.observe(this, Observer {
+            if(!it.equals("")){
+                time_text.text = it
+            }else{
+                emailCode = ""
             }
         })
         /*닉네임 중복 검사 LIVEDATA*/
@@ -199,5 +230,12 @@ class JoinActivity : AppCompatActivity() {
                 join_nick_name_edt.text?.clear()
             }
         })
+    }
+    private fun thread(){
+        StrictMode.setThreadPolicy(
+            StrictMode.ThreadPolicy.Builder()
+            .permitDiskReads()
+            .permitDiskWrites()
+            .permitNetwork().build());
     }
 }
