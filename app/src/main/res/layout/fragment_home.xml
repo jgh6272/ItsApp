@@ -62,6 +62,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:textSize="20dp"
+                        android:textStyle="bold"
                         android:text="Apple"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -87,6 +88,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:textSize="20dp"
+                        android:textStyle="bold"
                         android:text="LG"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -119,6 +121,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:textSize="20dp"
+                        android:textStyle="bold"
                         android:text="SAMSUNG"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -144,6 +147,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:textSize="20dp"
+                        android:textStyle="bold"
                         android:text="DELL"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -175,6 +179,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:textSize="20dp"
+                        android:textStyle="bold"
                         android:text="LENONO"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -200,6 +205,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:textSize="20dp"
+                        android:textStyle="bold"
                         android:text="ASUS"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>

@@ -26,7 +26,6 @@ class JoinViewModel(application: Application):AndroidViewModel(application) {
     val kakaoUserInfoLD = MutableLiveData<String>()
     val userIdLiveData = MutableLiveData<String>()
     val count = MutableLiveData<String>()
-    val sendEmailRes = MutableLiveData<Int>()
     lateinit var countDownTimer:CountDownTimer
 
     fun join(userId : String, userPw : String , userName : String, userNickname: String, loginMethod:String){

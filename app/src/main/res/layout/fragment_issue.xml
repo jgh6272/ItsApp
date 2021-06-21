@@ -22,7 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="TODAY'S STORY"
-                android:textSize="25dp"
+                android:textSize="30dp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/nanum_barun_gothic"
                 android:textStyle="bold"

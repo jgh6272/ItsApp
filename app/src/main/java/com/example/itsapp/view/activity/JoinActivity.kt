@@ -9,6 +9,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Patterns
 import android.view.View
+import android.widget.ProgressBar
 import com.example.itsapp.R
 import com.example.itsapp.viewmodel.JoinViewModel
 import androidx.activity.viewModels
@@ -29,6 +30,7 @@ class JoinActivity : AppCompatActivity() {
     private var checkValidPw = false
     private var checkName = false
     private var checkEmail = false
+    private var checkSend = false
     private val viewModel: JoinViewModel by viewModels()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,6 +51,8 @@ class JoinActivity : AppCompatActivity() {
             val joinMethod = "일반"
             if(!checkName){
                 join_name_edt.requestFocus()
+            }else if(!checkEmail) {
+                Snackbar.make(join_activity,"이메일 인증코드 확인 실시해주세요.",Snackbar.LENGTH_SHORT).show()
             }else if(!checkNick && !checkId) {
                 Snackbar.make(join_activity,"중복 검사 실시해주세요.",Snackbar.LENGTH_SHORT).show()
             }else if(!checkPw){
@@ -71,6 +75,7 @@ class JoinActivity : AppCompatActivity() {
             val pattern = Patterns.EMAIL_ADDRESS
             if(!userId.equals("")&&pattern.matcher(userId).matches()){
                 viewModel.checkId(userId)
+                loading_bar.visibility = ProgressBar.VISIBLE
             }else {
                 id_input_layout.error="적합한 아이디(이메일)을 입력해 주세요."
                 checkId = false
@@ -89,7 +94,8 @@ class JoinActivity : AppCompatActivity() {
             val code = email_code_et.text?.trim().toString()
             if(code.equals(emailCode) && !code.equals("") && !checkEmail){
                 time_text.visibility = View.GONE
-                viewModel.countDownTimer.cancel()
+                checkEmail = true
+                viewModel.countDownTimer.onFinish()
                 Snackbar.make(join_activity,"이메일 인증 완료되었습니다.",Snackbar.LENGTH_SHORT).show()
             }else if(checkEmail){
                 Snackbar.make(join_activity,"이미 인증 완료했습니다.",Snackbar.LENGTH_SHORT).show()
@@ -180,10 +186,17 @@ class JoinActivity : AppCompatActivity() {
             if(code.equals("200")){
                 id_input_layout.helperText="아이디(이메일) 사용가능"
                 checkId = true
-                val sender = MailSender()
-                emailCode = sender.getEmailCode()
-                sender.sendEmail("ItsApp 회원가입","ItsApp 회원가입 이메일 인증 코드는 ${emailCode}입니다.",userId)
-                viewModel.countDown()
+                if(!checkSend){
+                    val sender = MailSender()
+                    emailCode = sender.getEmailCode()
+                    sender.sendEmail("ItsApp 회원가입","ItsApp 회원가입 이메일 인증 코드는 ${emailCode}입니다.",userId)
+                    loading_bar.visibility = ProgressBar.GONE
+                    Snackbar.make(join_activity,"이메일 전송했습니다.",Snackbar.LENGTH_SHORT).show()
+                    viewModel.countDown()
+                    checkSend = true
+                }else if(checkSend){
+                    Snackbar.make(join_activity,"이메일을 이미 전송했습니다.",Snackbar.LENGTH_SHORT).show()
+                }
             }else if(code.equals("204")){
                 id_input_layout.error="이미 사용중인 아이디입니다."
                 checkId = false
@@ -196,6 +209,10 @@ class JoinActivity : AppCompatActivity() {
         viewModel.count.observe(this, Observer {
             if(!it.equals("")){
                 time_text.text = it
+            }else if(it.equals("")){
+                emailCode = ""
+                time_text.visibility = View.GONE
+                checkSend = false
             }else{
                 emailCode = ""
             }
