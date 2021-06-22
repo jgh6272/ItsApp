@@ -8,6 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.example.itsapp.R
+import com.kakao.sdk.common.util.KakaoCustomTabsClient
+import com.kakao.sdk.talk.TalkApiClient
 import kotlinx.android.synthetic.main.fragment_my_page.*
 
 class MyPageFragment : Fragment() {
@@ -39,7 +41,8 @@ class MyPageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         inquire_btn.setOnClickListener{
-
+            val url = TalkApiClient.instance.addChannelUrl("http://pf.kakao.com/_lELGs/chat")
+            KakaoCustomTabsClient.openWithDefault(requireContext(),url)
         }
     }
 }

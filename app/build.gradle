@@ -44,19 +44,20 @@ dependencies {
     implementation files('../libs/activation.jar')
     implementation files('../libs/additionnal.jar')
     implementation files('../libs/mail.jar')
-    implementation 'androidx.wear:wear:1.0.0'
+    implementation 'androidx.wear:wear:1.1.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     /*Kakao Talk login*/
-    implementation "com.kakao.sdk:v2-user:2.0.1"
+    implementation "com.kakao.sdk:v2-user:2.5.2"
+    implementation "com.kakao.sdk:v2-talk:2.5.2"
 
     /*retrofit*/
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     implementation 'com.google.code.gson:gson:2.8.6'
-    compileOnly 'com.google.android.wearable:wearable:2.5.0'
+    compileOnly 'com.google.android.wearable:wearable:2.8.1'
 
     // ViewModel
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1"
@@ -64,7 +65,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
     //ktx android
     implementation 'androidx.core:core-ktx:1.5.0'
-    implementation 'androidx.fragment:fragment-ktx:1.3.4'
+    implementation 'androidx.fragment:fragment-ktx:1.3.5'
     implementation 'androidx.activity:activity-ktx:1.2.3'
     implementation "androidx.lifecycle:lifecycle-extensions:2.2.0"
     //okhttp

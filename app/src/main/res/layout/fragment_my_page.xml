@@ -40,7 +40,6 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_above="@+id/bottom_navigation_view"
             android:background="@color/gray500" />
     </LinearLayout>
     <RelativeLayout
@@ -123,9 +122,41 @@
         android:background="@color/white"
         android:drawableLeft="@drawable/ic_baseline_star_border_24"
         android:gravity="left|center"
-        android:textSize="16dp"
+        android:textSize="20dp"
         android:fontFamily="@font/nanum_barun_gothic"
         android:layout_marginTop="16dp"
+        android:textStyle="bold"
+
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray500" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="   로그아웃"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/logout_icon"
+        android:gravity="left|center"
+        android:textSize="20dp"
+        android:fontFamily="@font/nanum_barun_gothic"
+        android:textStyle="bold"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray500" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="   회원탈퇴"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/retire_icon"
+        android:gravity="left|center"
+        android:textSize="20dp"
+        android:fontFamily="@font/nanum_barun_gothic"
+        android:textStyle="bold"
         />
     <Button
         android:id="@+id/inquire_btn"

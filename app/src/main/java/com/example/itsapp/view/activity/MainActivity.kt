@@ -1,6 +1,5 @@
 package com.example.itsapp.view.activity
 
-import android.app.ActivityOptions
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -15,7 +14,6 @@ import com.example.itsapp.R
 import com.example.itsapp.util.SharedPreference
 import com.example.itsapp.viewmodel.JoinViewModel
 import com.google.android.material.snackbar.Snackbar
-import com.kakao.sdk.auth.LoginClient
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_main.*
@@ -90,10 +88,10 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-        if(LoginClient.instance.isKakaoTalkLoginAvailable(this)){
-            LoginClient.instance.loginWithKakaoAccount(this, callback = callback)
+        if(UserApiClient.instance.isKakaoTalkLoginAvailable(this)){
+            UserApiClient.instance.loginWithKakaoTalk(this, callback = callback)
         } else {
-            LoginClient.instance.loginWithKakaoAccount(this, callback = callback)
+            UserApiClient.instance.loginWithKakaoAccount(this, callback = callback)
         }
     }
     fun liveData(){
