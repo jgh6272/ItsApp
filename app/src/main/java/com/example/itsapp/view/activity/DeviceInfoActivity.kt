@@ -4,7 +4,6 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -15,11 +14,10 @@ import com.example.itsapp.view.adapter.ReviewAdapter
 import com.example.itsapp.viewmodel.DeviceViewModel
 import com.example.itsapp.viewmodel.ReviewViewModel
 import kotlinx.android.synthetic.main.activity_device_info.*
-import kotlinx.android.synthetic.main.review_item.*
 
 class DeviceInfoActivity : AppCompatActivity() {
 
-    private val deviewViewModel: DeviceViewModel by viewModels()
+    private val deviceViewModel: DeviceViewModel by viewModels()
     private val reviewViewModel: ReviewViewModel by viewModels()
     val reviewList = arrayListOf<Review>()
     val reviewAdapter = ReviewAdapter(reviewList)
@@ -39,8 +37,8 @@ class DeviceInfoActivity : AppCompatActivity() {
         val deviceName = intent.getStringExtra("deviceName")
         Log.i("getString", deviceName.toString())
 
-        deviewViewModel.getDeviceInfo(deviceName!!)
-        deviewViewModel.deviceInfoLiveData.observe(this, Observer { deviceInfo ->
+        deviceViewModel.getDeviceInfo(deviceName!!)
+        deviceViewModel.deviceInfoLiveData.observe(this, Observer { deviceInfo ->
             if(deviceInfo.code.equals("200")){
                 device_brand.text = deviceInfo.jsonArray[0].deviceBrand
                 device_name.text = deviceInfo.jsonArray[0].deviceName
@@ -52,7 +50,7 @@ class DeviceInfoActivity : AppCompatActivity() {
                 rating_bar2.rating = deviceInfo.jsonArray[0].reviewPoint.toFloat()
             }
         })
-        deviewViewModel.deviceInfoLiveData.observe(this, Observer { deviceInfo ->
+        deviceViewModel.deviceInfoLiveData.observe(this, Observer { deviceInfo ->
             if(deviceInfo.code.equals("200")){
                 go_to_review_write_activity.setOnClickListener {
                     val deviceName = deviceInfo.jsonArray[0].deviceName

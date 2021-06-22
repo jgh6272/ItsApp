@@ -23,6 +23,7 @@ class ReviewAdapter(var reviewList:ArrayList<Review>) : RecyclerView.Adapter<Rev
         holder.contentPros.text = reviewList.get(position).contentPros
         holder.contentCons.text = reviewList.get(position).contentCons
         holder.likeCount.text = reviewList.get(position).likeCount.toString()
+        holder.commnetCount.text = reviewList.get(position).commentCount.toString()
     }
 
     override fun getItemCount(): Int {
@@ -41,5 +42,6 @@ class ReviewAdapter(var reviewList:ArrayList<Review>) : RecyclerView.Adapter<Rev
         val contentPros = itemView.findViewById<TextView>(R.id.content_pros)
         val contentCons = itemView.findViewById<TextView>(R.id.content_cons)
         val likeCount = itemView.findViewById<TextView>(R.id.like_count)
+        val commnetCount = itemView.findViewById<TextView>(R.id.comment_count)
     }
 }

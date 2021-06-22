@@ -9,5 +9,6 @@ data class Review(
     @SerializedName("CONTENT_PROS") var contentPros: String,
     @SerializedName("CONTENT_CONS") var contentCons: String,
     @SerializedName("LIKE_COUNT") var likeCount : Int,
+    @SerializedName("COMMENT_COUNT") var commentCount : Int,
     @SerializedName("WRITE_TIME") var writeTime : String
 )
