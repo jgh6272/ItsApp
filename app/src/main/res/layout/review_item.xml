@@ -73,7 +73,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:text="좋았던 점에 대한 사용자가 작성한 리뷰글\n\n"
+                    android:text="리뷰글"
                     android:inputType="textMultiLine"/>
             </LinearLayout>
             <LinearLayout
@@ -91,7 +91,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
-                    android:text="아쉬운에 대한 사용자가 작성한 리뷰글\n\n"
+                    android:text="리뷰글"
                     android:inputType="textMultiLine"/>
             </LinearLayout>
             <LinearLayout
