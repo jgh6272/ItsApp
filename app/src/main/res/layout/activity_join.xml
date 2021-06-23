@@ -237,7 +237,7 @@
                             android:textColor="@color/black"
                             android:background="@color/transparent"
                             android:fontFamily="@font/nanum_barun_gothic"
-                            android:layout_centerVertical="true"
+                            android:layout_alignParentBottom="true"
                             android:layout_alignParentRight="true"
                             />
                     </RelativeLayout>
