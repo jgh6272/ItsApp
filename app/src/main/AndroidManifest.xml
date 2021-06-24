@@ -14,7 +14,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ReviewDetailActivity"></activity>
+        <activity android:name=".view.activity.ReviewDetailActivity"></activity>
         <activity android:name=".view.activity.ReviewActivity" />
         <activity android:name=".view.activity.TipsActivity" />
         <activity android:name=".view.activity.NewsActivity" />

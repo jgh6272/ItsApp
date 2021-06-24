@@ -33,6 +33,14 @@ class ReviewViewModel(application: Application): AndroidViewModel(application) {
             //Log.d("getReviewInfo",data.jsonArray.toString())
         }
     }
+
+    fun getChoiceReview(deviceName: String, writer : String){
+        viewModelScope.launch {
+            val data:ReviewInfo = service.getChoiceReview(deviceName, writer)
+            reviewLiveData.value = data
+        }
+    }
+
     fun getReviewPointCount(deviceName : String){
         viewModelScope.launch {
             val data:DeviceInfo = service.getReviewPointCount(deviceName)

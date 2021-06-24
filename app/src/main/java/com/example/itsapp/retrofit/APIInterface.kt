@@ -98,4 +98,25 @@ interface APIInterface {
         @Field("contentPros") contentPros: String,
         @Field("contentCons") contentCons: String
     ) : ReviewInfo
+
+    @GET("/android/getChoiceReview")
+    suspend fun getChoiceReview(
+        @Query("deviceName") deviceName : String,
+        @Query("writer") writer : String
+    ) : ReviewInfo
+
+    @GET("/android/getComment")
+    suspend fun getComment(
+        @Query("deviceName") deviceName : String,
+        @Query("reviewWriter") reviewWriter : String
+    ) : CommentInfo
+
+    @FormUrlEncoded
+    @POST("/android/writeComment")
+    suspend fun writeComment(
+        @Field("deviceName") deviceName : String,
+        @Field("reviewWriter") reviewWriter: String,
+        @Field("writer") writer: String,
+        @Field("commentContent") commentContent : String
+    ) : CommentInfo
 }

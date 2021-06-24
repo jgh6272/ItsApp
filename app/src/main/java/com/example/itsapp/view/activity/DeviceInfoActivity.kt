@@ -4,6 +4,8 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -50,6 +52,7 @@ class DeviceInfoActivity : AppCompatActivity() {
                 rating_bar2.rating = deviceInfo.jsonArray[0].reviewPoint.toFloat()
             }
         })
+
         deviceViewModel.deviceInfoLiveData.observe(this, Observer { deviceInfo ->
             if(deviceInfo.code.equals("200")){
                 go_to_review_write_activity.setOnClickListener {
@@ -60,6 +63,22 @@ class DeviceInfoActivity : AppCompatActivity() {
                 }
             }
         })
+
+        reviewViewModel.reviewLiveData.observe(this, Observer { reviewInfo ->
+            if(reviewInfo.code.equals("200")){
+                reviewAdapter.setItemClickListener(object : ReviewAdapter.OnItemClickListener{
+                    override fun onClick(v: View, position: Int) {
+                        val deviceName = reviewInfo.jsonArray[position].deviceName
+                        val writer = reviewInfo.jsonArray[position].writer
+                        val intent = Intent(application, ReviewDetailActivity::class.java)
+                        intent.putExtra("deviceName", deviceName)
+                        intent.putExtra("writer", writer)
+                        startActivity(intent)
+                    }
+                })
+            }
+        })
+
 
         go_to_review_all.setOnClickListener {
             val intent = Intent(this,ReviewActivity::class.java)
@@ -92,5 +111,6 @@ class DeviceInfoActivity : AppCompatActivity() {
                 review_count_1_point_text.text = deviceInfo.jsonArray[0].reviewPoint1Count.toString()
             }
         })
+
     }
 }

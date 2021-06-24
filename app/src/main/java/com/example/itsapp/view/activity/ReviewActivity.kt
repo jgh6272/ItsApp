@@ -12,7 +12,6 @@ import com.example.itsapp.model.vo.Review
 import com.example.itsapp.view.adapter.ReviewAdapter
 import com.example.itsapp.viewmodel.DeviceViewModel
 import com.example.itsapp.viewmodel.ReviewViewModel
-import kotlinx.android.synthetic.main.activity_device_info.*
 import kotlinx.android.synthetic.main.activity_review.*
 import kotlinx.android.synthetic.main.activity_review.back_btn
 import kotlinx.android.synthetic.main.activity_review.rating_bar
