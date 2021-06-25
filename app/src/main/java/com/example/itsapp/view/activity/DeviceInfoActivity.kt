@@ -4,7 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
+import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
@@ -16,6 +18,7 @@ import com.example.itsapp.view.adapter.ReviewAdapter
 import com.example.itsapp.viewmodel.DeviceViewModel
 import com.example.itsapp.viewmodel.ReviewViewModel
 import kotlinx.android.synthetic.main.activity_device_info.*
+import kotlinx.android.synthetic.main.review_item.*
 
 class DeviceInfoActivity : AppCompatActivity() {
 
@@ -111,6 +114,5 @@ class DeviceInfoActivity : AppCompatActivity() {
                 review_count_1_point_text.text = deviceInfo.jsonArray[0].reviewPoint1Count.toString()
             }
         })
-
     }
 }

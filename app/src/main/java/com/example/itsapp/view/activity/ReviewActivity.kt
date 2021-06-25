@@ -1,8 +1,10 @@
 package com.example.itsapp.view.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -52,6 +54,21 @@ class ReviewActivity : AppCompatActivity() {
             if(deviceInfo.code.equals("200")){
                 rating_bar.rating = deviceInfo.jsonArray[0].reviewPoint
                 review_point.text = deviceInfo.jsonArray[0].reviewPoint.toString()
+            }
+        })
+
+        reviewViewModel.reviewLiveData.observe(this, Observer { reviewInfo ->
+            if(reviewInfo.code.equals("200")){
+                reviewAdapter.setItemClickListener(object : ReviewAdapter.OnItemClickListener{
+                    override fun onClick(v: View, position: Int) {
+                        val deviceName = reviewInfo.jsonArray[position].deviceName
+                        val writer = reviewInfo.jsonArray[position].writer
+                        val intent = Intent(application, ReviewDetailActivity::class.java)
+                        intent.putExtra("deviceName", deviceName)
+                        intent.putExtra("writer", writer)
+                        startActivity(intent)
+                    }
+                })
             }
         })
     }
