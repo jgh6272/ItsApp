@@ -119,4 +119,10 @@ interface APIInterface {
         @Field("writer") writer: String,
         @Field("commentContent") commentContent : String
     ) : CommentInfo
+
+    @FormUrlEncoded
+    @POST("/android/deleteComment")
+    suspend fun deleteComment(
+        @Field("writer") writer: String
+    ) : CommentInfo
 }

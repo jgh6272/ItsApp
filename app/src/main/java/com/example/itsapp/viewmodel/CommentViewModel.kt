@@ -29,4 +29,11 @@ class CommentViewModel(application: Application): AndroidViewModel(application) 
             commentLiveData.value = data
         }
     }
+
+    fun deleteComment(writer: String){
+        viewModelScope.launch {
+            val data:CommentInfo = service.deleteComment(writer)
+            commentLiveData.value = data
+        }
+    }
 }

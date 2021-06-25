@@ -3,11 +3,11 @@ package com.example.itsapp.view.adapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.itsapp.R
-import com.example.itsapp.model.vo.Device
 import com.example.itsapp.model.vo.Review
 
 class ReviewAdapter(var reviewList:ArrayList<Review>) : RecyclerView.Adapter<ReviewAdapter.ViewHolder>() {
@@ -58,5 +58,4 @@ class ReviewAdapter(var reviewList:ArrayList<Review>) : RecyclerView.Adapter<Rev
     fun setItemClickListener(onItemClickListener: OnItemClickListener){
         this.itemClickListener = onItemClickListener
     }
-
 }

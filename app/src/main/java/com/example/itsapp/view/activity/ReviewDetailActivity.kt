@@ -4,6 +4,9 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -21,6 +24,7 @@ import kotlinx.android.synthetic.main.activity_review_detail.device_brand
 import kotlinx.android.synthetic.main.activity_review_detail.device_name
 import kotlinx.android.synthetic.main.activity_review_detail.review_point
 import kotlinx.android.synthetic.main.activity_review_write.*
+import kotlinx.android.synthetic.main.comment_item.*
 
 class ReviewDetailActivity : AppCompatActivity() {
 
@@ -78,5 +82,21 @@ class ReviewDetailActivity : AppCompatActivity() {
                 commentViewModel.writeComment(deviceName,reviewWriter,writer,commentContent)
             }
         }
+        commentAdapter.setItemClickListener(object : CommentAdapter.OnItemClickListener{
+            override fun onClick(v: View, position: Int) {
+                var popup = PopupMenu(application, v)
+                menuInflater.inflate(R.menu.more_menu,popup.menu)
+                popup.setOnMenuItemClickListener { item ->
+                    when (item.itemId){
+                        R.id.action_delete ->
+                            Toast.makeText(application,"댓글 삭제",Toast.LENGTH_SHORT).show()
+                        R.id.action_report ->
+                            Toast.makeText(application,"신고 하기",Toast.LENGTH_SHORT).show()
+                    }
+                    false
+                }
+                popup.show()
+            }
+        })
     }
 }
