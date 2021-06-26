@@ -24,9 +24,6 @@ class CommentAdapter(var commentList:ArrayList<Comment>) : RecyclerView.Adapter<
         holder.comment.text = commentList.get(position).comment
         holder.writeTime.text = commentList.get(position).writeTime
 
-        holder.itemView.setOnClickListener{
-            itemClickListener.onClick(it, position)
-        }
         holder.moreBtn.setOnClickListener{
             itemClickListener.onClick(it, position)
         }

@@ -120,9 +120,14 @@ interface APIInterface {
         @Field("commentContent") commentContent : String
     ) : CommentInfo
 
-    @FormUrlEncoded
-    @POST("/android/deleteComment")
-    suspend fun deleteComment(
-        @Field("writer") writer: String
-    ) : CommentInfo
+    @GET("/android/getLoginUserId")
+    suspend fun getLoginUserId(
+        @Query("userId") userId: String
+    ) : UserInfo
+
+    @GET("/android/deleteReview")
+    suspend fun deleteReview(
+        @Query("deviceName") deviceName: String,
+        @Query("writer") writer: String
+    ) : ReviewInfo
 }

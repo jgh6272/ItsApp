@@ -1,13 +1,17 @@
 package com.example.itsapp.view.activity
 
+import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -41,7 +45,6 @@ class ReviewDetailActivity : AppCompatActivity() {
         back_btn.setOnClickListener {
             finish()
         }
-
         val intent = intent
         val deviceName = intent.getStringExtra("deviceName")
         val writer = intent.getStringExtra("writer")
@@ -98,5 +101,35 @@ class ReviewDetailActivity : AppCompatActivity() {
                 popup.show()
             }
         })
+
+        delete_btn.setOnClickListener {
+            val builder = AlertDialog.Builder(this)
+            builder.setTitle("리뷰 삭제")
+            builder.setMessage("리뷰를 삭제하시겠습니까?")
+            builder.setPositiveButton(
+                "삭제"
+            ) { dialog: DialogInterface?, which: Int ->
+                val loginId = homeViewModel.getLoginSession()
+                reviewViewModel.getLoginUserId(loginId)
+                reviewViewModel.loginUserIdLiveData.observe(this, Observer { userInfo ->
+                    if(userInfo.code.equals("200")) {
+                        Log.i("userNickName", userInfo.jsonArray.userNickname)
+                        if(writer.equals(userInfo.jsonArray.userNickname)){
+                            Toast.makeText(this,"삭제 가능",Toast.LENGTH_SHORT).show()
+                            reviewViewModel.deleteReview(deviceName,writer)
+                            reviewViewModel.reviewLiveData.observe(this, Observer { reviewInfo ->
+                                if(reviewInfo.code.equals("200")){
+                                    finish()
+                                }
+                            })
+                        }else{
+                            Toast.makeText(this,"삭제 불가능",Toast.LENGTH_SHORT).show()
+                        }
+                    }
+                })
+            }
+            builder.setNegativeButton("취소",null)
+            builder.show()
+        }
     }
 }
