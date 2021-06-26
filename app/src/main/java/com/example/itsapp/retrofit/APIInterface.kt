@@ -1,10 +1,8 @@
 package com.example.itsapp.retrofit
 
 import com.example.itsapp.model.vo.*
-import com.example.itsapp.model.vo.BrandPart
 import com.example.itsapp.model.vo.DeviceInfo
 import com.example.itsapp.model.vo.UserInfo
-import retrofit2.Call
 import retrofit2.http.*
 
 interface APIInterface {
@@ -93,4 +91,15 @@ interface APIInterface {
         @Field("contentPros") contentPros: String,
         @Field("contentCons") contentCons: String
     ) : ReviewInfo
+
+    @FormUrlEncoded
+    @POST("/android/userServey")
+    suspend fun userJob(
+        @Field("userSex") userSex:String,
+        @Field("userAge") userAge:String,
+        @Field("userJob") userJob:String
+    ) :String
+
+    @GET("/android/surveyParticipation")
+    suspend fun surveyParticipation() :String
 }

@@ -17,6 +17,8 @@ class HomeViewModel(application: Application): AndroidViewModel(application){
         APIInterface::class.java)
     val userIdLiveData = MutableLiveData<String>()
     val secondJoinLiveData = MutableLiveData<String>()
+    val userLiveData = MutableLiveData<String>()
+    val participationLiveData = MutableLiveData<String>()
 
     fun getLoginSession():String{
         var userSession = ""
@@ -36,6 +38,20 @@ class HomeViewModel(application: Application): AndroidViewModel(application){
         viewModelScope.launch {
             val data = service.seceondJoin(userId)
             secondJoinLiveData.value = data
+        }
+    }
+
+    fun userJob(userSex:String,userAge:String,userJob:String){
+        viewModelScope.launch {
+            val data = service.userJob(userSex,userAge,userJob)
+            userLiveData.value = data
+        }
+    }
+
+    fun surveyParticipation(){
+        viewModelScope.launch {
+            val data = service.surveyParticipation()
+            participationLiveData.value = data
         }
     }
 }
