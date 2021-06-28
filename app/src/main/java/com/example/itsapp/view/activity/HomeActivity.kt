@@ -3,6 +3,7 @@ package com.example.itsapp.view.activity
 import android.app.Dialog
 import android.graphics.Color
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.view.WindowManager
 import android.widget.CompoundButton
@@ -157,7 +158,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             if(it.equals("200")){
                 dialog()
             }else{
-                Snackbar.make(home_activity,"유저 정보 패스",Snackbar.LENGTH_SHORT).show()
+                Log.d("TAG", "liveData: 유저 정보 패스")
             }
         })
     }

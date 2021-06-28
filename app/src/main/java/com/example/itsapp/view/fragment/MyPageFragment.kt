@@ -14,9 +14,12 @@ import com.example.itsapp.R
 import com.example.itsapp.view.activity.HomeActivity
 import com.example.itsapp.view.activity.MainActivity
 import com.example.itsapp.viewmodel.HomeViewModel
+import com.google.android.material.snackbar.Snackbar
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.talk.TalkApiClient
 import com.kakao.sdk.user.UserApiClient
+import kotlinx.android.synthetic.main.activity_home.*
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.fragment_my_page.view.*
 import kotlin.math.log
@@ -62,6 +65,9 @@ class MyPageFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mypage_retire.setOnClickListener{
+            viewModel.retireApp(loginMethod)
+        }
         inquire_btn.setOnClickListener{
             val url = TalkApiClient.instance.channelChatUrl("_lELGs")
             KakaoCustomTabsClient.openWithDefault(requireContext(),url)
@@ -87,6 +93,15 @@ class MyPageFragment : Fragment() {
             userNickname = it.jsonArray.userNickname
             Log.d(TAG, "liveData: $userNickname")
             mypage_nickname.text = userNickname
+        })
+        viewModel.retireLiveData.observe(this, Observer {
+            if(it=="200"){
+                Snackbar.make(home_activity, "회원 탈퇴 완료.", Snackbar.LENGTH_SHORT).show()
+                startActivity(Intent(activity,MainActivity::class.java))
+                activity?.overridePendingTransition(R.anim.right_in, R.anim.left_out);
+            }else {
+                Snackbar.make(home_activity, "회원 탈퇴 완료.", Snackbar.LENGTH_SHORT).show()
+            }
         })
     }
 }

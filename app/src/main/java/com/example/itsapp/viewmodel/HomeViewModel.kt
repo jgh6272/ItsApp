@@ -22,6 +22,7 @@ class HomeViewModel(application: Application): AndroidViewModel(application){
     val userLiveData = MutableLiveData<String>()
     val participationLiveData = MutableLiveData<String>()
     val userInfoLiveData = MutableLiveData<UserInfo>()
+    val retireLiveData = MutableLiveData<String>()
 
     fun getLoginSession():String{
         var userSession = ""
@@ -67,7 +68,15 @@ class HomeViewModel(application: Application): AndroidViewModel(application){
     fun getLoginMethod(): String? {
         return prefs.loginMethod
     }
+    /*로그아웃시 sharedpreference에서 쿠키 삭제하여 자동 로그인 방지*/
     fun logoutPref(){
         prefs.removeCookies()
+    }
+    /*탈퇴하기 버튼*/
+    fun retireApp(loginMethod: String){
+        viewModelScope.launch {
+            val data = service.retireApp(loginMethod)
+            retireLiveData.value = data
+        }
     }
 }

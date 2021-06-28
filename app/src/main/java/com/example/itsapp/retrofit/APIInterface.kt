@@ -154,4 +154,10 @@ interface APIInterface {
     suspend fun deleteComment(
         @Query("commentId") commentId : Int
     ) : CommentInfo
+
+    @FormUrlEncoded
+    @POST("/android/retireApp")
+    suspend fun retireApp(
+        @Field("loginMethod") loginMethod: String
+    ):String
 }

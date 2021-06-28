@@ -116,7 +116,7 @@ class MainActivity : AppCompatActivity() {
         }
         else if(viewModel.getLoginMethod().equals("일반")) {
             val userId = viewModel.getLoginSession()
-            if(userId != " "){
+            if(userId != ""){
                 viewModel.setLoginMethod("일반")
                 startActivity(Intent(this, LoadingActivity::class.java))
                 overridePendingTransition(R.anim.right_in, R.anim.left_out);
