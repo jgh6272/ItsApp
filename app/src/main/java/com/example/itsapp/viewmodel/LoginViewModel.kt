@@ -19,9 +19,9 @@ class LoginViewModel(application: Application): AndroidViewModel(application) {
     val updatePwLiveData = MutableLiveData<String>()
 
     /*유저 정보*/
-    fun userInfo(userId:String){
+    fun login(userId:String){
         viewModelScope.launch {
-            val data = service.userInfo(userId)
+            val data = service.login(userId)
             loginLiveData.value = data
         }
     }

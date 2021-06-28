@@ -52,12 +52,13 @@ class LoginActivity : AppCompatActivity() {
             {
                 Snackbar.make(login_layout,"로그인 정보를 입력하세요.",Snackbar.LENGTH_SHORT).show()
             }else{
-                viewModel.userInfo(userId)
+                viewModel.login(userId)
             }
         }
         forgot_password_tv.setOnClickListener{
             val intent = Intent(this, FindPasswordActivity::class.java)
-            startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+            startActivity(intent)
+            overridePendingTransition(R.anim.right_in, R.anim.left_out);
         }
     }
     private fun liveData(){
@@ -69,7 +70,8 @@ class LoginActivity : AppCompatActivity() {
                     Snackbar.make(login_layout,"로그인 성공",Snackbar.LENGTH_SHORT).show()
                     viewModel.setLoginMethod("일반")
                     val intent = Intent(this, LoadingActivity::class.java)
-                    startActivity(intent, ActivityOptions.makeSceneTransitionAnimation(this).toBundle())
+                    startActivity(intent)
+                    overridePendingTransition(R.anim.right_in, R.anim.left_out);
                     finish()
                 }else {
                     Snackbar.make(login_layout,"로그인 실패",Snackbar.LENGTH_SHORT).show()

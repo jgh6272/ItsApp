@@ -69,14 +69,17 @@
                 android:orientation="vertical"
                 >
                 <TextView
+                    android:id="@+id/mypage_nickname"
                     android:layout_margin="5dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="닉네임"
                     android:textSize="20dp"
                     android:fontFamily="@font/nanum_barun_gothic"
+                    android:textColor="@color/black"
                     />
                 <TextView
+                    android:id="@+id/mypage_login_method"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="로그인 방식"
@@ -133,6 +136,7 @@
         android:layout_height="1dp"
         android:background="@color/gray500" />
     <Button
+        android:id="@+id/mypage_logout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="   로그아웃"

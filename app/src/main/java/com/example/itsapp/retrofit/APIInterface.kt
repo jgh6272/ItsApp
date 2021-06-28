@@ -27,8 +27,8 @@ interface APIInterface {
     suspend fun checkNick(@Query("userNickName") userNickName: String):String
 
     /*로그인*/
-    @GET("/android/userInfo")
-    suspend fun userInfo(@Query("userId") userId: String):UserInfo
+    @GET("/android/login")
+    suspend fun login(@Query("userId") userId: String):UserInfo
 
     /*Kakao 로그인*/
     @FormUrlEncoded
@@ -102,4 +102,9 @@ interface APIInterface {
 
     @GET("/android/surveyParticipation")
     suspend fun surveyParticipation() :String
+
+    @GET("/android/userInfo")
+    suspend fun userInfo(
+        @Query("loginMethod") loginMethod: String
+    ):UserInfo
 }
