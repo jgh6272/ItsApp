@@ -83,6 +83,12 @@ class ReviewDetailActivity : AppCompatActivity() {
                 Snackbar.make(review_detail_layout,"댓글을 입력해주세요.", Snackbar.LENGTH_SHORT).show()
             }else{
                 commentViewModel.writeComment(deviceName,reviewWriter,writer,commentContent)
+                commentViewModel.commentLiveData.observe(this, Observer { commentInfo ->
+                    if(commentInfo.code.equals("200")) {
+                        commentAdapter.updateItem(commentInfo.jsonArray)
+
+                    }
+                })
             }
         }
         commentAdapter.setItemClickListener(object : CommentAdapter.OnItemClickListener{
@@ -91,8 +97,11 @@ class ReviewDetailActivity : AppCompatActivity() {
                 menuInflater.inflate(R.menu.more_menu,popup.menu)
                 popup.setOnMenuItemClickListener { item ->
                     when (item.itemId){
-                        R.id.action_delete ->
-                            Toast.makeText(application,"댓글 삭제",Toast.LENGTH_SHORT).show()
+                        R.id.action_delete -> {
+                            Toast.makeText(application, "댓글 삭제", Toast.LENGTH_SHORT).show()
+//                            Log.i("getPosition", position.toString())
+//                            commentViewModel.deleteComment(position)
+                        }
                         R.id.action_report ->
                             Toast.makeText(application,"신고 하기",Toast.LENGTH_SHORT).show()
                     }

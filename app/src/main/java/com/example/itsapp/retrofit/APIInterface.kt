@@ -130,4 +130,9 @@ interface APIInterface {
         @Query("deviceName") deviceName: String,
         @Query("writer") writer: String
     ) : ReviewInfo
+
+    @GET("/android/deleteComment")
+    suspend fun deleteComment(
+        @Query("commentId") commentId : Int
+    ) : CommentInfo
 }

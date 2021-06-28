@@ -1,6 +1,7 @@
 package com.example.itsapp.viewmodel
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -26,6 +27,13 @@ class CommentViewModel(application: Application): AndroidViewModel(application) 
     fun writeComment(deviceName: String, reviewWriter: String, writer:String, commentContent:String){
         viewModelScope.launch {
             val data:CommentInfo = service.writeComment(deviceName, reviewWriter, writer, commentContent)
+            commentLiveData.value = data
+            Log.i("getComment",data.jsonArray.toString())
+        }
+    }
+    fun deleteComment(commentId : Int){
+        viewModelScope.launch {
+            val data:CommentInfo = service.deleteComment(commentId)
             commentLiveData.value = data
         }
     }
