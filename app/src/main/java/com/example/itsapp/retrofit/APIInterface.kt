@@ -99,6 +99,7 @@ interface APIInterface {
         @Field("contentCons") contentCons: String
     ) : ReviewInfo
 
+    /*유저 성별, 나이, 직업 불러오는 함수*/
     @FormUrlEncoded
     @POST("/android/userServey")
     suspend fun userJob(
@@ -107,9 +108,11 @@ interface APIInterface {
         @Field("userJob") userJob:String
     ) :String
 
+    /*유저 정보 설문조사 참여 여부*/
     @GET("/android/surveyParticipation")
     suspend fun surveyParticipation() :String
 
+    /*유저 정보*/
     @GET("/android/userInfo")
     suspend fun userInfo(
         @Query("loginMethod") loginMethod: String
