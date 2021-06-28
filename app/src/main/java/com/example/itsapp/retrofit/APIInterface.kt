@@ -1,8 +1,10 @@
 package com.example.itsapp.retrofit
 
 import com.example.itsapp.model.vo.*
+import com.example.itsapp.model.vo.BrandPart
 import com.example.itsapp.model.vo.DeviceInfo
 import com.example.itsapp.model.vo.UserInfo
+import retrofit2.Call
 import retrofit2.http.*
 
 interface APIInterface {
@@ -70,6 +72,11 @@ interface APIInterface {
         @Query("deviceName") deviceName : String
     ) : DeviceInfo
 
+    @GET("/android/getReviewAll")
+    suspend fun getReviewAll(
+        @Query("deviceName") deviceName: String
+    ) : ReviewInfo
+
     // 상위 3개 리뷰 갖고오는 함수
     @GET("/android/getReviewThird")
     suspend fun getReviewThird(
@@ -107,4 +114,41 @@ interface APIInterface {
     suspend fun userInfo(
         @Query("loginMethod") loginMethod: String
     ):UserInfo
+
+    @GET("/android/getChoiceReview")
+    suspend fun getChoiceReview(
+        @Query("deviceName") deviceName : String,
+        @Query("writer") writer : String
+    ) : ReviewInfo
+
+    @GET("/android/getComment")
+    suspend fun getComment(
+        @Query("deviceName") deviceName : String,
+        @Query("reviewWriter") reviewWriter : String
+    ) : CommentInfo
+
+    @FormUrlEncoded
+    @POST("/android/writeComment")
+    suspend fun writeComment(
+        @Field("deviceName") deviceName : String,
+        @Field("reviewWriter") reviewWriter: String,
+        @Field("writer") writer: String,
+        @Field("commentContent") commentContent : String
+    ) : CommentInfo
+
+    @GET("/android/getLoginUserId")
+    suspend fun getLoginUserId(
+        @Query("userId") userId: String
+    ) : UserInfo
+
+    @GET("/android/deleteReview")
+    suspend fun deleteReview(
+        @Query("deviceName") deviceName: String,
+        @Query("writer") writer: String
+    ) : ReviewInfo
+
+    @GET("/android/deleteComment")
+    suspend fun deleteComment(
+        @Query("commentId") commentId : Int
+    ) : CommentInfo
 }

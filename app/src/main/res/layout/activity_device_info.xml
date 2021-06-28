@@ -193,6 +193,7 @@
                             android:text="000"/>
                     </LinearLayout>
                     <ImageButton
+                        android:id="@+id/go_to_review_all"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@color/transparent"

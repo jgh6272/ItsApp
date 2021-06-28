@@ -4,7 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.MenuItem
 import android.view.View
+import android.widget.PopupMenu
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -19,7 +22,7 @@ import kotlinx.android.synthetic.main.review_item.*
 
 class DeviceInfoActivity : AppCompatActivity() {
 
-    private val deviewViewModel: DeviceViewModel by viewModels()
+    private val deviceViewModel: DeviceViewModel by viewModels()
     private val reviewViewModel: ReviewViewModel by viewModels()
     val reviewList = arrayListOf<Review>()
     val reviewAdapter = ReviewAdapter(reviewList)
@@ -32,14 +35,15 @@ class DeviceInfoActivity : AppCompatActivity() {
             finish()
         }
 
+
         // 디바이스를 선택한 프래그먼트로 부터 deviceName을 넘겨 받아
         // deviceName에 저장한다.
         val intent = intent
         val deviceName = intent.getStringExtra("deviceName")
         Log.i("getString", deviceName.toString())
 
-        deviewViewModel.getDeviceInfo(deviceName!!)
-        deviewViewModel.deviceInfoLiveData.observe(this, Observer { deviceInfo ->
+        deviceViewModel.getDeviceInfo(deviceName!!)
+        deviceViewModel.deviceInfoLiveData.observe(this, Observer { deviceInfo ->
             if(deviceInfo.code.equals("200")){
                 device_brand.text = deviceInfo.jsonArray[0].deviceBrand
                 device_name.text = deviceInfo.jsonArray[0].deviceName
@@ -51,7 +55,8 @@ class DeviceInfoActivity : AppCompatActivity() {
                 rating_bar2.rating = deviceInfo.jsonArray[0].reviewPoint.toFloat()
             }
         })
-        deviewViewModel.deviceInfoLiveData.observe(this, Observer { deviceInfo ->
+
+        deviceViewModel.deviceInfoLiveData.observe(this, Observer { deviceInfo ->
             if(deviceInfo.code.equals("200")){
                 go_to_review_write_activity.setOnClickListener {
                     val deviceName = deviceInfo.jsonArray[0].deviceName
@@ -61,6 +66,28 @@ class DeviceInfoActivity : AppCompatActivity() {
                 }
             }
         })
+
+        reviewViewModel.reviewLiveData.observe(this, Observer { reviewInfo ->
+            if(reviewInfo.code.equals("200")){
+                reviewAdapter.setItemClickListener(object : ReviewAdapter.OnItemClickListener{
+                    override fun onClick(v: View, position: Int) {
+                        val deviceName = reviewInfo.jsonArray[position].deviceName
+                        val writer = reviewInfo.jsonArray[position].writer
+                        val intent = Intent(application, ReviewDetailActivity::class.java)
+                        intent.putExtra("deviceName", deviceName)
+                        intent.putExtra("writer", writer)
+                        startActivity(intent)
+                    }
+                })
+            }
+        })
+
+
+        go_to_review_all.setOnClickListener {
+            val intent = Intent(this,ReviewActivity::class.java)
+            intent.putExtra("deviceName",deviceName)
+            startActivity(intent)
+        }
 
         rv_review.layoutManager = LinearLayoutManager(this)
         rv_review.adapter = reviewAdapter

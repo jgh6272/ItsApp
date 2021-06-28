@@ -18,8 +18,7 @@ import retrofit2.Response
 
 class DeviceViewModel(application: Application): AndroidViewModel(application) {
     val context = getApplication<Application>().applicationContext
-    val service: APIInterface = RetrofitClient.getInstance(context).create(
-        APIInterface::class.java)
+    val service: APIInterface = RetrofitClient.getInstance(context).create(APIInterface::class.java)
     val prefs = SharedPreference(application)
 
     val deviceLiveData = MutableLiveData<DeviceInfo>()

@@ -6,6 +6,8 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.itsapp.model.vo.DeviceInfo
 import com.example.itsapp.model.vo.ReviewInfo
+import com.example.itsapp.model.vo.User
+import com.example.itsapp.model.vo.UserInfo
 import com.example.itsapp.retrofit.APIInterface
 import com.example.itsapp.retrofit.RetrofitClient
 import kotlinx.coroutines.launch
@@ -18,6 +20,14 @@ class ReviewViewModel(application: Application): AndroidViewModel(application) {
     val reviewLiveData = MutableLiveData<ReviewInfo>()
     val reviewPointCountLiveData = MutableLiveData<DeviceInfo>()
     val writeReviewLiveData = MutableLiveData<ReviewInfo>()
+    val loginUserIdLiveData = MutableLiveData<UserInfo>()
+
+    fun getReviewAll(deviceName : String){
+        viewModelScope.launch {
+            val data:ReviewInfo = service.getReviewAll(deviceName)
+            reviewLiveData.value = data
+        }
+    }
 
     fun getReviewThird(deviewName: String){
         viewModelScope.launch {
@@ -26,6 +36,14 @@ class ReviewViewModel(application: Application): AndroidViewModel(application) {
             //Log.d("getReviewInfo",data.jsonArray.toString())
         }
     }
+
+    fun getChoiceReview(deviceName: String, writer : String){
+        viewModelScope.launch {
+            val data:ReviewInfo = service.getChoiceReview(deviceName, writer)
+            reviewLiveData.value = data
+        }
+    }
+
     fun getReviewPointCount(deviceName : String){
         viewModelScope.launch {
             val data:DeviceInfo = service.getReviewPointCount(deviceName)
@@ -37,6 +55,18 @@ class ReviewViewModel(application: Application): AndroidViewModel(application) {
         viewModelScope.launch {
             val data:ReviewInfo = service.writeReview(deviceName, userId, reviewPoint, contentPros, contentCons)
             writeReviewLiveData.value = data
+        }
+    }
+    fun getLoginUserId(userId : String){
+        viewModelScope.launch {
+            val data: UserInfo = service.getLoginUserId(userId)
+            loginUserIdLiveData.value = data
+        }
+    }
+    fun deleteReview(deviceName: String, writer: String){
+        viewModelScope.launch {
+            val data:ReviewInfo = service.deleteReview(deviceName, writer)
+            reviewLiveData.value = data
         }
     }
 }
