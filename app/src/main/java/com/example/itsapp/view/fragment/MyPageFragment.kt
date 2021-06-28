@@ -66,7 +66,8 @@ class MyPageFragment : Fragment() {
             val url = TalkApiClient.instance.channelChatUrl("_lELGs")
             KakaoCustomTabsClient.openWithDefault(requireContext(),url)
         }
-        /*mypage_logout.setOnClickListener{
+        mypage_logout.setOnClickListener{
+            viewModel.logoutPref()
             if(loginMethod == "카카오"){
                 UserApiClient.instance.logout {error ->
                     if(error !=null){
@@ -79,8 +80,7 @@ class MyPageFragment : Fragment() {
             }
             startActivity(Intent(activity,MainActivity::class.java))
             activity?.overridePendingTransition(R.anim.right_in, R.anim.left_out);
-            viewModel.logoutPref()
-        }*/
+        }
     }
     fun liveData(){
         viewModel.userInfoLiveData.observe(this, Observer {
