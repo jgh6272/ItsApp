@@ -36,10 +36,22 @@ class MainActivity : AppCompatActivity() {
         /*이미지 자동 슬라이드*/
         viewSlide()
         /*버튼 이벤트*/
-        eventBtn()
-        /*일반 자동 로그인*/
-        generalAutoLogin()
         liveData()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        eventBtn()
+    }
+
+    override fun onStart() {
+        super.onStart()
+        /*일반 자동 로그인*/
+        AutoLogin()
+        val flag = intent.getStringExtra("탈퇴")
+        if(flag == "탈퇴"){
+            Snackbar.make(main_activity,"탈퇴하기 완료.",Snackbar.LENGTH_SHORT).show()
+        }
     }
     private fun eventBtn(){
         /*카카오톡 로그인 버튼*/
@@ -109,7 +121,7 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-    fun generalAutoLogin(){
+    fun AutoLogin(){
         if(!viewModel.getLoginMethod().equals("일반")){
             /*카카오 자동 로그인*/
             kakaoAutoLogin()
