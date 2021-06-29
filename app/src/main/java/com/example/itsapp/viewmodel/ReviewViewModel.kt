@@ -19,7 +19,8 @@ class ReviewViewModel(application: Application): AndroidViewModel(application) {
 
     val reviewLiveData = MutableLiveData<ReviewInfo>()
     val reviewPointCountLiveData = MutableLiveData<DeviceInfo>()
-    val writeReviewLiveData = MutableLiveData<ReviewInfo>()
+    val writeReviewLiveData = MutableLiveData<String>()
+    val deleteReviewLiveData = MutableLiveData<String>()
     val loginUserIdLiveData = MutableLiveData<UserInfo>()
 
     fun getReviewAll(deviceName : String){
@@ -53,7 +54,7 @@ class ReviewViewModel(application: Application): AndroidViewModel(application) {
     }
     fun writeReview(deviceName: String, userId: String, reviewPoint: Int, contentPros: String, contentCons: String){
         viewModelScope.launch {
-            val data:ReviewInfo = service.writeReview(deviceName, userId, reviewPoint, contentPros, contentCons)
+            val data:String = service.writeReview(deviceName, userId, reviewPoint, contentPros, contentCons)
             writeReviewLiveData.value = data
         }
     }
@@ -65,8 +66,8 @@ class ReviewViewModel(application: Application): AndroidViewModel(application) {
     }
     fun deleteReview(deviceName: String, writer: String){
         viewModelScope.launch {
-            val data:ReviewInfo = service.deleteReview(deviceName, writer)
-            reviewLiveData.value = data
+            val data:String = service.deleteReview(deviceName, writer)
+            deleteReviewLiveData.value = data
         }
     }
 }

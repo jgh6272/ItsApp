@@ -1,10 +1,12 @@
 package com.example.itsapp.view.activity
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
@@ -103,5 +105,14 @@ class ReviewWriteActivity : AppCompatActivity() {
                 reviewViewModel.writeReview(deviceName,userId,reviewPoint,contentPros,contentCons)
             }
         }
+        reviewViewModel.writeReviewLiveData.observe(this, Observer {
+            if(it.equals("200")){
+                finish()
+                Toast.makeText(this,"리뷰 등록 완료!",Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, DeviceInfoActivity::class.java)
+                intent.putExtra("deviceName",deviceName)
+                startActivity(intent)
+            }
+        })
     }
 }

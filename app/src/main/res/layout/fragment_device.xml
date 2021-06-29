@@ -14,13 +14,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginRight="15dp">
-            <ImageButton
-                android:id="@+id/back_btn"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@color/transparent"
-                android:src="@drawable/ic_baseline_arrow_back_ios_24"/>
-
             <TextView
                 android:id="@+id/device_brand"
                 android:layout_width="wrap_content"
@@ -39,12 +32,15 @@
         android:layout_above="@+id/bottom_navigation_view"
         android:background="@color/gray300" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_device"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="40dp"/>
+        android:layout_height="match_parent">
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_device"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true" />
 
+    </RelativeLayout>
 </LinearLayout>

@@ -97,7 +97,7 @@ interface APIInterface {
         @Field("reviewPoint") reviewPoint: Int,
         @Field("contentPros") contentPros: String,
         @Field("contentCons") contentCons: String
-    ) : ReviewInfo
+    ) : String
 
     /*유저 성별, 나이, 직업 불러오는 함수*/
     @FormUrlEncoded
@@ -148,7 +148,7 @@ interface APIInterface {
     suspend fun deleteReview(
         @Query("deviceName") deviceName: String,
         @Query("writer") writer: String
-    ) : ReviewInfo
+    ) : String
 
     @GET("/android/deleteComment")
     suspend fun deleteComment(

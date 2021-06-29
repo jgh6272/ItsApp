@@ -1,5 +1,6 @@
 package com.example.itsapp.view.activity
 
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -35,7 +37,7 @@ class ReviewDetailActivity : AppCompatActivity() {
     private val commentViewModel : CommentViewModel by viewModels()
     private val reviewViewModel: ReviewViewModel by viewModels()
     private val homeViewModel : HomeViewModel by viewModels()
-    val commentList = arrayListOf<Comment>()
+    var commentList = arrayListOf<Comment>()
     val commentAdapter = CommentAdapter(commentList)
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -70,6 +72,7 @@ class ReviewDetailActivity : AppCompatActivity() {
         commentViewModel.getComment(deviceName, writer)
         commentViewModel.commentLiveData.observe(this, Observer { commentInfo ->
             if(commentInfo.code.equals("200")){
+                commentList = commentInfo.jsonArray as ArrayList<Comment>
                 commentAdapter.updateItem(commentInfo.jsonArray)
             }
         })
@@ -83,14 +86,17 @@ class ReviewDetailActivity : AppCompatActivity() {
                 Snackbar.make(review_detail_layout,"댓글을 입력해주세요.", Snackbar.LENGTH_SHORT).show()
             }else{
                 commentViewModel.writeComment(deviceName,reviewWriter,writer,commentContent)
-                commentViewModel.commentLiveData.observe(this, Observer { commentInfo ->
-                    if(commentInfo.code.equals("200")) {
-                        commentAdapter.updateItem(commentInfo.jsonArray)
 
-                    }
-                })
             }
         }
+        commentViewModel.writeCommentLiveData.observe(this, Observer {
+            if(it.code.equals("200")){
+                hidekeyboard()
+                comment_edt.setText(null)
+                commentList.add(it.jsonArray[0])
+                commentAdapter.updateItem(commentList)
+            }
+        })
         commentAdapter.setItemClickListener(object : CommentAdapter.OnItemClickListener{
             override fun onClick(v: View, position: Int) {
                 var popup = PopupMenu(application, v)
@@ -99,8 +105,6 @@ class ReviewDetailActivity : AppCompatActivity() {
                     when (item.itemId){
                         R.id.action_delete -> {
                             Toast.makeText(application, "댓글 삭제", Toast.LENGTH_SHORT).show()
-//                            Log.i("getPosition", position.toString())
-//                            commentViewModel.deleteComment(position)
                         }
                         R.id.action_report ->
                             Toast.makeText(application,"신고 하기",Toast.LENGTH_SHORT).show()
@@ -124,15 +128,9 @@ class ReviewDetailActivity : AppCompatActivity() {
                     if(userInfo.code.equals("200")) {
                         Log.i("userNickName", userInfo.jsonArray.userNickname)
                         if(writer.equals(userInfo.jsonArray.userNickname)){
-                            Toast.makeText(this,"삭제 가능",Toast.LENGTH_SHORT).show()
                             reviewViewModel.deleteReview(deviceName,writer)
-                            reviewViewModel.reviewLiveData.observe(this, Observer { reviewInfo ->
-                                if(reviewInfo.code.equals("200")){
-                                    finish()
-                                }
-                            })
                         }else{
-                            Toast.makeText(this,"삭제 불가능",Toast.LENGTH_SHORT).show()
+                            Toast.makeText(this,"리뷰 작성자만 해당 리뷰를 삭제할 수 있습니다.",Toast.LENGTH_SHORT).show()
                         }
                     }
                 })
@@ -140,5 +138,20 @@ class ReviewDetailActivity : AppCompatActivity() {
             builder.setNegativeButton("취소",null)
             builder.show()
         }
+        reviewViewModel.deleteReviewLiveData.observe(this, Observer {
+            if(it.equals("200")){
+                finish()
+                Toast.makeText(this,"리뷰가 삭제되었습니다.",Toast.LENGTH_SHORT).show()
+                val intent = Intent(this, DeviceInfoActivity::class.java)
+                intent.putExtra("deviceName",deviceName)
+                startActivity(intent)
+            }
+        })
+    }
+
+    // 키보드 내리기
+    fun hidekeyboard(){
+        val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        imm.hideSoftInputFromWindow(comment_edt.windowToken,0)
     }
 }
