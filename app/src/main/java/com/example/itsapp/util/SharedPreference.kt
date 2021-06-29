@@ -20,6 +20,10 @@ class SharedPreference(context: Context) {
         prefs.edit().remove("cookies").apply()
     }
 
+    var userId:String?
+    get() = prefs.getString("userInfo","")
+    set(value) = prefs.edit().putString("userInfo",value).apply()
+
     var loginMethod :String?
     get() = prefs.getString("loginMethod","")
     set(value) = prefs.edit().putString("loginMethod",value).apply()

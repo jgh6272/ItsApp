@@ -11,60 +11,62 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:layout_weight="1"
-        >
+        android:orientation="vertical">
+
         <androidx.appcompat.widget.Toolbar
             android:layout_width="match_parent"
             android:layout_height="50dp">
+
             <ImageButton
                 android:id="@+id/back_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_baseline_arrow_back_ios_24"
-                android:background="@android:color/transparent"/>
+                android:background="@android:color/transparent"
+                android:src="@drawable/ic_baseline_arrow_back_ios_24" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="카카오로 회원가입"
                 android:fontFamily="@font/nanum_barun_gothic"
-                android:textColor="@color/purple"
-                android:textSize="20dp"/>
+                android:text="카카오로 회원가입"
+                android:textColor="@color/black"
+                android:textSize="20dp" />
         </androidx.appcompat.widget.Toolbar>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            >
+            android:layout_margin="16dp">
+
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/kakao_nickname_input_layout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:hint="닉네임"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                >
+                android:hint="닉네임">
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/kakao_nick_et"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_barun_gothic"
-                    />
+                    android:fontFamily="@font/nanum_barun_gothic" />
             </com.google.android.material.textfield.TextInputLayout>
+
             <Button
                 android:id="@+id/kakao_nick_check_btn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="중복 확인"
-                android:fontFamily="@font/nanum_barun_gothic"
-                android:layout_centerVertical="true"
                 android:layout_alignParentRight="true"
-                android:textColor="@color/purple"
+                android:layout_centerVertical="true"
                 android:background="@color/transparent"
-                />
+                android:fontFamily="@font/nanum_barun_gothic"
+                android:text="중복 확인"
+                android:textColor="@color/black" />
         </RelativeLayout>
     </LinearLayout>
+
     <Button
         android:id="@+id/kakaoId_update_btn"
         android:layout_width="match_parent"

@@ -1,15 +1,178 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:id="@+id/mypage_fragment"
-    tools:context=".view.fragment.MyPageFragment">
+    tools:context=".view.fragment.MyPageFragment"
+    android:background="@color/gray300"
+    >
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="hello" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="MY PAGE"
+                android:textSize="30dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/nanum_barun_gothic"
+                android:textStyle="bold"
+                android:layout_gravity="left"
+                />
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/setting_foreground"
+                android:background="@color/transparent"
+                android:layout_gravity="right"
+                />
+        </androidx.appcompat.widget.Toolbar>
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/gray500" />
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        >
+        <ImageButton
+            android:id="@+id/profile_btn"
+            android:layout_margin="16dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/profile_img"
+            android:background="@drawable/profile_button_round"
+            android:adjustViewBounds="true"
+            />
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@+id/profile_btn"
+            android:layout_marginTop="30dp"
+            android:layout_marginRight="30dp"
+            >
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                >
+                <TextView
+                    android:id="@+id/mypage_nickname"
+                    android:layout_margin="5dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="닉네임"
+                    android:textSize="20dp"
+                    android:fontFamily="@font/nanum_barun_gothic"
+                    android:textColor="@color/black"
+                    />
+                <TextView
+                    android:id="@+id/mypage_login_method"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="로그인 방식"
+                    android:textSize="15dp"
+                    android:fontFamily="@font/nanum_barun_gothic"
+                    android:layout_margin="5dp"
+                    />
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:orientation="horizontal"
+            android:layout_below="@+id/profile_btn"
+            >
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="내 정보 수정"
+                android:layout_marginRight="5dp"
+                android:background="@drawable/shadow"
+                android:elevation="20dp"
+                android:fontFamily="@font/nanum_barun_gothic"
+                />
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:layout_marginLeft="5dp"
+                android:text="내 리뷰"
+                android:background="@drawable/shadow"
+                android:fontFamily="@font/nanum_barun_gothic"
+                />
+        </LinearLayout>
+    </RelativeLayout>
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="   내 즐겨찾기"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/ic_baseline_star_border_24"
+        android:gravity="left|center"
+        android:textSize="20dp"
+        android:fontFamily="@font/nanum_barun_gothic"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
 
-</FrameLayout>
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray500" />
+    <Button
+        android:id="@+id/mypage_logout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="   로그아웃"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/logout_icon"
+        android:gravity="left|center"
+        android:textSize="20dp"
+        android:fontFamily="@font/nanum_barun_gothic"
+        android:textStyle="bold"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray500" />
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="   회원탈퇴"
+        android:background="@color/white"
+        android:drawableLeft="@drawable/retire_icon"
+        android:gravity="left|center"
+        android:textSize="20dp"
+        android:fontFamily="@font/nanum_barun_gothic"
+        android:textStyle="bold"
+        />
+    <Button
+        android:id="@+id/inquire_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="   문의하기!\n   IT's에게 바라는 점을 말해주세요."
+        android:background="@color/white"
+        android:drawableRight="@drawable/arrow_right_foreground_size_up"
+        android:drawableLeft="@drawable/inquire_foreground"
+        android:gravity="left|center"
+        android:textSize="16dp"
+        android:fontFamily="@font/nanum_barun_gothic"
+        android:layout_marginTop="16dp"
+        />
+</LinearLayout>

@@ -22,10 +22,11 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="리얼리뷰"
-                    android:textSize="25dp"
-                    android:textColor="@color/purple"
-                    android:fontFamily="@font/im_cre_soojin_otf"
+                    android:text="REAL REVIEW"
+                    android:textSize="30dp"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/nanum_barun_gothic"
+                    android:textStyle="bold"
                     android:layout_gravity="left"/>
             </FrameLayout>
         </androidx.appcompat.widget.Toolbar>
@@ -34,12 +35,21 @@
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_above="@+id/bottom_navigation_view"
-            android:background="@color/purple" />
+            android:background="@color/gray500" />
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="70dp"
+            android:layout_centerVertical="true"
+            android:layout_centerHorizontal="true"
+            android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:orientation="horizontal">
             <androidx.cardview.widget.CardView
                 android:id="@+id/apple_cardview"
@@ -61,6 +71,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:textSize="20dp"
+                        android:textStyle="bold"
                         android:text="Apple"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -86,6 +97,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:textSize="20dp"
+                        android:textStyle="bold"
                         android:text="LG"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -94,8 +106,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
@@ -118,6 +130,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:textSize="20dp"
+                        android:textStyle="bold"
                         android:text="SAMSUNG"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -143,6 +156,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:textSize="20dp"
+                        android:textStyle="bold"
                         android:text="DELL"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -150,8 +164,8 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="40dp"
+            android:paddingTop="15dp"
+            android:paddingBottom="15dp"
             android:orientation="horizontal">
 
             <androidx.cardview.widget.CardView
@@ -174,6 +188,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:textSize="20dp"
+                        android:textStyle="bold"
                         android:text="LENONO"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
@@ -199,9 +214,12 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:textSize="20dp"
+                        android:textStyle="bold"
                         android:text="ASUS"/>
                 </LinearLayout>
             </androidx.cardview.widget.CardView>
         </LinearLayout>
+        </LinearLayout>
+        </RelativeLayout>
     </LinearLayout>
 </FrameLayout>

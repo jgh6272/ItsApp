@@ -9,5 +9,6 @@ data class User(
     @SerializedName("USER_ID") @Expose var userId:String,
     @SerializedName("PASSWORD") @Expose var password:String,
     @SerializedName("USER_NAME") @Expose var userName:String,
-    @SerializedName("USER_NICKNAME") @Expose var userNickname:String
+    @SerializedName("USER_NICKNAME") @Expose var userNickname:String,
+    @SerializedName("LOGIN_METHOD") @Expose var loginMethod:String
 )

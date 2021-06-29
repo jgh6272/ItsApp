@@ -31,7 +31,7 @@ class FindPasswordActivity : AppCompatActivity() {
         }
         update_pw.setOnClickListener {
             userId = findPw_id_edt.text.toString()
-            viewModel.userInfo(userId)
+            viewModel.login(userId)
         }
     }
     private fun liveData(){

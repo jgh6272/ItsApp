@@ -29,8 +29,8 @@ interface APIInterface {
     suspend fun checkNick(@Query("userNickName") userNickName: String):String
 
     /*로그인*/
-    @GET("/android/userInfo")
-    suspend fun userInfo(@Query("userId") userId: String):UserInfo
+    @GET("/android/login")
+    suspend fun login(@Query("userId") userId: String):UserInfo
 
     /*Kakao 로그인*/
     @FormUrlEncoded
@@ -72,6 +72,11 @@ interface APIInterface {
         @Query("deviceName") deviceName : String
     ) : DeviceInfo
 
+    @GET("/android/getReviewAll")
+    suspend fun getReviewAll(
+        @Query("deviceName") deviceName: String
+    ) : ReviewInfo
+
     // 상위 3개 리뷰 갖고오는 함수
     @GET("/android/getReviewThird")
     suspend fun getReviewThird(
@@ -92,5 +97,61 @@ interface APIInterface {
         @Field("reviewPoint") reviewPoint: Int,
         @Field("contentPros") contentPros: String,
         @Field("contentCons") contentCons: String
+    ) : String
+
+    /*유저 성별, 나이, 직업 불러오는 함수*/
+    @FormUrlEncoded
+    @POST("/android/userServey")
+    suspend fun userJob(
+        @Field("userSex") userSex:String,
+        @Field("userAge") userAge:String,
+        @Field("userJob") userJob:String
+    ) :String
+
+    /*유저 정보 설문조사 참여 여부*/
+    @GET("/android/surveyParticipation")
+    suspend fun surveyParticipation() :String
+
+    /*유저 정보*/
+    @GET("/android/userInfo")
+    suspend fun userInfo(
+        @Query("loginMethod") loginMethod: String
+    ):UserInfo
+
+    @GET("/android/getChoiceReview")
+    suspend fun getChoiceReview(
+        @Query("deviceName") deviceName : String,
+        @Query("writer") writer : String
     ) : ReviewInfo
+
+    @GET("/android/getComment")
+    suspend fun getComment(
+        @Query("deviceName") deviceName : String,
+        @Query("reviewWriter") reviewWriter : String
+    ) : CommentInfo
+
+    @FormUrlEncoded
+    @POST("/android/writeComment")
+    suspend fun writeComment(
+        @Field("deviceName") deviceName : String,
+        @Field("reviewWriter") reviewWriter: String,
+        @Field("writer") writer: String,
+        @Field("commentContent") commentContent : String
+    ) : CommentInfo
+
+    @GET("/android/getLoginUserId")
+    suspend fun getLoginUserId(
+        @Query("userId") userId: String
+    ) : UserInfo
+
+    @GET("/android/deleteReview")
+    suspend fun deleteReview(
+        @Query("deviceName") deviceName: String,
+        @Query("writer") writer: String
+    ) : String
+
+    @GET("/android/deleteComment")
+    suspend fun deleteComment(
+        @Query("commentId") commentId : Int
+    ) : CommentInfo
 }

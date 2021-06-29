@@ -5,6 +5,8 @@ import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
+import com.example.itsapp.model.vo.User
+import com.example.itsapp.model.vo.UserInfo
 import com.example.itsapp.retrofit.APIInterface
 import com.example.itsapp.retrofit.RetrofitClient
 import com.example.itsapp.util.SharedPreference
@@ -17,6 +19,9 @@ class HomeViewModel(application: Application): AndroidViewModel(application){
         APIInterface::class.java)
     val userIdLiveData = MutableLiveData<String>()
     val secondJoinLiveData = MutableLiveData<String>()
+    val userLiveData = MutableLiveData<String>()
+    val participationLiveData = MutableLiveData<String>()
+    val userInfoLiveData = MutableLiveData<UserInfo>()
 
     fun getLoginSession():String{
         var userSession = ""
@@ -37,5 +42,32 @@ class HomeViewModel(application: Application): AndroidViewModel(application){
             val data = service.seceondJoin(userId)
             secondJoinLiveData.value = data
         }
+    }
+
+    fun userJob(userSex:String,userAge:String,userJob:String){
+        viewModelScope.launch {
+            val data = service.userJob(userSex,userAge,userJob)
+            userLiveData.value = data
+        }
+    }
+
+    fun surveyParticipation(){
+        viewModelScope.launch {
+            val data = service.surveyParticipation()
+            participationLiveData.value = data
+        }
+    }
+    /*유저 정보*/
+    fun userInfo(loginMethod:String){
+        viewModelScope.launch {
+            val data = service.userInfo(loginMethod)
+            userInfoLiveData.value = data
+        }
+    }
+    fun getLoginMethod(): String? {
+        return prefs.loginMethod
+    }
+    fun logoutPref(){
+        prefs.removeCookies()
     }
 }
