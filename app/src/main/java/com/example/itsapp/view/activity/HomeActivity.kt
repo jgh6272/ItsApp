@@ -155,7 +155,7 @@ class HomeActivity : AppCompatActivity(), BottomNavigationView.OnNavigationItemS
             }
         })
         viewModel.participationLiveData.observe(this, Observer {
-            if(it.equals("200")){
+            if(it.code.equals("200")){
                 dialog()
             }else{
                 Log.d("TAG", "liveData: 유저 정보 패스")

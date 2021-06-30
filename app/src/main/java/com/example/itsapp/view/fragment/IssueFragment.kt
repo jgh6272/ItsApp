@@ -34,12 +34,15 @@ class IssueFragment : Fragment() {
     private val viewModel:NewsViewModel by viewModels()
     private lateinit var newsRecyclerView:RecyclerView
     private lateinit var blogRecyclerView:RecyclerView
-    private var appleCnt : Int = 0
+    /*private var appleCnt : Int = 0
     private var samsungCnt :Int = 0
     private var lgCnt : Int = 0
     private var dellCnt:Int = 0
     private var lenovoCnt:Int = 0
-    private var asusCnt:Int = 0
+    private var asusCnt:Int = 0*/
+    private var userAge:String =""
+    private var userSex:String =""
+    private var userJob:String = ""
     companion object{
         const val TAG : String = "로그"
         fun newInstance() : IssueFragment{
@@ -69,6 +72,7 @@ class IssueFragment : Fragment() {
         pieChart(view)
         LiveData(view)
         btnEvent(view)
+        viewModel.surveyParticipation()
     }
     fun LiveData(view:View){
         viewModel.newsLiveData.observe(viewLifecycleOwner, Observer {
@@ -80,6 +84,18 @@ class IssueFragment : Fragment() {
             var result = it.items
             val mAdapter = this!!.activity?.let { it1 -> BlogAdapter(result, it1) }
             blogRecyclerView.adapter = mAdapter
+        })
+        viewModel.participationLiveData.observe(viewLifecycleOwner, Observer {
+            if(it.code == "204"){
+                if(it.jsonArray.participation=="y"){
+                    userAge = it.jsonArray.userAge
+                    userJob = it.jsonArray.userJob
+                    userSex = it.jsonArray.userSex
+                    rank_tv.text = userAge+userJob+userSex
+                }
+            }else {
+
+            }
         })
         /*viewModel.deviceLiveData.observe(viewLifecycleOwner, Observer {
             if(it.code.equals("200")){

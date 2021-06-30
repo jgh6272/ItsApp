@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.itsapp.model.vo.User
 import com.example.itsapp.model.vo.UserInfo
+import com.example.itsapp.model.vo.userDetailInfo
 import com.example.itsapp.retrofit.APIInterface
 import com.example.itsapp.retrofit.RetrofitClient
 import com.example.itsapp.util.SharedPreference
@@ -20,7 +21,7 @@ class HomeViewModel(application: Application): AndroidViewModel(application){
     val userIdLiveData = MutableLiveData<String>()
     val secondJoinLiveData = MutableLiveData<String>()
     val userLiveData = MutableLiveData<String>()
-    val participationLiveData = MutableLiveData<String>()
+    val participationLiveData = MutableLiveData<userDetailInfo>()
     val userInfoLiveData = MutableLiveData<UserInfo>()
     val retireLiveData = MutableLiveData<String>()
 

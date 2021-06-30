@@ -110,7 +110,7 @@ interface APIInterface {
 
     /*유저 정보 설문조사 참여 여부*/
     @GET("/android/surveyParticipation")
-    suspend fun surveyParticipation() :String
+    suspend fun surveyParticipation() :userDetailInfo
 
     /*유저 정보*/
     @GET("/android/userInfo")
