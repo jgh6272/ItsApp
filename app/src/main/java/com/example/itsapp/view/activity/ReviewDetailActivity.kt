@@ -14,6 +14,7 @@ import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.view.menu.MenuView
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -86,9 +87,9 @@ class ReviewDetailActivity : AppCompatActivity() {
                 Snackbar.make(review_detail_layout,"댓글을 입력해주세요.", Snackbar.LENGTH_SHORT).show()
             }else{
                 commentViewModel.writeComment(deviceName,reviewWriter,writer,commentContent)
-
             }
         }
+
         commentViewModel.writeCommentLiveData.observe(this, Observer {
             if(it.code.equals("200")){
                 hidekeyboard()
@@ -97,23 +98,47 @@ class ReviewDetailActivity : AppCompatActivity() {
                 commentAdapter.updateItem(commentList)
             }
         })
-        commentAdapter.setItemClickListener(object : CommentAdapter.OnItemClickListener{
-            override fun onClick(v: View, position: Int) {
-                var popup = PopupMenu(application, v)
-                menuInflater.inflate(R.menu.more_menu,popup.menu)
-                popup.setOnMenuItemClickListener { item ->
-                    when (item.itemId){
-                        R.id.action_delete -> {
-                            Toast.makeText(application, "댓글 삭제", Toast.LENGTH_SHORT).show()
+
+        commentViewModel.commentLiveData.observe(this, Observer { commentInfo ->
+            if(commentInfo.code.equals("200")){
+                commentAdapter.setItemClickListener(object : CommentAdapter.OnItemClickListener{
+                    override fun onClick(v: View, position: Int) {
+                        var popup = PopupMenu(application, v)
+                        menuInflater.inflate(R.menu.more_menu,popup.menu)
+                        popup.setOnMenuItemClickListener { item ->
+                            when (item.itemId){
+                                R.id.action_delete -> {
+                                    Toast.makeText(application, "댓글 삭제", Toast.LENGTH_SHORT).show()
+                                    Log.i("getCommentId",commentInfo.jsonArray[position].commnetId.toString())
+                                    commentViewModel.deleteComment(commentInfo.jsonArray[position].commnetId)
+                                }
+                                R.id.action_report ->
+                                    Toast.makeText(application,"신고 하기",Toast.LENGTH_SHORT).show()
+                            }
+                            false
                         }
-                        R.id.action_report ->
-                            Toast.makeText(application,"신고 하기",Toast.LENGTH_SHORT).show()
+                        popup.show()
                     }
-                    false
-                }
-                popup.show()
+                })
             }
         })
+//        commentAdapter.setItemClickListener(object : CommentAdapter.OnItemClickListener{
+//            override fun onClick(v: View, position: Int) {
+//                var popup = PopupMenu(application, v)
+//                menuInflater.inflate(R.menu.more_menu,popup.menu)
+//                popup.setOnMenuItemClickListener { item ->
+//                    when (item.itemId){
+//                        R.id.action_delete -> {
+//                            Toast.makeText(application, "댓글 삭제", Toast.LENGTH_SHORT).show()
+//                        }
+//                        R.id.action_report ->
+//                            Toast.makeText(application,"신고 하기",Toast.LENGTH_SHORT).show()
+//                    }
+//                    false
+//                }
+//                popup.show()
+//            }
+//        })
 
         delete_btn.setOnClickListener {
             val builder = AlertDialog.Builder(this)

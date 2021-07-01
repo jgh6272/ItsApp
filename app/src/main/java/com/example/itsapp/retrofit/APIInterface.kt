@@ -153,5 +153,5 @@ interface APIInterface {
     @GET("/android/deleteComment")
     suspend fun deleteComment(
         @Query("commentId") commentId : Int
-    ) : CommentInfo
+    ) : String
 }

@@ -112,6 +112,8 @@ class ReviewWriteActivity : AppCompatActivity() {
                 val intent = Intent(this, DeviceInfoActivity::class.java)
                 intent.putExtra("deviceName",deviceName)
                 startActivity(intent)
+            }else if(it.equals("204")){
+                Toast.makeText(this,"해당 제품에 대해 이미 리뷰를 작성했씁니다.",Toast.LENGTH_SHORT).show()
             }
         })
     }
