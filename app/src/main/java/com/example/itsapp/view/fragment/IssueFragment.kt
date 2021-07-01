@@ -34,12 +34,6 @@ class IssueFragment : Fragment() {
     private val viewModel:NewsViewModel by viewModels()
     private lateinit var newsRecyclerView:RecyclerView
     private lateinit var blogRecyclerView:RecyclerView
-    /*private var appleCnt : Int = 0
-    private var samsungCnt :Int = 0
-    private var lgCnt : Int = 0
-    private var dellCnt:Int = 0
-    private var lenovoCnt:Int = 0
-    private var asusCnt:Int = 0*/
     private var userAge:String =""
     private var userSex:String =""
     private var userJob:String = ""
