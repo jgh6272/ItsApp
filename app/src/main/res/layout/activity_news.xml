@@ -28,15 +28,12 @@
             android:fontFamily="@font/google_sans"
             android:layout_gravity="center"/>
     </androidx.appcompat.widget.Toolbar>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        android:background="@color/black" />
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/news_tab"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:scrollbars="horizontal"
+        app:tabTextColor="@color/black"
+        android:background="@color/white"
         >
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -69,11 +66,16 @@
             android:text="LENOVO"
             />
     </com.google.android.material.tabs.TabLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray300" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/news_rv_activity"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
         android:scrollbarSize="10dp"
+        android:background="@color/white"
         />
 </LinearLayout>

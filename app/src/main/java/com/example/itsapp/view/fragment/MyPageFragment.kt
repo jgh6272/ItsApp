@@ -103,7 +103,8 @@ class MyPageFragment : Fragment() {
                 val intent = Intent(activity,MainActivity::class.java)
                 intent.putExtra("탈퇴","탈퇴")
                 startActivity(intent)
-                activity?.overridePendingTransition(R.anim.right_in, R.anim.left_out);
+                activity?.overridePendingTransition(R.anim.right_in, R.anim.left_out)
+                activity?.finish()
             }else {
                 Snackbar.make(home_activity, "회원 탈퇴 오류", Snackbar.LENGTH_SHORT).show()
             }

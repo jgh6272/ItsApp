@@ -63,7 +63,6 @@ class IssueFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         recyclerView(view)
-        pieChart(view)
         LiveData(view)
         btnEvent(view)
         viewModel.surveyParticipation()
@@ -85,28 +84,11 @@ class IssueFragment : Fragment() {
                     userAge = it.jsonArray.userAge
                     userJob = it.jsonArray.userJob
                     userSex = it.jsonArray.userSex
-                    rank_tv.text = userAge+userJob+userSex
                 }
             }else {
 
             }
         })
-        /*viewModel.deviceLiveData.observe(viewLifecycleOwner, Observer {
-            if(it.code.equals("200")){
-                for(i in 0..1){
-                    when(it.jsonArray[i].deviceBrand){
-                        "Apple" -> appleCnt = it.jsonArray[i].reviewCount
-                        "Samsung" -> samsungCnt = it.jsonArray[i].reviewCount
-                        "LG" -> lgCnt = it.jsonArray[i].reviewCount
-                        "DELL" -> dellCnt = it.jsonArray[i].reviewCount
-                        "LENOVO" -> lenovoCnt = it.jsonArray[i].reviewCount
-                        "ASUS" -> asusCnt = it.jsonArray[i].reviewCount
-                    }
-                }
-            }else{
-                Snackbar.make(view,"리뷰 카운트를 불러오지 못했습니다.",Snackbar.LENGTH_SHORT).show()
-            }
-        })*/
     }
     fun recyclerView(view:View){
         newsRecyclerView = view.findViewById(R.id.news_rv)
@@ -118,44 +100,6 @@ class IssueFragment : Fragment() {
         var BlogLayoutManager = LinearLayoutManager(view.context,LinearLayoutManager.VERTICAL,false)
         blogRecyclerView.layoutManager = BlogLayoutManager
         viewModel.searchReadBlog("노트북",1,3)
-    }
-    fun pieChart(view:View){
-        /*viewModel.getReviewCnt()*/
-        val chart:PieChart = view.findViewById(R.id.trand_chart)
-        chart.setUsePercentValues(true)
-
-        //data set
-        val entries = ArrayList<PieEntry>()
-        entries.add(PieEntry(250f,"LG"))
-        entries.add(PieEntry(200f,"Samsung"))
-        entries.add(PieEntry(350f,"Apple"))
-        entries.add(PieEntry(100f,"DELL"))
-        entries.add(PieEntry(50f,"ASUS"))
-        entries.add(PieEntry(50f,"LENOVO"))
-
-        val colorsItems = ArrayList<Int>()
-        for(c in ColorTemplate.VORDIPLOM_COLORS) colorsItems.add(c)
-        for(c in ColorTemplate.JOYFUL_COLORS) colorsItems.add(c)
-        for(c in COLORFUL_COLORS) colorsItems.add(c)
-        for(c in ColorTemplate.LIBERTY_COLORS) colorsItems.add(c)
-        for(c in ColorTemplate.PASTEL_COLORS) colorsItems.add(c)
-        colorsItems.add(ColorTemplate.getHoloBlue())
-
-        val pieDataSet = PieDataSet(entries,"")
-        pieDataSet.apply {
-            colors = colorsItems
-            valueTextColor = Color.BLACK
-            valueTextSize = 16f
-        }
-        val pieData = PieData(pieDataSet)
-        chart.apply{
-            data = pieData
-            description.isEnabled = false
-            isRotationEnabled = false
-            setEntryLabelColor(Color.BLACK)
-            animateY(1400, Easing.EaseInOutQuad)
-            animate()
-        }
     }
     fun btnEvent(view: View){
         recent_news_tv.setOnClickListener{

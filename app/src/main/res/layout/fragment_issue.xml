@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/news_fragment"
     android:orientation="vertical"
     android:background="@color/gray300"
@@ -44,12 +45,35 @@
             android:layout_height="wrap_content"
             android:orientation="vertical"
             >
+            <com.google.android.material.tabs.TabLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                app:tabTextColor="@color/black"
+                >
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="랭킹"
+                    />
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="뉴스"
+                    />
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="블로그 후기"
+                    />
+            </com.google.android.material.tabs.TabLayout>
             <TextView
                 android:id="@+id/recent_news_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Recent News"
+                android:text="관심 제품 최신 뉴스로 확인하세요!"
                 android:textColor="@color/black"
+                android:fontFamily="@font/google_sans"
                 android:textSize="20dp"
                 android:gravity="left"
                 android:textStyle="bold"
@@ -93,7 +117,7 @@
                 android:id="@+id/rank_tv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Ranking"
+                android:text="랭킹"
                 android:textColor="@color/black"
                 android:textSize="20dp"
                 android:gravity="left"
@@ -101,16 +125,44 @@
                 android:background="@color/white"
                 android:layout_marginTop="6dp"
                 />
-            <com.github.mikephil.charting.charts.PieChart
-                android:id="@+id/trand_chart"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
                 android:background="@color/white"
-                />
-            <View
+                >
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="성별"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/google_sans"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="브랜드별"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/google_sans"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="연령별"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/google_sans"
+                    />
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="직업별"
+                    android:textColor="@color/black"
+                    android:fontFamily="@font/google_sans"
+                    />
+            </LinearLayout>
+            <com.github.mikephil.charting.charts.RadarChart
                 android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray300" />
+                android:layout_height="200dp"/>
         </LinearLayout>
     </ScrollView>
 </LinearLayout>
