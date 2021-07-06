@@ -2,6 +2,8 @@
     <string name="app_name">잇츠</string>
     <string name="kakao_app_key">cdc72611d8426465074f8f4a37d48a59</string>
     <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <!-- TODO: Remove or change this placeholder text -->
     <!--
     This string is used for square devices and overridden by hello_world in
     values-round/strings.xml for round devices.

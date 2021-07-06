@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.fragment.BlogFragment">
+
+    <TextView
+        android:id="@+id/tips_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Tips"
+        android:textColor="@color/black"
+        android:textSize="25dp"
+        android:gravity="left"
+        android:textStyle="bold"
+        android:background="@color/white"
+        android:fontFamily="@font/google_sans"
+        android:drawableRight="@drawable/arrow_right_foreground"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/blog_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        />
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@color/gray300" />
+
+</LinearLayout>

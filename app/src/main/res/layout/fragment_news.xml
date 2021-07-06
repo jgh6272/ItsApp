@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.fragment.NewsFragment">
+
+    <TextView
+        android:id="@+id/recent_news_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="관심 제품 최신 뉴스로 확인하세요!"
+        android:textColor="@color/black"
+        android:fontFamily="@font/google_sans"
+        android:textSize="25dp"
+        android:gravity="left"
+        android:textStyle="bold"
+        android:drawableRight="@drawable/arrow_right_foreground"
+        android:background="@color/white"
+        />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/news_rv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        />
+
+</LinearLayout>

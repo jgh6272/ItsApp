@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/news_fragment"
     android:orientation="vertical"
-    android:background="@color/gray300"
+    android:background="@color/white"
     tools:context=".view.fragment.IssueFragment">
 
     <LinearLayout
@@ -22,7 +22,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="잇츠"
+                android:text="Today's Story"
                 android:textSize="30dp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/nanum_barun_gothic"
@@ -30,142 +30,55 @@
                 android:layout_gravity="left"/>
         </androidx.appcompat.widget.Toolbar>
     </LinearLayout>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_weight="1"
-        >
-        <LinearLayout
+        android:layout_weight="1">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            >
+            android:layout_height="wrap_content">
+
             <com.google.android.material.tabs.TabLayout
+                android:id="@+id/today_story_tabs"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/white"
-                app:tabTextColor="@color/black"
-                >
+                app:tabTextColor="@color/black">
+
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="랭킹"
-                    />
+                    android:text="rank" />
+
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="뉴스"
-                    />
+                    android:text="news" />
+
                 <com.google.android.material.tabs.TabItem
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="블로그"
-                    android:singleLine="true"
                     android:ellipsize="marquee"
+                    android:singleLine="true"
+                    android:text="blog"
                     />
             </com.google.android.material.tabs.TabLayout>
 
             <View
+                android:id="@+id/division"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
-                android:layout_above="@+id/bottom_navigation_view"
+                android:layout_below="@+id/today_story_tabs"
                 android:background="@color/gray500" />
-            <TextView
-                android:id="@+id/recent_news_tv"
+
+            <FrameLayout
+                android:id="@+id/today_container"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="관심 제품 최신 뉴스로 확인하세요!"
-                android:textColor="@color/black"
-                android:fontFamily="@font/google_sans"
-                android:textSize="25dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:drawableRight="@drawable/arrow_right_foreground"
-                android:background="@color/white"
+                android:layout_below="@+id/division"
                 />
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/news_rv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray300" />
-            <TextView
-                android:id="@+id/tips_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Tips"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:background="@color/white"
-                android:layout_marginTop="6dp"
-                android:drawableRight="@drawable/arrow_right_foreground"
-                />
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/blog_rv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@color/white"
-                />
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1dp"
-                android:background="@color/gray300" />
-            <TextView
-                android:id="@+id/rank_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="랭킹"
-                android:textColor="@color/black"
-                android:textSize="20dp"
-                android:gravity="left"
-                android:textStyle="bold"
-                android:background="@color/white"
-                android:layout_marginTop="6dp"
-                />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:background="@color/white"
-                >
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="성별"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/google_sans"
-                    />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="브랜드별"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/google_sans"
-                    />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="연령별"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/google_sans"
-                    />
-                <Button
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="직업별"
-                    android:textColor="@color/black"
-                    android:fontFamily="@font/google_sans"
-                    />
-            </LinearLayout>
-            <com.github.mikephil.charting.charts.RadarChart
-                android:layout_width="match_parent"
-                android:layout_height="200dp"/>
-        </LinearLayout>
+        </RelativeLayout>
     </ScrollView>
 </LinearLayout>

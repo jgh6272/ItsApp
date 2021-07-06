@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".view.fragment.RankFragment">
+
+    <TextView
+        android:id="@+id/rank_tv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="랭킹"
+        android:textColor="@color/black"
+        android:textSize="20dp"
+        android:gravity="left"
+        android:textStyle="bold"
+        android:background="@color/white"
+        android:layout_marginTop="6dp"
+        />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/white"
+        >
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="성별"
+            android:textColor="@color/black"
+            android:fontFamily="@font/google_sans"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="브랜드별"
+            android:textColor="@color/black"
+            android:fontFamily="@font/google_sans"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="연령별"
+            android:textColor="@color/black"
+            android:fontFamily="@font/google_sans"
+            />
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="직업별"
+            android:textColor="@color/black"
+            android:fontFamily="@font/google_sans"
+            />
+    </LinearLayout>
+
+</LinearLayout>

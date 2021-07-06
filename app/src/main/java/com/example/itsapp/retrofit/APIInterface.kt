@@ -1,10 +1,8 @@
 package com.example.itsapp.retrofit
 
 import com.example.itsapp.model.vo.*
-import com.example.itsapp.model.vo.BrandPart
 import com.example.itsapp.model.vo.DeviceInfo
 import com.example.itsapp.model.vo.UserInfo
-import retrofit2.Call
 import retrofit2.http.*
 
 interface APIInterface {
