@@ -8,11 +8,15 @@
 
 ### 초기화면
 <img src="https://user-images.githubusercontent.com/60098124/125821862-c1b753a1-e3ba-4ed5-8d5a-533ae312b739.jpg" height= "10%" width="30%">
+
 ### 로그인 방식 (일반 로그인 방식과 카카오 로그인 방식)
-<img src="https://user-images.githubusercontent.com/60098124/125821997-675e8703-62f9-48f8-88de-70e1f07d33c5.jpg" height= "10%" width="30%"><img src="https://user-images.githubusercontent.com/60098124/125822008-9b4eb631-1e0b-47d1-a0b7-b7057e00f6a0.jpg" height= "10%" width="30%">
+<img src="https://user-images.githubusercontent.com/60098124/125821997-675e8703-62f9-48f8-88de-70e1f07d33c5.jpg" height= "10%" width="30%"> <img src="https://user-images.githubusercontent.com/60098124/125822008-9b4eb631-1e0b-47d1-a0b7-b7057e00f6a0.jpg" height= "10%" width="30%">
+
 ### 로딩 화면 (SharedPreference에 있는 데이터 확인를 통해 자동 로그인하거나 초기화면 또는 유저 정보 기입하는 화면으로 넘어감)
 <img src="https://user-images.githubusercontent.com/60098124/125822109-55ea78c6-782a-4323-bd64-73d0567e189e.jpg" height= "10%" width="30%">
+
 ### 네이버 뉴스 api
-<img src="https://user-images.githubusercontent.com/60098124/125822432-61cf53c6-162c-4211-bb57-3e15041bd04e.jpg" height= "10%" width="30%"><img src="https://user-images.githubusercontent.com/60098124/125822453-35393fbe-546b-4969-8048-62fb45ff1843.jpg" height= "10%" width="30%">
+<img src="https://user-images.githubusercontent.com/60098124/125822432-61cf53c6-162c-4211-bb57-3e15041bd04e.jpg" height= "10%" width="30%"> <img src="https://user-images.githubusercontent.com/60098124/125822453-35393fbe-546b-4969-8048-62fb45ff1843.jpg" height= "10%" width="30%">
+
 ### 기기들 리뷰
-<img src="https://user-images.githubusercontent.com/60098124/125822559-a3e7f4cd-9c0c-4b70-98f1-d1f72b7c915a.jpg" height= "10%" width="25%"><img src="https://user-images.githubusercontent.com/60098124/125822582-2d43df1b-5239-4dd5-bd70-20c8480c4f99.jpg" height= "10%" width="25%"><img src="https://user-images.githubusercontent.com/60098124/125822668-bca9c1d3-3da4-4e28-8139-21e2c9969fb7.jpg" height= "10%" width="25%"><img src="https://user-images.githubusercontent.com/60098124/125822736-b212b22c-cd21-45d9-b1fe-f4c25efcda36.jpg" height= "10%" width="25%">
+<img src="https://user-images.githubusercontent.com/60098124/125822559-a3e7f4cd-9c0c-4b70-98f1-d1f72b7c915a.jpg" height= "10%" width="25%"> <img src="https://user-images.githubusercontent.com/60098124/125822582-2d43df1b-5239-4dd5-bd70-20c8480c4f99.jpg" height= "10%" width="25%"> <img src="https://user-images.githubusercontent.com/60098124/125822668-bca9c1d3-3da4-4e28-8139-21e2c9969fb7.jpg" height= "10%" width="25%"> <img src="https://user-images.githubusercontent.com/60098124/125822736-b212b22c-cd21-45d9-b1fe-f4c25efcda36.jpg" height= "10%" width="25%">
